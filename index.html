@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CUET UG 2026 Prep Resources</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f2eb;
+  --card-bg: #fffef9;
+  --card-back: #1a2744;
+  --accent: #e85d26;
+  --accent2: #2563eb;
+  --text: #1a1a2e;
+  --muted: #6b7280;
+  --border: #e0d9cc;
+  --shadow: 0 4px 24px rgba(0,0,0,0.10);
+  --shadow-hover: 0 12px 40px rgba(0,0,0,0.18);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+/* PROGRESS BAR */
+.progress-bar { height: 3px; background: linear-gradient(90deg, var(--accent), #f4a44a, var(--accent2)); background-size: 200%; animation: gradientMove 3s linear infinite; }
+@keyframes gradientMove { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
+
+/* HEADER */
+header { background: var(--card-back); color: #fff; padding: 22px 24px 18px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(0,0,0,0.18); }
+header h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 4vw, 1.85rem); font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; }
+header h1 span { color: #f4a44a; }
+header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* PAGE LAYOUT */
+.page-layout { display: flex; align-items: flex-start; max-width: 1400px; margin: 0 auto; }
+.main-content { flex: 1; min-width: 0; }
+
+/* SECTION LABEL */
+.section-label { display: flex; align-items: center; gap: 12px; padding: 22px 20px 10px; }
+.section-label h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.05rem, 3vw, 1.45rem); font-weight: 700; color: var(--text); }
+.section-label .pill { background: var(--accent); color: #fff; font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 99px; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+
+/* CONTROLS */
+.controls { padding: 0 20px 14px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.search-box { flex: 1 1 200px; position: relative; }
+.search-box input { width: 100%; padding: 10px 16px 10px 36px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; background: var(--card-bg); color: var(--text); outline: none; transition: border 0.2s; }
+.search-box input:focus { border-color: var(--accent2); }
+.search-box svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+.count-badge { font-size: 0.82rem; color: var(--muted); white-space: nowrap; }
+.count-badge b { color: var(--accent); }
+
+/* ALPHA NAV */
+.alpha-nav { padding: 0 20px 16px; display: flex; flex-wrap: wrap; gap: 5px; }
+.alpha-btn { padding: 4px 8px; border-radius: 7px; border: 1.5px solid var(--border); background: var(--card-bg); font-size: 0.76rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
+.alpha-btn:hover, .alpha-btn.active { background: var(--card-back); color: #fff; border-color: var(--card-back); }
+.alpha-btn.has-words { color: var(--text); border-color: #c0bbb0; }
+
+/* ALPHA GROUP HEADER */
+.alpha-group-header { grid-column: 1/-1; display: flex; align-items: center; gap: 14px; padding: 6px 0 2px; }
+.alpha-group-header span { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; color: var(--accent); line-height: 1; }
+.alpha-group-header hr { flex: 1; border: none; border-top: 1.5px solid var(--border); }
+
+/* CARDS GRID */
+.cards-grid { padding: 4px 20px 48px; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+
+/* FLASHCARD */
+.flashcard-wrapper { perspective: 900px; height: 112px; }
+.flashcard { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1); cursor: pointer; border-radius: 14px; }
+.flashcard.flipped { transform: rotateY(180deg); }
+.card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
+.flashcard:hover .card-face { box-shadow: var(--shadow-hover); }
+.card-front { background: var(--card-bg); border: 1.5px solid var(--border); }
+.card-front .word { font-family: 'Playfair Display', serif; font-size: clamp(0.85rem, 2.2vw, 1.05rem); font-weight: 700; text-align: center; color: var(--text); line-height: 1.2; word-break: break-word; }
+.card-front .tap-hint { margin-top: 7px; font-size: 0.62rem; color: #b0a899; font-weight: 500; letter-spacing: 0.04em; }
+.card-back { background: var(--card-back); transform: rotateY(180deg); overflow: hidden; align-items: flex-start; padding: 0; }
+
+/* MODAL */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(10,15,30,0.65); z-index: 999; align-items: center; justify-content: center; padding: 16px; backdrop-filter: blur(3px); }
+.modal-overlay.open { display: flex; }
+.modal-card { background: var(--card-back); color: #fff; border-radius: 20px; padding: 26px 22px 22px; max-width: 420px; width: 100%; box-shadow: 0 24px 80px rgba(0,0,0,0.45); position: relative; animation: modalIn 0.28s cubic-bezier(0.34,1.56,0.64,1) both; }
+@keyframes modalIn { from{opacity:0;transform:scale(0.88) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+.modal-close { position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,0.12); border: none; color: #fff; width: 30px; height: 30px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+.modal-close:hover { background: rgba(255,255,255,0.22); }
+.modal-word { font-family: 'Playfair Display', serif; font-size: 1.65rem; font-weight: 700; color: #fff; margin-bottom: 6px; line-height: 1.2; }
+.modal-dates { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
+.modal-date-tag { background: rgba(248,160,64,0.18); color: #f4a44a; border: 1px solid rgba(244,164,74,0.3); font-size: 0.68rem; font-weight: 600; padding: 3px 8px; border-radius: 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+.modal-meanings { display: flex; flex-direction: column; gap: 12px; }
+.meaning-block { border-left: 3px solid rgba(255,255,255,0.12); padding-left: 12px; }
+.meaning-label { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8899bb; margin-bottom: 3px; }
+.meaning-text { font-size: 0.9rem; color: #e8eef8; line-height: 1.5; font-weight: 400; }
+.hindi-text { font-size: 0.95rem; }
+
+/* EMPTY STATE */
+.empty-state { grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--muted); font-size: 1rem; }
+
+/* SCROLL TOP */
+.scroll-top { position: fixed; bottom: 22px; right: 18px; background: var(--card-back); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.25); display: none; align-items: center; justify-content: center; z-index: 200; }
+.scroll-top.show { display: flex; }
+
+/* ============ MENTOR SIDEBAR ============ */
+.mentor-sidebar {
+  width: 262px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 78px;
+  padding: 22px 16px 22px 6px;
+  height: fit-content;
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+}
+.mentor-sidebar::-webkit-scrollbar { width: 3px; }
+.mentor-sidebar::-webkit-scrollbar-track { background: transparent; }
+.mentor-sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+.mentor-card {
+  background: var(--card-bg);
+  border: 1.5px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.mentor-img-wrap {
+  width: 100%;
+  background: linear-gradient(160deg, #1a2744 0%, #2d4a8a 60%, #1e3a6e 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-top: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.mentor-img-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 65% 35%, rgba(244,164,74,0.22) 0%, transparent 65%);
+}
+.mentor-img-wrap img {
+  width: 150px;
+  height: 160px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+  z-index: 1;
+}
+
+.mentor-body { padding: 15px 14px 16px; }
+
+.mentor-eyebrow {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 3px;
+}
+.mentor-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 9px;
+}
+.mentor-divider {
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), #f4a44a);
+  border-radius: 2px;
+  margin-bottom: 11px;
+  width: 32px;
+}
+
+.mentor-stats {
+  display: flex;
+  gap: 7px;
+  margin-bottom: 13px;
+}
+.mentor-stat {
+  flex: 1;
+  background: #eef2ff;
+  border-radius: 8px;
+  padding: 7px 6px;
+  text-align: center;
+}
+.mentor-stat .snum {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--card-back);
+  display: block;
+  line-height: 1;
+}
+.mentor-stat .slabel {
+  font-size: 0.58rem;
+  color: var(--muted);
+  font-weight: 500;
+  margin-top: 2px;
+  display: block;
+  line-height: 1.3;
+}
+
+.mentor-bio {
+  font-size: 0.78rem;
+  color: #4a5568;
+  line-height: 1.66;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+.mentor-bio p { margin-bottom: 7px; }
+.mentor-bio p:last-child { margin-bottom: 0; }
+
+.mentor-colleges {
+  background: linear-gradient(135deg, #fff8f0, #fff3e8);
+  border: 1px solid #f4dfc8;
+  border-radius: 9px;
+  padding: 9px 10px;
+}
+.mentor-colleges-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.college-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.college-chip {
+  background: rgba(232,93,38,0.1);
+  color: #c04010;
+  font-size: 0.62rem;
+  font-weight: 600;
+  padding: 3px 7px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+.mentor-mission {
+  margin-top: 11px;
+  background: linear-gradient(135deg, #f0f4ff, #e8eeff);
+  border: 1px solid #d0d9f8;
+  border-radius: 9px;
+  padding: 9px 10px;
+  font-size: 0.76rem;
+  color: #374a8a;
+  line-height: 1.55;
+  font-style: italic;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 960px) {
+  .page-layout { flex-direction: column-reverse; }
+  .mentor-sidebar {
+    width: 100%;
+    position: static;
+    padding: 12px 16px 0;
+    max-height: none;
+    overflow-y: visible;
+  }
+  .mentor-card {
+    display: flex;
+    flex-direction: row;
+    border-radius: 16px;
+  }
+  .mentor-img-wrap {
+    width: 120px;
+    flex-shrink: 0;
+    padding-top: 0;
+    align-items: stretch;
+  }
+  .mentor-img-wrap img {
+    width: 120px;
+    height: 100%;
+    border-radius: 0;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .mentor-body { flex: 1; }
+  .mentor-stats { display: none; }
+  .mentor-mission { display: none; }
+}
+@media (max-width: 540px) {
+  .mentor-card { flex-direction: column; }
+  .mentor-img-wrap {
+    width: 100%;
+    height: 155px;
+    padding-top: 14px;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .mentor-img-wrap img {
+    width: 128px;
+    height: 138px;
+    border-radius: 10px 10px 0 0;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .mentor-stats { display: flex; }
+  .cards-grid { grid-template-columns: repeat(auto-fill, minmax(128px,1fr)); gap: 9px; padding: 4px 12px 40px; }
+  .alpha-nav { padding: 0 12px 12px; }
+  .controls { padding: 0 12px 12px; }
+  .section-label { padding: 16px 12px 8px; }
+}
+</style>
+</head>
+<body>
+<div class="progress-bar"></div>
+<header>
+  <h1>CUET UG 2026 <span>Prep Resources</span></h1>
+  <p class="subtitle">English Language · Vocabulary Flashcards</p>
+</header>
+
+<div class="page-layout">
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+  <div class="section-label">
+    <h2>English Vocabulary</h2>
+    <span class="pill">Flashcards</span>
+  </div>
+  <div class="controls">
+    <div class="search-box">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search a word…" autocomplete="off"/>
+    </div>
+    <div class="count-badge">Showing <b id="countDisplay">0</b> words</div>
+  </div>
+  <div class="alpha-nav" id="alphaNav"></div>
+  <div class="cards-grid" id="cardsGrid"></div>
+</div>
+
+<!-- MENTOR SIDEBAR -->
+<aside class="mentor-sidebar">
+  <div class="mentor-card">
+    <div class="mentor-img-wrap">
+      <img src="data:image/jpeg;base64,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zJqS/wDM888888888888888888888888888+8888888888888Cs7GUUb+hmAnFH2J/iRKkzvGIXc888888888888888888888+88888+8888888888888sCvcV6tKcag+OtGQcRHowjpCZa888888888888888888888888888++88888888888888IwTWByjQtQQfpKybKfCHqfC088888888888888888888888888+8++888888888888888SDz8QUP0XdQh6sWq4oeMFEi8888888888888888888888888888++888888888888888qzlcELTpTlM7f9VeFdmHm2l+++888888+++888888888+++8888++888888888888888+h5WnTdRCHFv6m8adsucMNf8AvvvPPPPPPPvvPPPPPPPPPPPvPPPPvvPPPPPPPPPPPPPPPKqh7JnO1TQDnxswPwB+vr/PvvvPvPPPPvPPPPPPPPPPPPPPPPPPvvPPPPPPPPPPPPPLCEhI0Nts/bWfsKooR68zZ4NPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPvPPPPPPPPPPPPPPCACyR60/M4Xc3gRT23k9gwuNPCEMMNPPPPPPPPPPPPPPPPPPPPPPPvPPPPPPPPPPPPPPIAmyIjwg69IaT/qkNww/SszZjT8JAABPPPPPPPPPPPPPPPPPPPPPPvPPPPPPPPPPPPPDCFqxOpsA5AuM/TO05uRrAeWcostr1GeuPPPPPPPPPPPPPPPPPPPPPvPPPPPPPPPPPPPPIEpe+rI9w1cPfJZVzNrF+hE7jgnjvjmSWPPPPPPPPPPPPPPPPPPPPvPPPPPPPPPPPPPIAsuTxH/68fIUZsj6mtXnVG+v/wD+s9bZxCobTzzzzzzzzzzzzzzzzz7zzzzzzzzzzzzABjElEvtDyU1KIyO9zIL47q5QNR/v/PmM8QNvLzzzzzzzzzzzzzzzzz7zzzzzzzzzziABAioZn6aExe8PTc/cfxFBuKIieyylcOMPtQ0vk9Tzzzzzzzzzzzzzzz7zzzzzzzzzAQr8oBClk5UxLFkeeX1VcwCG7AgSPua9OMvf9zfI3yrTzzzzzzzzzzzzzz7zzzzzzzyAT/RJkZx6VwMS9GqFFDAY+02TRxS3cjtdsNXtNTgLh9XDzzzzzzzzzzzzzz7zzzzz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" alt="Akash Shukla - Mentor"/>
+    </div>
+    <div class="mentor-body">
+      <div class="mentor-eyebrow">Meet Your Mentor</div>
+      <div class="mentor-name">Akash Shukla</div>
+      <div class="mentor-divider"></div>
+      <div class="mentor-stats">
+        <div class="mentor-stat">
+          <span class="snum">14+</span>
+          <span class="slabel">Years Exp.</span>
+        </div>
+        <div class="mentor-stat">
+          <span class="snum">5+</span>
+          <span class="slabel">Exams</span>
+        </div>
+        <div class="mentor-stat">
+          <span class="snum">Top</span>
+          <span class="slabel">Colleges</span>
+        </div>
+      </div>
+      <div class="mentor-bio">
+        <p>With <strong>14+ years</strong> of experience, I have guided thousands of aspirants for CUET, Banking, SSC, IIT, and NEET.</p>
+        <p>I closely observe the CUET exam pattern — how it evolves, how the level changes, and what it truly takes to succeed.</p>
+        <p>My focus is on <strong>simplifying preparation</strong> and giving students the right direction.</p>
+      </div>
+      <div class="mentor-colleges">
+        <div class="mentor-colleges-label">📚 Success Stories At</div>
+        <div class="college-chips">
+          <span class="college-chip">SRCC</span>
+          <span class="college-chip">SSCBS</span>
+          <span class="college-chip">Hindu</span>
+          <span class="college-chip">Hansraj</span>
+          <span class="college-chip">IIMs</span>
+        </div>
+      </div>
+      <div class="mentor-mission">
+        "My mission — help students make the right strategy and achieve their dream college."
+      </div>
+    </div>
+  </div>
+</aside>
+
+</div><!-- end page-layout -->
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal-card" id="modalCard">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <div class="modal-word" id="mWord"></div>
+    <div class="modal-dates" id="mDates"></div>
+    <div class="modal-meanings" id="mMeanings"></div>
+  </div>
+</div>
+
+<button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const RAW_WORDS = [
+  {word:"Abate",en:"Become less intense or widespread; make less intense",hi:"Kam karna / Rok thaam karna",hd:"कम करना / रोक-थाम करना",dates:["19 MAY 2025 - SHIFT 1","19 MAY 2025 - SHIFT 2"]},
+  {word:"Abstruse",en:"Difficult to understand; deep or obscure",hi:"Jo samajhne mein bahut mushkil ho",hd:"बहुत कठिन या जटिल; दुर्बोध",dates:["16 MAY 2025 - SHIFT 1","31 MAY 2025 - SHIFT 1"]},
+  {word:"Accede",en:"Agree to a request or demand",hi:"Kisi baat ko maan lena, haan bolna",hd:"सहमत होना / मान लेना",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Accuse",en:"Charge (someone) with an offence or crime",hi:"Aarop lagana",hd:"आरोप",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Acquittal",en:"A judgement that a person is not guilty of the crime charged",hi:"Doshmukt hona",hd:"दोषमुक्त",dates:["20 MAY 2025 - SHIFT 2"]},
+  {word:"Acquiescence",en:"Accepting something without protest",hi:"Chupchaap sehmat hona",hd:"मौन स्वीकृति",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Actuary",en:"A person who compiles and analyses statistics to calculate insurance risks and premiums",hi:"Beemai jokhim aur premium ka hisaab lagane wala",hd:"मुंशी / बीमा गणनाकार",dates:["19 MAY 2025 - SHIFT 1"]},
+  {word:"Adroit",en:"Skillful and adept under pressing conditions",hi:"Chatur ya nipun",hd:"दक्ष",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Aerial",en:"In or through the air",hi:"Hawa mein ya hawa se sambandhit",hd:"वायवीय",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Affable",en:"Friendly and easy to talk to",hi:"Bada hi friendly aur easily baat karne wala",hd:"मिलनसार",dates:["3 JUNE 2025 - SHIFT 1"]},
+  {word:"Agitated",en:"Feeling or appearing troubled or nervous",hi:"Tension mein",hd:"व्याकुल",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Aid",en:"Help or support",hi:"Sahayata",hd:"सहायता",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Aide",en:"A helper or assistant",hi:"Madadgar",hd:"सहायक",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Allegiance",en:"Loyalty or commitment to a superior or to a group or cause",hi:"Nishtha",hd:"निष्ठा",dates:["19 MAY 2025 - SHIFT 1"]},
+  {word:"Alleviate",en:"Make (suffering, deficiency, or a problem) less severe",hi:"Kam karna",hd:"कम करना",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Altar",en:"A sacred platform used in worship",hi:"Pooja ya religious ceremony mein use hone wala pavitra platform",hd:"वेदी / पूजा स्थल",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Alter",en:"To change or modify",hi:"Koi cheez ya plan mein thoda badlav karna",hd:"बदलना",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Altruistic",en:"Selflessly concerned for the well-being of others",hi:"Paropkaari",hd:"परोपकारी",dates:["30 MAY 2025 - SHIFT 1"]},
+  {word:"Altruist",en:"Someone who cares for others; selfless person",hi:"Doosron ke liye sochne waala, nisswaarth",hd:"परोपकारी, निःस्वार्थ व्यक्ति",dates:["2 JUNE 2025 - SHIFT 1"]},
+  {word:"Ambidextrous",en:"Able to use both the right and left hands equally well",hi:"Jo dono haathon se equally kaam kar sakta hai",hd:"दोनों हाथों से समान रूप से काम कर सकने योग्य",dates:["14 MAY 2025 - SHIFT 2","20 MAY 2025 - SHIFT 1"]},
+  {word:"Ambiguity",en:"The quality of being open to more than one interpretation",hi:"Jab cheez clear na ho",hd:"अस्पष्टता",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Ambivalent",en:"Having mixed feelings or contradictory ideas about something or someone",hi:"Jab aap ek hi cheez ke liye confuse ho",hd:"उलझन में होना",dates:["14 MAY 2025 - SHIFT 2"]},
+  {word:"Amicable",en:"Friendly and without serious disagreement",hi:"Dosti bhara, bina jhagde ka",hd:"सौहार्दपूर्ण, मित्रवत",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Amiable",en:"Displaying a friendly and pleasant manner",hi:"Friendly, achha vyavhaar",hd:"सुशील, मिलनसार",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Amenable",en:"Open and responsive to suggestion; easily persuaded or controlled",hi:"Jimmedaar / aagyakari",hd:"विनम्र, आज्ञाकारी",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Anchor",en:"A heavy object used to keep a boat still OR a news presenter",hi:"Ya to ship ko rokne ka iron item, ya news wale host",hd:"लंगर / समाचार प्रस्तुतकर्ता",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Anthropology",en:"The study of human societies, cultures, and their development",hi:"Insaan aur uski sabhyata, sanskriti ka gyaan",hd:"मानवशास्त्र",dates:["27 MAY 2025 - SHIFT 1","2 JUNE 2025 - SHIFT 2"]},
+  {word:"Apostate",en:"A person who renounces a religious or political belief",hi:"Jo apne dharm ya vichar chhod de",hd:"धर्मत्यागी, विश्वासघाती",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Apostle",en:"One of the twelve men chosen by Christ OR a strong supporter of a belief or cause",hi:"Ek aisa vyakti jo kisi dharm ya cause ka pracharak ho",hd:"यीशु के 12 प्रमुख अनुयायी / किसी विचार का जोशीला समर्थक",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Appraise",en:"To assess the value or quality of something",hi:"Mulyankan karna",hd:"मूल्यांकन करना",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Aquarium",en:"A transparent tank of water in which live water creatures and plants are kept",hi:"Machhali rakhne ki jagah",hd:"मछलीघर",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Ardent",en:"Very enthusiastic or passionate",hi:"Bohot hi jazbaati ya junooni tareeke se kuch karna",hd:"उत्साही, प्रबल इच्छाशक्ति वाला",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Arduous",en:"Requiring great effort and hard work; very difficult",hi:"Bahut kathin ya mehnat bhara",hd:"कठिन",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Arteriosclerosis",en:"The thickening and hardening of the walls of the arteries, occurring typically in old age",hi:"Nasiyon ka sakht hona",hd:"धमनीकाठिन्य",dates:["15 MAY 2025 - SHIFT 2"]},
+  {word:"Ascend",en:"Went up or rose",hi:"Upar chadh jaana, badhna",hd:"ऊपर चढ़ा / आरोहण किया",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Ascent",en:"A climb or walk to the summit of a mountain or hill",hi:"Chadhai",hd:"आरोहण",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Assent",en:"The expression of approval or agreement",hi:"Anumati",hd:"अनुमति",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Assiduous",en:"Showing great care and perseverance",hi:"Lagatar mehnat karne wala",hd:"परिश्रमी, मेहनती",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Astronomy",en:"Study of stars and space",hi:"Taaron ka adhyayan",hd:"खगोलशास्त्र",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Atrocity",en:"An extremely wicked or cruel act, typically involving physical violence",hi:"Bahut bura ya zalim kaam",hd:"क्रूरता, अत्याचार",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Audacious",en:"Bold, fearless (sometimes disrespectfully so)",hi:"Bahut hi bold ya daring",hd:"साहसी / धृष्ट",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Auger",en:"A tool for boring holes",hi:"Chhed karne wala auzar",hd:"छेद करने का उपकरण",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Augur",en:"To predict or be a sign of something",hi:"Bhavishya batana ya sanket dena",hd:"पूर्वसूचना देना / शुभ या अशुभ संकेत देना",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Avert",en:"Prevent or avoid",hi:"Talna, rokna",hd:"टालना, रोकना",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Avid",en:"Having or showing a keen interest or enthusiasm for something",hi:"Bohot zyada interested ya passionate kisi cheez mein",hd:"उत्साही / अत्यधिक इच्छुक",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Aver",en:"To assert or affirm with confidence; to state as true",hi:"Daaway ke saath kehna, strongly bolna ki ye baat sach hai",hd:"दृढ़तापूर्वक कहना / प्रमाणित करना",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Bail",en:"Money paid to get someone out of jail temporarily",hi:"Zamaanaat par chhutti",hd:"ज़मानत",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Bale",en:"A bundle (of hay, cotton, etc.)",hi:"Gathhi ya bundle (jaise kapde ya ghaas ki)",hd:"गठरी",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Bard",en:"A poet, especially one reciting epics",hi:"Kavita sunane wala, purane zamaane ka kavi",hd:"कवि",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Barred",en:"Blocked or banned",hi:"Mana kiya gaya ya roka gaya",hd:"प्रतिबंधित",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Bellicose",en:"Demonstrating aggression and willingness to fight",hi:"Jhagde wala",hd:"लड़ाकू",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Belligerent",en:"Aggressive and ready to fight",hi:"Jhagdaalu, ladaaku nature ka",hd:"झगड़ालू / आक्रामक",dates:["23 MAY 2025 - SHIFT 1","27 MAY 2025 - SHIFT 1","3 JUNE 2025 - SHIFT 2"]},
+  {word:"Belligerence",en:"Aggressive or combative behavior",hi:"Jhagda karne ki aadat",hd:"युद्धप्रियता, आक्रामकता",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Benediction",en:"A blessing or expression of good wishes, often at the end of a religious service",hi:"Ashirwad ya mangalkamna",hd:"आशीर्वाद",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Benevolent",en:"Kind and generous",hi:"Dayalu aur udaar",hd:"परोपकारी, दयालु",dates:["31 MAY 2025 - SHIFT 1","3 JUNE 2025 - SHIFT 2"]},
+  {word:"Benign",en:"Kind and gentle; harmless (also used medically)",hi:"Soft-natured ya harmless vyakti/cheez",hd:"सौम्य / हानिरहित",dates:["23 MAY 2025 - SHIFT 2","31 MAY 2025 - SHIFT 1"]},
+  {word:"Berate",en:"To scold or criticize angrily",hi:"Daantna ya buri tarah se sunana",hd:"डांटना या फटकार लगाना",dates:["3 JUNE 2025 - SHIFT 1"]},
+  {word:"Bereft",en:"Lacking something, especially a nonmaterial asset",hi:"Kuch chhuta hua, udaas",hd:"वंचित, शोकित",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Beside",en:"Next to; at the side of",hi:"Ke bagal mein",hd:"के बगल में / पास में",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Besides",en:"In addition to; apart from",hi:"Ke alawa, in addition to",hd:"के अतिरिक्त / और भी",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Bestial",en:"Savagely cruel and depraved; resembling a beast",hi:"Janwar jaisa ya atyant krur",hd:"पशुवत",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Blasphemy",en:"The act or offense of speaking sacrilegiously about God or sacred things",hi:"Dharmik apmaan",hd:"ईश्वर का अपमान, निंदा",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Bolster",en:"Support or strengthen",hi:"Sahara dena",hd:"सहारा देना",dates:["15 MAY 2025 - SHIFT 2"]},
+  {word:"Borstal",en:"A custodial institution for young offenders",hi:"Ek prakar ka yuva nirodh kendra",hd:"एक प्रकार का युवा निरोध केंद्र",dates:["15 MAY 2025 - SHIFT 2"]},
+  {word:"Brash",en:"Aggressively confident in a rude or noisy way",hi:"Besharam ya rude tareeke se overly confident",hd:"अक्खड़ / धृष्ट",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Bucolic",en:"Relating to the pleasant aspects of the countryside and country life",hi:"Gaon se juda",hd:"ग्राम्य",dates:["19 MAY 2025 - SHIFT 1"]},
+  {word:"Calm",en:"Not showing or feeling nervousness, anger, or other strong emotions",hi:"Aram se",hd:"शांत",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Calligraphy",en:"Artistic handwriting",hi:"Khoobsurat likhai",hd:"सुलेख",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Callous",en:"Having an insensitive and cruel disregard for others",hi:"Kathor",hd:"कठोर",dates:["20 MAY 2025 - SHIFT 2"]},
+  {word:"Callus",en:"A thickened and hardened part of the skin or soft tissue",hi:"Ghatta",hd:"घट्टा",dates:["20 MAY 2025 - SHIFT 2"]},
+  {word:"Canon",en:"A general law, rule, principle, or criterion by which something is judged",hi:"Kanun",hd:"कानून",dates:["20 MAY 2025 - SHIFT 1"]},
+  {word:"Capricious",en:"Changing mood or behavior suddenly; given to sudden and unaccountable changes",hi:"Jo kabhi bhi mood badal de, unpredictable ho",hd:"चंचल / मनमौजी",dates:["24 MAY 2025 - SHIFT 1","28 MAY 2025 - SHIFT 1"]},
+  {word:"Cardiologist",en:"A doctor specializing in heart diseases",hi:"Dil ke doctor",hd:"हृदय रोग विशेषज्ञ",dates:["20 MAY 2025 - SHIFT 2","27 MAY 2025 - SHIFT 1"]},
+  {word:"Charade",en:"An absurd pretense intended to create a pleasant or respectable appearance",hi:"Naqli dikhawa, drama karna",hd:"दिखावा, नाटक",dates:["24 MAY 2025 - SHIFT 2","28 MAY 2025 - SHIFT 1"]},
+  {word:"Churlish",en:"Someone who is rude, unfriendly and unpleasant; rude in a mean-spirited and surly way",hi:"Akkhad, gavaar / ashisht",hd:"अक्खड़, गवार / कठोर, अशिष्ट",dates:["19 MAY 2025 - SHIFT 1","21 MAY 2025 - SHIFT 2"]},
+  {word:"Cite",en:"To quote or refer to",hi:"Reference dena, example dena",hd:"उद्धृत करना, संदर्भित करना",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Clairvoyant",en:"Person with supernatural ability to see future/invisible things",hi:"Jo future ya hidden cheezein dekh sakta hai; sixth sense type",hd:"भविष्य या अदृश्य चीजें देखने की शक्ति वाला व्यक्ति",dates:["16 MAY 2025 - SHIFT 1"]},
+  {word:"Clandestine",en:"Kept secret or done secretly, often for some illicit purpose",hi:"Chupke se kiya gaya, aksar illegal ya chhupa hua kaam",hd:"गुप्त, रहस्यमय",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Clemency",en:"Mercy or leniency",hi:"Jab kisi ko maaf kar diya jaye ya naram faisla ho",hd:"दया / क्षमा",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Coarse",en:"Rough or harsh in texture",hi:"Rough ya khurdura",hd:"कठोर",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Coax",en:"To gently persuade someone",hi:"Pyaar se kisi ko manana ya raazi karna",hd:"मनाना / फुसलाना",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Collar",en:"The part around the neck of a shirt",hi:"Shirt ka gardan wala hissa",hd:"कॉलर",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Colloquial",en:"Informal or conversational language",hi:"Normal, casual baatcheet wali bhasha",hd:"बोलचाल की भाषा",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Collusion",en:"Secret or illegal cooperation or conspiracy",hi:"Chhupke se milke kuch galat karna",hd:"साजिश, मिलीभगत",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Complement",en:"Something that completes or enhances",hi:"Jo kisi ko complete kare",hd:"पूरक, पूरा करने वाला",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Compliment",en:"A polite expression of praise or admiration",hi:"Achha bola, tareef ki",hd:"प्रशंसा, तारीफ",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Complacent",en:"Showing smug or uncritical satisfaction with oneself or one's achievements",hi:"Khud se khush",hd:"संतुष्ट",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Complaisant",en:"Willing to please others; obliging",hi:"Dusron ki khushi ke liye kuch bhi karne wala",hd:"आदरशील",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Conceal",en:"Not allow to be seen; hide",hi:"Chipaana",hd:"छिपाना",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Conceit",en:"Excessive pride in oneself",hi:"Ghamand",hd:"घमंड",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Concise",en:"Giving a lot of information in few words",hi:"Chhote shabdon mein zyada kehna",hd:"संक्षिप्त, सारगर्भित",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Condescending",en:"Showing superiority, patronizing",hi:"Khud ko behtar samajhna",hd:"उपेक्षापूर्ण",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Conjuror",en:"A performer of conjuring tricks",hi:"Jaadoogar",hd:"जादूगर",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Connoisseur",en:"An expert judge in matters of taste",hi:"Taste ka expert",hd:"पारखी, विशेषज्ञ",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Conspicuous",en:"Clearly visible; easily noticeable",hi:"Jo sabko asani se dikhe ya dhyan khinche",hd:"स्पष्ट / विशिष्ट",dates:["19 MAY 2025 - SHIFT 2","26 MAY 2025 - SHIFT 1"]},
+  {word:"Consoled",en:"Comforted someone in sadness",hi:"Kisi ko emotional support dena jab wo udaas ho",hd:"दिलासा देना",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Contemptuous",en:"Showing disdain or lack of respect",hi:"Tirkash ya apmaan janak",hd:"तिरस्कारपूर्ण",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Contempt",en:"A strong feeling of disapproval or disrespect",hi:"Nafrati soch, kisi ko neecha dikhana",hd:"अवमानना / घृणा",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Conviction",en:"A firm belief OR the act of being declared guilty",hi:"Pakka vishwas / ya kisi ko court se doshi thahrana",hd:"विश्वास / दोष सिद्धि",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Convivial",en:"Friendly, sociable, and cheerful",hi:"Dosti bhara, mazedaar",hd:"मिलनसार, सामाजिक",dates:["28 MAY 2025 - SHIFT 1","2 JUNE 2025 - SHIFT 1"]},
+  {word:"Coral",en:"A marine organism; also a pink-orange color",hi:"Samundar mein milne wali choti choti rangin sanrachna",hd:"मूंगा",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Corral",en:"An enclosure for animals; to gather together",hi:"Janwaron ko band karne ki jagah; ikattha karna",hd:"बाड़ा या इकट्ठा करना",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Choral",en:"Related to a choir or singing group",hi:"Group singing se juda hua",hd:"गायन मंडली से संबंधित",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Cosmopolitan",en:"Familiar with and at ease in many different cultures or countries",hi:"Vishwa-nagrik jaisa, jo har jagah ka ho",hd:"विश्वव्यापी",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Counselled",en:"Gave advice or guidance",hi:"Kisi ko samjhaana ya suggestion dena",hd:"सलाह दी",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Coward",en:"A person who lacks courage or is excessively afraid",hi:"Darpok, jo himmat na dikhaye",hd:"कायर",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Credible",en:"Believable or trustworthy",hi:"Jo vishwas ke layak ho",hd:"विश्वसनीय",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Creditable",en:"Of a quite good standard that cannot be criticized, though not excellent",hi:"Vishwasniya",hd:"विश्वसनीय",dates:["20 MAY 2025 - SHIFT 1"]},
+  {word:"Credulous",en:"Having or showing too great a readiness to believe things",hi:"Vishrambhee; Jaldi vishwas karne wala",hd:"विश्रंभी, भरोसा करना / भोला",dates:["20 MAY 2025 - SHIFT 1","20 MAY 2025 - SHIFT 1","3 JUNE 2025 - SHIFT 2"]},
+  {word:"Cryptography",en:"Art of writing or solving codes",hi:"Code likhne ya todne ki kala",hd:"गुप्तलेखन",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Culpable",en:"Deserving blame",hi:"Galat kaam karne wala",hd:"दोषी, जिम्मेदार",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Cynic",en:"A person who believes people are motivated by selfishness",hi:"Jo hamesha doubt kare, kisi par bharosa na kare",hd:"निंदक / अविश्वासी",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Canceled",en:"Called off or stopped a plan",hi:"Koi plan ya event ko rok dena, band kar dena",hd:"रद्द कर दिया",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Course",en:"The route or direction followed by a ship, aircraft, road, or river",hi:"Rasta",hd:"मार्ग",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Cusp",en:"A point of transition between two different states",hi:"Do cheezon ke beech ka point",hd:"सीमा, संक्रमण बिंदु",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Deceitful",en:"Dishonest; misleading",hi:"Kapti, dhokhebaaz",hd:"कपटी, धोखेबाज़",dates:["30 MAY 2025 - SHIFT 1"]},
+  {word:"Defer",en:"Postpone or delay",hi:"Tal dena",hd:"स्थगित करना",dates:["31 MAY 2025 - SHIFT 1","2 JUNE 2025 - SHIFT 2"]},
+  {word:"Defiance",en:"Open resistance or disobedience",hi:"Virodh",hd:"अवज्ञा, विरोध",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Deft",en:"Skillful and quick",hi:"Expert tareeke se kaam karne waala, smart aur fast",hd:"कुशल / फुर्तीला",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Delegate",en:"A person sent or authorised to represent others",hi:"Pratinidhi",hd:"प्रतिनिधि",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Denounce",en:"To strongly criticize publicly",hi:"Public mein kisi galat kaam ki burai karna",hd:"निंदा करना",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Denouement",en:"The final resolution or outcome of a story",hi:"Kahaani ya event ka final end ya solution",hd:"कहानी का अंत / निष्कर्ष",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Depressed",en:"Feeling deeply sad or hopeless",hi:"Bohot udaas ya dukhi feel karna",hd:"उदास / अवसादग्रस्त",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Desecrate",en:"To damage or disrespect something sacred",hi:"Pavitra cheez ka apmaan ya nuksaan karna",hd:"अपवित्र करना या अपमान करना",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Despondent",en:"Hopeless and very sad",hi:"Jab kisi ko bilkul hope na ho aur woh depressed feel kare",hd:"निराश / उदास",dates:["23 MAY 2025 - SHIFT 2"]},
+  {word:"Desultory",en:"Lacking a plan, purpose, or enthusiasm; disconnected",hi:"Beplan ya bina kisi uddeshya ke",hd:"निरर्थक / बिना उद्देश्य के",dates:["27 MAY 2025 - SHIFT 1","30 MAY 2025 - SHIFT 1"]},
+  {word:"Detract",en:"Diminish the worth or value",hi:"Bhang",hd:"भंग",dates:["19 MAY 2025 - SHIFT 1"]},
+  {word:"Devious",en:"Dishonest or tricky",hi:"Chalak ya dhokebaaz",hd:"कपटी या छलपूर्ण",dates:["3 JUNE 2025 - SHIFT 1"]},
+  {word:"Devour",en:"To eat greedily or quickly",hi:"Jaldi se sab kuch kha jaana, bhookh se toot padhna",hd:"गपागप खाना",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Diligent",en:"Having or showing care and conscientiousness in one's work or duties",hi:"Mehnati",hd:"परिश्रमी",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Disconcerting",en:"Causing one to feel unsettled or confused",hi:"Jo chinta ya asuvidha de",hd:"विचलित करने वाला",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Disgruntled",en:"Unhappy, annoyed, and disappointed about something",hi:"Asantusht",hd:"असंतुष्ट",dates:["19 MAY 2025 - SHIFT 1"]},
+  {word:"Disinterest",en:"Lack of interest or concern; impartiality",hi:"Interest ki kami, udasinata",hd:"उदासीनता / रुचि की कमी",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Disillusioned",en:"Disappointed in someone or something after discovering it to be less good than believed",hi:"Niraash ya dhokha khaya hua",hd:"निराश",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Disparage",en:"To belittle or criticize unfairly; to speak poorly of",hi:"Kisi ki burai karna ya usse neecha dikhana",hd:"बदनाम करना / तिरस्कार करना",dates:["26 MAY 2025 - SHIFT 1","3 JUNE 2025 - SHIFT 2"]},
+  {word:"Disparity",en:"A great difference",hi:"Jab do cheezon mein zyada farak ho",hd:"असमानता",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Disdain",en:"The feeling that something or someone is unworthy of respect; scorn",hi:"Ghin ya tuchhta ka bhav",hd:"तिरस्कार",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Dissimilar",en:"Not similar; different",hi:"Alag-alag, jo ek jaise na ho",hd:"असमान / भिन्न",dates:["23 MAY 2025 - SHIFT 2"]},
+  {word:"Distinction",en:"A difference OR a special honor",hi:"Ya toh farak dikhana, ya kisi ko award milna",hd:"अंतर / विशेषता",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Distress",en:"Extreme sorrow or pain",hi:"Bahut zyada dukh ya pareshani",hd:"कष्ट या दुख",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Dumbfounded",en:"Greatly astonish or amaze",hi:"Chakit yaa bhochakka rah jana",hd:"भोचक्का रह जाना",dates:["14 MAY 2025 - SHIFT 2"]},
+  {word:"Dyslexia",en:"A learning disorder involving reading difficulty",hi:"Ek learning problem jisme kisi ko words padhne ya samajhne mein dikkat hoti hai",hd:"पढ़ने की अक्षमता",dates:["23 MAY 2025 - SHIFT 2"]},
+  {word:"Ebrious",en:"Drunk or intoxicated",hi:"Nasha ki haalat mein hona",hd:"नशे में",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Ebullient",en:"Overflowing with enthusiasm or excitement",hi:"Full of energy, khushi se bhara",hd:"जोशीला, प्रफुल्लित",dates:["28 MAY 2025 - SHIFT 1","3 JUNE 2025 - SHIFT 2"]},
+  {word:"Eccentric",en:"Unconventional or slightly strange",hi:"Thoda ajeeb ya alag",hd:"सनकी / विचित्र",dates:["20 MAY 2025 - SHIFT 1","27 MAY 2025 - SHIFT 1"]},
+  {word:"Ecstatic",en:"Extremely happy",hi:"Jab koi bahut zyada khushi se jhoom uthe",hd:"अत्यंत आनंदित",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Effeminate",en:"A man who displays feminine qualities in appearance, behavior, or mannerisms",hi:"Strivat",hd:"स्त्रीवत",dates:["20 MAY 2025 - SHIFT 1"]},
+  {word:"Elegy",en:"A sad poem written for someone who has died",hi:"Kisi ke marne par likha gaya emotional poem",hd:"शोकगीत",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Eloquent",en:"Fluent and expressive in speaking or writing",hi:"Prabhavit roop se bolne wala / Zabardast tareeke se baat karne waala",hd:"वाक्पटु",dates:["31 MAY 2025 - SHIFT 1","2 JUNE 2025 - SHIFT 2"]},
+  {word:"Embezzle",en:"To steal money (especially from work or a fund one controls)",hi:"Chhupke se paisa chura lena",hd:"चुपके से पैसा चुरा लेना",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Endurable",en:"Able to be endured; bearable",hi:"Sahane yogya",hd:"सहने योग्य",dates:["20 MAY 2025 - SHIFT 1"]},
+  {word:"Endurance",en:"The ability to endure an unpleasant or difficult process without giving way",hi:"Sahan shakti ya lagatar mehnat",hd:"सहनशीलता",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Enervate",en:"Lacking in energy or vitality; drained of energy",hi:"Kamjoor / Utsaahit (sense of draining)",hd:"कमजोर / उत्साहित (ऊर्जा खींचना)",dates:["19 MAY 2025 - SHIFT 2","21 MAY 2025 - SHIFT 1"]},
+  {word:"Enunciate",en:"Say or pronounce clearly",hi:"Spasht rup se kahana",hd:"स्पष्ट रूप से कहना",dates:["15 MAY 2025 - SHIFT 2"]},
+  {word:"Ephemeral",en:"Lasting for a very short time",hi:"Chhoti der tak rehne wala",hd:"क्षणिक",dates:["27 MAY 2025 - SHIFT 1","29 MAY 2025 - SHIFT 1"]},
+  {word:"Epistle",en:"A formal or long letter",hi:"Lambi aur serious type ki chitthi",hd:"पत्र / चिट्ठी",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Equitable",en:"Fair and impartial",hi:"Nyaayasangat",hd:"न्यायसंगत",dates:["14 MAY 2025 - SHIFT 2"]},
+  {word:"Equivalent",en:"Equal in value, amount, function, or meaning",hi:"Kisi cheez ke barabar ya uske saman",hd:"किसी के समान या बराबर; समतुल्य",dates:["14 MAY 2025 - SHIFT 2"]},
+  {word:"Erratic",en:"Not even or regular in pattern or movement; unpredictable",hi:"Kabhi idhar, kabhi udhar",hd:"अनियमित / विचित्र",dates:["21 MAY 2025 - SHIFT 2","28 MAY 2025 - SHIFT 1"]},
+  {word:"Erudite",en:"Having or showing great knowledge gained from reading or studying",hi:"Bahut hi gyaani, jo bohot padha-likha ho",hd:"विद्वान / बहुत पढ़ा-लिखा",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Esoteric",en:"Intended for or likely to be understood by only few people with special knowledge",hi:"Jo sirf kuch log hi samajh saken, deep ya complex baat",hd:"गूढ़ / गुप्त",dates:["21 MAY 2025 - SHIFT 2","24 MAY 2025 - SHIFT 1"]},
+  {word:"Evasive",en:"Avoiding a direct answer; vague or misleading",hi:"Seedha jawab na dena; baat ghumakar nikalna",hd:"टालमटोल करने वाला; स्पष्ट उत्तर देने से बचने वाला",dates:["16 MAY 2025 - SHIFT 1"]},
+  {word:"Evanescent",en:"Soon passing out of sight, memory, or existence; quickly fading",hi:"Jaldi chala jane wala",hd:"क्षणिक",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Evoked",en:"Brought or recalled to the conscious mind",hi:"Yaad dilana, dimaag mein lana",hd:"उत्पन्न किया गया",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Exemplify",en:"To illustrate or clarify by giving an example",hi:"Udaharan dena",hd:"उदाहरण देना",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Exalt",en:"Think or speak very highly / raise to a higher rank or position",hi:"Prashanasa karna / Uncha darja dena ya tarif karna",hd:"प्रशंसा करना / महिमा मंडन करना",dates:["19 MAY 2025 - SHIFT 2","2 JUNE 2025 - SHIFT 2"]},
+  {word:"Excruciating",en:"Intensely painful; causing great pain or anguish",hi:"Kashtadaayee / atyant dardnaak",hd:"अत्यंत पीड़ादायक, कष्टकारी",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Exuberant",en:"Very lively and enthusiastic",hi:"Zyada hi energetic aur khush",hd:"अत्यधिक उत्साही",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Exult",en:"Feel or show triumphant elation or jubilation",hi:"Bahut khush hona",hd:"बहुत खुश होना",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Expedite",en:"To speed up a process or action",hi:"Jaldi karna, tezi lana",hd:"शीघ्र करना, गति देना",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Extempore",en:"Spoken or done without preparation",hi:"Bina taiyari ke",hd:"तत्क्षण, बिना पूर्वतैयारी के",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Extend",en:"To make something longer or larger",hi:"Badhaana",hd:"बढ़ाना",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Extent",en:"The area covered by something",hi:"Kshetr",hd:"क्षेत्र",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Extravagant",en:"Lacking restraint in spending money or using resources; excessive",hi:"Phijoolakharchee",hd:"फिजूलखर्ची / अत्यधिक",dates:["19 MAY 2025 - SHIFT 1","21 MAY 2025 - SHIFT 2","23 MAY 2025 - SHIFT 2"]},
+  {word:"Extraneous",en:"Not essential; irrelevant",hi:"Jo zaroori na ho, main topic se bahar ho",hd:"बाहरी / असंबंधित",dates:["23 MAY 2025 - SHIFT 2"]},
+  {word:"Fabricate",en:"To invent or concoct something, typically with deceitful intent",hi:"Jhoot banana ya kahani gadhna",hd:"बनाना, गढ़ना",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Fairy",en:"A mythical being with magical powers",hi:"Jadoo ki duniya ka prani",hd:"परी",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Fascist",en:"An advocate or follower of the political philosophy of fascism",hi:"Ek rajnitik Vichardhara",hd:"एक राजनीतिक विचारधारा",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Fastidious",en:"Very attentive to detail; hard to please",hi:"Atyant chayansheel, sookshm drishti wala",hd:"अत्यंत चयनशील, सूक्ष्म दृष्टि वाला",dates:["30 MAY 2025 - SHIFT 1"]},
+  {word:"Faze",en:"To disturb or upset someone",hi:"Kisi ko distract ya tension dena",hd:"परेशान करना",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Feeble",en:"Lacking physical strength, especially as a result of age or illness",hi:"Kamazor",hd:"दुर्बल, कमजोर",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Ferment",en:"A state of agitation or intense activity",hi:"Vikshobh / ubaal",hd:"उबाल, उत्तेजना",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Fervent",en:"Having or displaying a passionate intensity",hi:"Dil se, jazbaati",hd:"उत्साही, प्रबल",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Ferry",en:"A boat or ship used to carry passengers and goods across a body of water",hi:"Nadi ya samundar paar karne waala jahaz",hd:"नौका, जलयान",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Fickle",en:"Changing frequently, especially as regards one's loyalties or affections",hi:"Chanchal",hd:"चंचल",dates:["19 MAY 2025 - SHIFT 1"]},
+  {word:"Flair",en:"A special or instinctive aptitude or ability for doing something well",hi:"Svabhaav",hd:"स्वभाव",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Flare",en:"A sudden brief burst of bright flame or light",hi:"Chamak",hd:"चमक",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Fleeting",en:"Lasting for a short time",hi:"Kuch samay ke liye",hd:"क्षणिक",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Fluent",en:"Able to speak smoothly and easily",hi:"Bina rukke bol paana",hd:"धाराप्रवाह",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Foible",en:"A small weakness or flaw in character",hi:"Choti si aadat ya kamzori jo harmful nahi hoti",hd:"कमजोरी / छोटी भूल",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Foment",en:"To instigate or stir up (an undesirable or violent sentiment or course of action)",hi:"Ukasana / bhadkana",hd:"उकसाना / भड़काना",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Forbears / Forebears",en:"Ancestors",hi:"Purvaj",hd:"पूर्वज",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Fostered",en:"Encouraged or nurtured",hi:"Poshan ya protsahan diya",hd:"पोषित किया",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Frail",en:"Weak; delicate",hi:"Jo body ya health se kamzor ho, jaldi tootne waala",hd:"कमजोर / नाजुक",dates:["23 MAY 2025 - SHIFT 2"]},
+  {word:"Frugal",en:"Sparing or economical with regard to money or food",hi:"Paise bachane wala",hd:"मितव्ययी",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Fury",en:"Wild or violent anger",hi:"Bhayankar gussa",hd:"क्रोध, उन्माद",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Furry",en:"Covered with fur; resembling fur",hi:"Balon se dhaka hua",hd:"फर से ढका हुआ",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Gallant",en:"Brave, heroic, or chivalrous",hi:"Bahadur aur shareef",hd:"बहादुर और सज्जन",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Garrulous",en:"Excessively talkative",hi:"Bohot bolne waala, bakbak karne waala",hd:"बातूनी / बहुत बोलने वाला",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Genial",en:"Friendly and cheerful",hi:"Friendly aur hamesha smile karta hua vyakti",hd:"प्रसन्नचित्त / हंसमुख",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Genteel",en:"Characterized by exaggerated or affected politeness, refinement, or respectability",hi:"Sajjan / Bahut hi sophisticated ya classy tareeke se rehna",hd:"सज्जन / सभ्य, शिष्ट",dates:["19 MAY 2025 - SHIFT 1","24 MAY 2025 - SHIFT 1"]},
+  {word:"Geographer",en:"A scientist who studies the Earth's surface, environment, and human interaction with land",hi:"Jo prithvi aur bhugol ka adhyayan karta hai",hd:"भूगोलवेत्ता",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Geologist",en:"A scientist who studies the earth's physical structure and substance",hi:"Prithvi ke bare mein padhne wala scientist",hd:"भूविज्ञानी",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Gloomy",en:"Sad or dark in mood or appearance",hi:"Dukhi ya andheramahsoos karne waala mood",hd:"उदास / अंधेरा",dates:["24 MAY 2025 - SHIFT 2","3 JUNE 2025 - SHIFT 2"]},
+  {word:"Glutton",en:"An excessively greedy eater",hi:"Bhukkadh",hd:"भुक्खड़",dates:["20 MAY 2025 - SHIFT 1"]},
+  {word:"Gospel",en:"The teaching or revelation of Christ; truth",hi:"Susamachar, param satya",hd:"सुसमाचार, परम सत्य",dates:["30 MAY 2025 - SHIFT 1"]},
+  {word:"Graphology",en:"The study of handwriting",hi:"Likhne ka vigyaan",hd:"लेख विज्ञान",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Gratification",en:"Pleasure, especially when gained from the satisfaction of a desire",hi:"Santushti",hd:"संतुष्टि",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Gravity",en:"Seriousness or importance; also the force that pulls objects down",hi:"Gambhirta ya akarshan ki taqat",hd:"गुरुत्वाकर्षण / गंभीरता",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Gregariously",en:"In a friendly, sociable manner; enjoying the company of others",hi:"Milansar tareeke se, logon ke saath rehna pasand karna",hd:"मिलनसार तरीके से",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Grisly",en:"Causing horror or disgust",hi:"Bhayaanak",hd:"भयानक",dates:["20 MAY 2025 - SHIFT 1"]},
+  {word:"Grouse",en:"To complain about something",hi:"Shikayat karna",hd:"शिकायत करना",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Gullible",en:"Easily persuaded to believe something; credulous",hi:"Bhola",hd:"भोला",dates:["19 MAY 2025 - SHIFT 1"]},
+  {word:"Hackneyed",en:"Overused and unoriginal",hi:"Bahut zyada suna hua, boring",hd:"घिसा-पिटा और उबाऊ",dates:["3 JUNE 2025 - SHIFT 1"]},
+  {word:"Hastily",en:"Quickly, often carelessly",hi:"Jaldbazi mein",hd:"जल्दीबाज़ी में",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Havoc",en:"Wide or general destruction",hi:"Pralay",hd:"प्रलय",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Hegemony",en:"Leadership or dominance, especially by one country or social group over others",hi:"Prabhutva ya prabhav",hd:"प्रभुत्व",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Highbrow",en:"Associated with serious or intellectual interests",hi:"Zyada intellectual ya classy",hd:"उच्चबुद्धिवादी / बौद्धिक",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Honourable",en:"Deserving of respect",hi:"Izzatdaar",hd:"सम्माननीय",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Horizon",en:"The line at which the earth's surface and the sky appear to meet",hi:"Dikhayi dene wala door tak ka kshetra",hd:"क्षितिज",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Hostile",en:"Unfriendly; aggressive",hi:"Dushman jaisa vyavhaar, unfriendly aur aggressive",hd:"शत्रुतापूर्ण",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Hostage",en:"A person held as security for demands",hi:"Kisi ko zabardasti rok lena, demand ke liye (bandhak)",hd:"बंधक",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Hydroponic",en:"The process of growing plants in water",hi:"Jal sanvardhan",hd:"जल संवर्धन",dates:["15 MAY 2025 - SHIFT 2"]},
+  {word:"Hypochondriac",en:"A person excessively worried about having a serious illness",hi:"Swasthya ki aati chinta karna",hd:"रोगी मानसिकता वाला",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Hysterical",en:"Wildly emotional, uncontrolled laughter or crying",hi:"Bahut zyada emotional, control se bahar ho jaana",hd:"अत्यधिक उत्तेजित / विक्षिप्त जैसा व्यवहार",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Idiosyncrasy",en:"A unique personal habit or trait",hi:"Kisi vyakti ki ajeeb ya unique aadat",hd:"विशेष आदत / विचित्रता",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Ignominious",en:"Deserving or causing public disgrace or shame",hi:"Lajjakar",hd:"लज्जाकर",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Imperious",en:"Domineering and arrogant",hi:"Ghamandi aur zabardasti karne wala",hd:"हुक्म चलाने वाला, घमंडी",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Imperceptive",en:"Not noticing or understanding things easily",hi:"Samajhne mein slow ya dhyan na dene wala",hd:"अविवेकी, जो समझ न सके",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Impeccable",en:"Perfect; without any fault",hi:"Bilkul perfect, jisme koi mistake na ho",hd:"त्रुटिरहित / बेदाग",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Implement",en:"To carry out or apply (a plan)",hi:"Koi plan ya rule ko action mein lana",hd:"लागू करना",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Implausible",en:"Not believable or likely",hi:"Avishvasniya",hd:"अविश्वसनीय",dates:["30 MAY 2025 - SHIFT 1"]},
+  {word:"Impertinent",en:"Rude and disrespectful; not showing proper respect",hi:"Badtameezi, be-adab / Badtameez aur asammanjanak",hd:"असभ्य / ढीठ / उद्दंड",dates:["21 MAY 2025 - SHIFT 2","28 MAY 2025 - SHIFT 1","3 JUNE 2025 - SHIFT 2"]},
+  {word:"Impudent",en:"Disrespectful or rude; not showing due respect for another person",hi:"Jo badtameezi se baat kare, respect na kare / Besharm",hd:"गुस्ताख / बेहूदा / निर्लज्ज",dates:["23 MAY 2025 - SHIFT 2","29 MAY 2025 - SHIFT 1","28 MAY 2025 - SHIFT 1"]},
+  {word:"Impromptu",en:"Done without preparation",hi:"Bina taiyari ke",hd:"बिना तैयारी के",dates:["30 MAY 2025 - SHIFT 1"]},
+  {word:"Incompetent",en:"Not capable or skilled; lacking ability",hi:"Jo kaam ke laayak nahi ho, naalayak",hd:"अयोग्य / अक्षम",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Inclement",en:"(Of weather) unpleasantly cold or wet",hi:"Tufaan / kathor",hd:"प्रतिकूल, उग्र",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Inclination",en:"A person's natural tendency or urge to act or feel a certain way",hi:"Kisi ka jhukav ya interest",hd:"रुचि / झुकाव",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Indestructible",en:"Cannot be destroyed",hi:"Jo kabhi na toota ja sake",hd:"अटूट, जो नष्ट न हो सके",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Indispensable",en:"Absolutely necessary",hi:"Aavashyak",hd:"आवश्यक",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Indolent",en:"Lazy; avoiding activity",hi:"Aalsi, kaam se bhaagne wala",hd:"आलसी",dates:["24 MAY 2025 - SHIFT 2","2 JUNE 2025 - SHIFT 1"]},
+  {word:"Industrious",en:"Hardworking and diligent",hi:"Jo lagatar kaam kare, mehnat kare bina thake",hd:"मेहनती",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Inexpedient",en:"Not suitable or advisable in a situation",hi:"Jo samay ya situation ke liye sahi nahi ho",hd:"अनुचित / अनुपयुक्त",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Infer",en:"Conclude from evidence",hi:"Andaza lagana",hd:"अनुमान लगाना",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Infringe",en:"Actively break the terms of a law or agreement",hi:"Ullanghan",hd:"उल्लंघन",dates:["15 MAY 2025 - SHIFT 2"]},
+  {word:"Inglorious",en:"Causing shame or a loss of honour; not famous or renowned",hi:"Lajjaajanak",hd:"लज्जाजनक",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Ingenuous",en:"Innocent and unsuspecting; naive and honest",hi:"Bhola, seedha, honest / Bhola-bhala aur imaandaar",hd:"सरल / निष्कपट / भोला",dates:["21 MAY 2025 - SHIFT 2","3 JUNE 2025 - SHIFT 2"]},
+  {word:"Ingenious",en:"Clever and inventive",hi:"Bahut hi chalak aur innovative",hd:"कुशाग्र और बुद्धिमान",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Iniquitous",en:"Grossly unfair and morally wrong",hi:"Nayayik roop se galat ya paap se bhara",hd:"अन्यायी",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Innate",en:"Inborn; natural",hi:"Jo quality kisi mein janm se ho, naturally aayi ho",hd:"जन्मजात / प्राकृतिक",dates:["23 MAY 2025 - SHIFT 2"]},
+  {word:"Innocuous",en:"Not harmful or offensive; harmless",hi:"Jo nukasan naa phochay / Nirapad, haanirahit",hd:"जो नुकसान ना पोहोचाये / निरापद, हानिरहित",dates:["20 MAY 2025 - SHIFT 1","21 MAY 2025 - SHIFT 2","30 MAY 2025 - SHIFT 1"]},
+  {word:"Insolence",en:"Rude and disrespectful behavior",hi:"Badatameejee",hd:"अशिष्टता, अभद्रता",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Insolvent",en:"Unable to pay debts",hi:"Jiski upar karz ho aur chuka na paaye",hd:"दिवालिया",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Insufferable",en:"Too extreme to bear; intolerable",hi:"Asahniya",hd:"असहनीय",dates:["20 MAY 2025 - SHIFT 1"]},
+  {word:"Interrupt",en:"To stop someone while speaking",hi:"Kisi ki baat ya kaam ke beech mein bol dena",hd:"बीच में टोकना",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Intrepid",en:"Fearless",hi:"Darpok na hona, himmat wala",hd:"निडर",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Inundate",en:"To overwhelm or flood with things or people",hi:"Bahut zyada cheezon se ghira dena",hd:"जलमग्न करना, अभिभूत करना",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Invective",en:"Harsh, abusive language",hi:"Gali-galauj ya harsh language / Gusse bhari ya gaali wali bhasha",hd:"अपशब्द / गाली-गलौज / अपमानजनक भाषा",dates:["21 MAY 2025 - SHIFT 1","26 MAY 2025 - SHIFT 1"]},
+  {word:"Invincible",en:"Too powerful to be defeated or overcome",hi:"Jo kabhi haarta nahi, jo hara nahi ja sakta",hd:"अजेय / जिसे हराया न जा सके",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Irascible",en:"Easily angered",hi:"Jaldi gussa hone waala",hd:"जल्दी गुस्सा करने वाला / क्रोधी, चिड़चिड़ा",dates:["2 JUNE 2025 - SHIFT 1","2 JUNE 2025 - SHIFT 2"]},
+  {word:"Jib",en:"To hesitate or refuse to proceed",hi:"Hichkichana ya mana karna",hd:"हिचकिचाना या इंकार करना",dates:["3 JUNE 2025 - SHIFT 1"]},
+  {word:"Jovial",en:"Good-humored cheerfulness and conviviality",hi:"Ullaasapoorn",hd:"उल्लासपूर्ण",dates:["16 MAY 2025 - SHIFT 1"]},
+  {word:"Jubilation",en:"A feeling of great happiness and triumph",hi:"Aanandotsov",hd:"आनंदोत्सव",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Juxtapose",en:"To place two things side by side to compare or contrast them",hi:"Do cheezein paas-paas rakh kar unka comparison dikhana",hd:"दो वस्तुओं को साथ में रखकर तुलना या विरोधाभास दिखाना",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Lackadaisical",en:"Lacking enthusiasm and determination; carelessly lazy",hi:"Kisi cheez me interest ns hona",hd:"निरुत्साही",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Laconic",en:"Using very few words",hi:"Bahut kam bolne wala, direct aur short mein baat karne waala",hd:"संक्षिप्त / अल्पभाषी",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Languid",en:"Having or showing a disinclination for physical exertion; weak or faint from illness",hi:"Murajhaya hua, sust / Sust ya thaka hua",hd:"मुरझाया हुआ, सुस्त / मंद / शिथिल",dates:["21 MAY 2025 - SHIFT 1","26 MAY 2025 - SHIFT 1"]},
+  {word:"Languish",en:"To weaken or decline, often due to neglect",hi:"Dukh bhugatna ya kamzor padna",hd:"कमज़ोर होना / पीड़ा सहना",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Lassitude",en:"A state of physical or mental weariness; lack of energy",hi:"Thakan ya bejaan hona",hd:"थकावट, आलस्य",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Laudable",en:"Deserving praise and commendation",hi:"Prashansaniy",hd:"प्रशंसनीय, सराहनीय",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Laudatory",en:"Expressing praise and commendation",hi:"Saraahane yogy",hd:"प्रशंसा करने वाला, स्तुतिपूर्ण",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Laurels / Laurel",en:"Honors or achievements / A type of evergreen tree or a symbol of honor",hi:"Achievement ya reward milna kisi success ke liye",hd:"सम्मान / पुरस्कार / लॉरेल, सम्मान का प्रतीक",dates:["24 MAY 2025 - SHIFT 1","28 MAY 2025 - SHIFT 1"]},
+  {word:"Leisurely",en:"Done in a relaxed or unhurried way",hi:"Aaram se, bina jaldi ke kaam karna",hd:"आराम से किया गया",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Levity",en:"Lightness of manner or speech, especially when inappropriate",hi:"Hansi-mazak ya halka pan",hd:"हल्कापन, चंचलता",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Lexicographer",en:"A person who compiles dictionaries",hi:"Shabdkosh banane wala vyakti",hd:"शब्दकोशकार",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Lexicon",en:"The vocabulary of a person, language, or branch of knowledge",hi:"Shabdkosh",hd:"शब्दकोश",dates:["20 MAY 2025 - SHIFT 2"]},
+  {word:"Linguistic",en:"Relating to language or linguistics",hi:"Bhasha se sambandhit",hd:"भाषाई",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Lofty",en:"Very high; noble or grand in thought",hi:"Uche vichar ya unchai waali cheez",hd:"ऊँचा, महान",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Loquacious",en:"Tending to talk a great deal; talkative",hi:"Baatuni / Baatoonee",hd:"बातूनी",dates:["14 MAY 2025 - SHIFT 2","21 MAY 2025 - SHIFT 1","24 MAY 2025 - SHIFT 2"]},
+  {word:"Luculent",en:"Clear, easily understood, or lucid",hi:"Saaf aur asani se samajh mein aane wala",hd:"स्पष्ट और सहज रूप से समझ में आने वाला",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Lugubrious",en:"Looking or sounding sad and dismal / very sad or gloomy",hi:"Bahut zyada udaas ya dard bhara",hd:"बहुत दुखी / विषादपूर्ण",dates:["21 MAY 2025 - SHIFT 2","31 MAY 2025 - SHIFT 1"]},
+  {word:"Maladroit",en:"Clumsy; not skillful",hi:"Jo kaam mein perfect na ho",hd:"अनाड़ी",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Malevolence",en:"The state of being malevolent; ill will; malice",hi:"Dvesh / dusht-ta",hd:"दुष्टता, द्वेष",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Malignant",en:"Harmful, dangerous",hi:"Hanikarak",hd:"घातक, खतरनाक",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Marital",en:"Relating to marriage or the relationship between a married couple",hi:"Shaadi se sambandhit",hd:"वैवाहिक",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Masque",en:"A short allegorical dramatic entertainment of the 16th and 17th centuries performed by masked actors",hi:"Kathaputalee ka tamaasha",hd:"कठपुतली का तमाशा",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Masquerade",en:"A false show or pretense; pretending to be something one is not",hi:"Naqli chehra pehnna, asli pehchaan chhupana",hd:"छद्मवेश, ढोंग",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Maul",en:"Criticism or review",hi:"Aalochana karna",hd:"आलोचना करना",dates:["15 MAY 2025 - SHIFT 2"]},
+  {word:"Mayhem",en:"Violent or extreme disorder; chaos",hi:"Tabahi, hathapai",hd:"तबाही, हाथापाई",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Meander",en:"To wander aimlessly, or follow a winding path",hi:"Bina kisi direction ke idhar-udhar ghoomna",hd:"घुमावदार रास्ते पर चलना",dates:["14 MAY 2025 - SHIFT 2"]},
+  {word:"Mediocrity",en:"The quality of being average or not very good",hi:"Na accha na bura, bas thik-thak",hd:"औसतपन, साधारणता",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Melancholy",en:"A deep, persistent sadness or gloomy state of mind",hi:"Gahri udaasi, emotional sadness / Andar se aayi hui shant aur gehri udaasi",hd:"उदासी / विषाद",dates:["21 MAY 2025 - SHIFT 2","23 MAY 2025 - SHIFT 2","27 MAY 2025 - SHIFT 1"]},
+  {word:"Mellifluous",en:"(Of a voice or words) sweet or musical; pleasant to hear",hi:"Bahut madhur awaaz ya sur",hd:"मधुर / कानों को सुखद लगने वाली ध्वनि",dates:["21 MAY 2025 - SHIFT 2","21 MAY 2025 - SHIFT 2"]},
+  {word:"Mendicant",en:"A beggar",hi:"Bhikhari",hd:"भिखारी",dates:["30 MAY 2025 - SHIFT 1"]},
+  {word:"Meteorology",en:"The scientific study of the atmosphere and weather patterns",hi:"Mausam vigyaan ya weather ka adhyayan",hd:"मौसम विज्ञान",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Meticulous",en:"Showing great attention to detail; very careful and precise",hi:"Har chhoti baat pe dhyaan dena / Sookshmata se, bahut saavdhanipoorvak",hd:"सूक्ष्मदर्शी / बारीकी से काम करने वाला",dates:["30 MAY 2025 - SHIFT 1","2 JUNE 2025 - SHIFT 2"]},
+  {word:"Modest",en:"Humble; not boastful",hi:"Seedha-saadha, simple aur ghamand na karne waala",hd:"विनम्र / सादा",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Momentous",en:"Of great importance or significance, especially in having a bearing on future events",hi:"Mahatvpurn",hd:"महत्वपूर्ण",dates:["20 MAY 2025 - SHIFT 1"]},
+  {word:"Momentary",en:"Lasting for a brief moment",hi:"Kuch hi pal ka",hd:"क्षणिक",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Mournful",en:"Expressing or conveying sadness or sorrow",hi:"Dukh bhara ya udaas / Shok vyakt karne wala",hd:"शोकपूर्ण / दुखद",dates:["27 MAY 2025 - SHIFT 1","31 MAY 2025 - SHIFT 1"]},
+  {word:"Munificent",en:"Extremely generous",hi:"Daanshil yaa udar / Bohot hi udaar, dil se dene waala",hd:"उदार, दानी / अत्यंत उदार, बहुत दानशील",dates:["21 MAY 2025 - SHIFT 2","2 JUNE 2025 - SHIFT 1"]},
+  {word:"Mundane",en:"Ordinary or dull; lacking excitement",hi:"Rozmarra ka, boring",hd:"सांसारिक, साधारण",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Nadir",en:"The lowest point in the fortunes of a person or organization",hi:"Neeche ka point",hd:"अधोबिंदु",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Naive",en:"Showing a lack of experience or sophistication",hi:"Baccha, jo sab samajh nahi pata",hd:"भोला, सरल",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Nebulous",en:"Vague; unclear",hi:"Dhundhla, aspasht",hd:"धुंधला, अस्पष्ट",dates:["30 MAY 2025 - SHIFT 1"]},
+  {word:"Neurologist",en:"A doctor who specializes in treating disorders of the nervous system",hi:"Dimaag aur nervous system ke bimariyon ka doctor",hd:"स्नायुरोग विशेषज्ञ",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Nimble",en:"Quick and light in movement or action",hi:"Tez aur chust",hd:"फुर्तीला",dates:["3 JUNE 2025 - SHIFT 1"]},
+  {word:"Nomad",en:"A person who moves from place to place",hi:"Ghoomne waala, jo ek jagah nahi tikta",hd:"घुमंतू",dates:["2 JUNE 2025 - SHIFT 1"]},
+  {word:"Novellet",en:"A short novel",hi:"Ek choti kahani jo novel se short hoti hai",hd:"लघु उपन्यास",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Nuanced",en:"Showing subtle differences or distinctions",hi:"Jo bohot chhoti chhoti baatein ya details dikhata ho",hd:"सूक्ष्म भेद वाला",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Nuisance",en:"A person or thing that causes annoyance",hi:"Jo sir dard de, dikkat ya irritation ka reason bane",hd:"परेशानी / झंझट",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Numismatic",en:"Related to coins or currency",hi:"Sikkon se sambandhit",hd:"मुद्राशास्त्र",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Obdurate",en:"Refusing to change your mind to do what people want you to do; stubborn",hi:"Hathee / Kathor aur ziddi",hd:"हठी, कठोर",dates:["19 MAY 2025 - SHIFT 2","31 MAY 2025 - SHIFT 1"]},
+  {word:"Obliterate",en:"To destroy utterly; to wipe out",hi:"Bilkul mita dena",hd:"नष्ट करना, मिटा देना",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Obnoxious",en:"Extremely unpleasant",hi:"Apriy",hd:"अप्रिय",dates:["15 MAY 2025 - SHIFT 2"]},
+  {word:"Obscure",en:"Not clearly understood or expressed",hi:"Aspasht",hd:"अस्पष्ट",dates:["30 MAY 2025 - SHIFT 1"]},
+  {word:"Obsequious",en:"Overly submissive; too eager to please",hi:"Chaplusi karne wala",hd:"चापलूस",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Obsolete",en:"No longer in use; outdated",hi:"Purana ho gaya, ab istemal nahi hota",hd:"पुराना, अप्रचलित",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Obtrusive",en:"Noticeable or prominent in an unwelcome or intrusive way",hi:"Nikala hua",hd:"निकला हुआ",dates:["19 MAY 2025 - SHIFT 1"]},
+  {word:"Obviate",en:"To remove or eliminate a need or difficulty",hi:"Kisi dikkat ko pehle hi khatam kar dena",hd:"रोकना / हटा देना",dates:["23 MAY 2025 - SHIFT 2"]},
+  {word:"Oceanography",en:"Study of the oceans",hi:"Samundar ka gyaan ya study",hd:"समुद्र विज्ञान",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Officious",en:"Assertive of authority in a domineering way, especially with regard to trivial matters",hi:"Pareshan karne wala",hd:"परेशान करने वाला",dates:["20 MAY 2025 - SHIFT 2"]},
+  {word:"Oncologist",en:"A medical doctor who specializes in the diagnosis and treatment of cancer",hi:"Cancer ka ilaaj karne wala doctor",hd:"कैंसर विशेषज्ञ",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Onerous",en:"Involving a great deal of effort, trouble, or difficulty",hi:"Kashtadaayi",hd:"कष्टदायी",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Ontologist",en:"A philosopher who studies the nature of being",hi:"Vichar dhara ka adhyayan karne wala darshanik",hd:"अस्तित्ववादी",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Ophthalmologist",en:"Eyes specialist",hi:"Ankho ka doctor",hd:"आँखो का डॉक्टर",dates:["20 MAY 2025 - SHIFT 2"]},
+  {word:"Opportune",en:"Done or happening at a favorable or suitable time",hi:"Sahi waqt pe hone waali cheez",hd:"उचित समय पर होने वाला",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Oppressive",en:"Unjustly harsh or tyrannical; cruel and unfair",hi:"Jabardasti ya atyachari",hd:"दमनकारी",dates:["27 MAY 2025 - SHIFT 1","3 JUNE 2025 - SHIFT 2"]},
+  {word:"Optimal",en:"Best or most effective",hi:"Sabse achha ya best option jo ho",hd:"सर्वोत्तम / उपयुक्त",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Optimist",en:"One who tends to be hopeful and confident about future or the success of something",hi:"Aashavadi",hd:"आशावादी",dates:["14 MAY 2025 - SHIFT 2"]},
+  {word:"Opulent",en:"Rich and luxurious or lavish",hi:"Dhanee / paise wala",hd:"ऐश्वर्यपूर्ण, समृद्ध",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Opulence",en:"Great wealth or luxuriousness",hi:"Dhan-daulat aur shaan-oshaukat",hd:"वैभव, समृद्धि",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Orography",en:"Study of the physical geography of mountains",hi:"Pahadon ki bhugol ka adhyayan",hd:"पर्वतीय स्थलाकृतिक अध्ययन",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Ornography",en:"The study of ornamentation or decorative writing (rare/archaic)",hi:"Sajawat ya likhai mein sajaawat ka adhyayan",hd:"अलंकरण का अध्ययन",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Orthodontist",en:"A dentist specializing in correcting irregularities of the teeth and jaw",hi:"Daanton aur jabde ke problems ko theek karne wala dentist",hd:"दन्त चिकित्सक",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Ostentatious",en:"Designed to impress",hi:"Dikhaavatee",hd:"दिखावटी",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Ostentation",en:"Excessive showiness or display",hi:"Zyada dikhawa karna",hd:"दिखावा / आडंबर",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Ostentate",en:"To display or show off (rare verb)",hi:"Dikhawa karna ya apni chize chadhana",hd:"दिखावा करना",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Oxymoron",en:"A figure of speech in which apparently contradictory terms appear in conjunction",hi:"Ek sath rakhe gye doo viprit shabd",hd:"विरोधाभास, यथार्थविरोधी",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Palaeontologist",en:"A scientist who studies fossils and ancient life forms",hi:"Prachin jeevon aur jeevashm ka adhyayan karne wala vaigyanik",hd:"पुरातात्विक विज्ञानी",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Palate",en:"The roof of the mouth; also, a person's sense of taste",hi:"Swad / taalu",hd:"तालु, स्वादेंद्रिय",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Palette",en:"A range of colors used by an artist",hi:"Artist ki colours milane ki Board",hd:"रंगपट्टिका",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Panegyric",en:"A public speech or published text in praise of someone or something",hi:"Kisi ki tareef mein bhashan ya likha hua",hd:"प्रशंसात्मक लेख या भाषण",dates:["19 MAY 2025 - SHIFT 2","3 JUNE 2025 - SHIFT 2"]},
+  {word:"Paradigm",en:"A typical example or pattern of something or model",hi:"Misaal (example)",hd:"मिसाल",dates:["16 MAY 2025 - SHIFT 1"]},
+  {word:"Paradox",en:"A seemingly absurd or contradictory statement which when investigated may prove to be true",hi:"Virodhaabhaas",hd:"विरोधाभास",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Parochial",en:"Narrow-minded; limited in scope or outlook",hi:"Chhoti soch wala, sirf apne area tak simit soch",hd:"संकुचित दृष्टिकोण वाला",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Paternal",en:"Relating to a father",hi:"Pitaji se sambandhit",hd:"पितृसंबंधी",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Pathologist",en:"A doctor who specializes in diagnosing diseases by examining body tissues and fluids",hi:"Rogon ka pata lagane wala doctor",hd:"रोगविज्ञानी",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Patricide",en:"The act of killing one's father",hi:"Apne pita ko maarna",hd:"पितृहत्या",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Peculiar",en:"Strange or unusual",hi:"Jo normal na ho, thoda alag ya ajeebo-garib ho",hd:"अजीब / विचित्र",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Pedagogy",en:"The method and practice of teaching",hi:"Teaching ka tarika ya system, padhane ka science",hd:"शिक्षाशास्त्र",dates:["23 MAY 2025 - SHIFT 2"]},
+  {word:"Pedantic",en:"Overly concerned with minor details or rules; overly academic",hi:"Zyada hi rules aur details par dhyan dene wala",hd:"बारीकियों पर ध्यान देने वाला / दिखावटी विद्वान",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Peal",en:"A loud sound, usually of bells",hi:"Ghanti ya hansi ki zor ki awaaz",hd:"घंटी की तेज आवाज",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Peel",en:"To remove the outer layer (of fruit/vegetables)",hi:"Kisi bhi sabhji yaa fal kaa chilka utarana",hd:"छिलका उतारना",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Peevish",en:"Easily irritated or annoyed",hi:"Chidchida, jaldi gussa hone waala",hd:"चिड़चिड़ा",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Peremptory",en:"Insisting on immediate attention or obedience, especially in a brusque way",hi:"Aagya soochak",hd:"आज्ञासूचक",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Perilous",en:"Very dangerous",hi:"Bahut khatarnak",hd:"अत्यंत खतरनाक",dates:["2 JUNE 2025 - SHIFT 1"]},
+  {word:"Perish",en:"To die or be destroyed",hi:"Mar jana, khatam ho jana",hd:"नष्ट होना, मरना",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Pernicious",en:"Harmful in a subtle or gradual way",hi:"Dheere-dheere nuksaandeyak",hd:"घातक या हानिकारक (धीरे-धीरे असर डालने वाला)",dates:["2 JUNE 2025 - SHIFT 1"]},
+  {word:"Peevish",en:"Easily irritated or annoyed",hi:"Chidchida, jaldi gussa hone waala",hd:"चिड़चिड़ा",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Persistence",en:"The quality of continuing to do something despite difficulties or opposition",hi:"Mushkil hone ke baad bhi kisi kaam ko lagatar karte rehna; haar na maanna",hd:"लगातार प्रयास करने की क्षमता; दृढ़ता",dates:["14 MAY 2025 - SHIFT 2"]},
+  {word:"Perspicacious",en:"Having a ready insight into and understanding of things",hi:"Jo jaldi samajh jaaye",hd:"कुशाग्रबुद्धि",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Pertinent",en:"Relevant or applicable to a particular matter",hi:"Upyukt",hd:"उपयुक्त",dates:["16 MAY 2025 - SHIFT 1"]},
+  {word:"Pessimist",en:"One who tends to see the worst aspect of things or believe that the worst will happen",hi:"Nirashawadi",hd:"निराशावादी",dates:["14 MAY 2025 - SHIFT 2"]},
+  {word:"Petulant",en:"Childishly sulky or bad-tempered",hi:"Jaldi chidne wala, bachkana gussa",hd:"चिड़चिड़ा और बचकाना",dates:["3 JUNE 2025 - SHIFT 1"]},
+  {word:"Phase",en:"A stage in a process or time",hi:"Kisi cheez ka ek specific time ya stage",hd:"चरण / अवस्था",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Philanthropy",en:"The desire to promote the welfare of others, especially by donating money or time",hi:"Logon ki madad karna, daan pun karna",hd:"परोपकार, मानवता सेवा",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Piqued",en:"Irritated or resentful",hi:"Khinn, naraaz",hd:"खिन्न, नाराज़",dates:["30 MAY 2025 - SHIFT 1"]},
+  {word:"Plagiarise",en:"To take the work or an idea of someone else and pass it off as one's own",hi:"Copy karna, apna kehna",hd:"साहित्यिक चोरी करना",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Placate",en:"To make someone less angry or hostile",hi:"Kisee ko shaant karna ya manana",hd:"शांत करना",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Plantiff",en:"A person who brings a case against another in a court of law",hi:"Shikayat karne wala",hd:"शिकायत करने वाला",dates:["20 MAY 2025 - SHIFT 2"]},
+  {word:"Planetarium",en:"A domed building in which images of stars, planets, and constellations are projected",hi:"Taraghar",hd:"तारागृह",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Plausible",en:"Seemingly reasonable or probable",hi:"Jo sahi lagta ho, sambhav ho sakta hai",hd:"संभाविक / प्रशंसनीय",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Pragmatic",en:"Dealing with things sensibly and realistically; practical",hi:"Yatharthvadi; Vyaavahaarik",hd:"व्यावहारिक, यथार्थवादी",dates:["19 MAY 2025 - SHIFT 1"]},
+  {word:"Pragmatism",en:"Dealing with things realistically and practically",hi:"Practical tareeke se sochna",hd:"व्यवहारवाद, व्यावहारिक दृष्टिकोण",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Precocious",en:"Having developed certain abilities or proclivities at an earlier age than usual",hi:"Jaldi samajhdar ya pratibhashali",hd:"प्रौढ़",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Prevalent",en:"Widespread; common",hi:"Jo aam taur par hota ho, har jagah dikhe",hd:"प्रचलित / सामान्य",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Prevaricate",en:"To avoid telling the truth; mislead",hi:"Seedha jawab na dena, gol-mol baat karna",hd:"टालना / सच्चाई से बचना",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Principal",en:"A person with the highest authority (e.g., school principal) / most important",hi:"School/college ka head ya kisi cheez ka mukhya",hd:"प्रधानाचार्य / मुख्य",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Principle",en:"A fundamental truth, rule, or belief",hi:"Niyam, siddhant, values",hd:"सिद्धांत / नियम",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Proclivity",en:"A natural tendency or inclination toward something (especially something bad or habitual)",hi:"Kisi cheez ki aadat ya tendency",hd:"झुकाव / प्रवृत्ति",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Procrastinate",en:"To delay or postpone action; to put off doing something",hi:"Kaam ko talna",hd:"टालमटोल करना, विलंब करना",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Prodigal",en:"Spending money or using resources freely and recklessly; wastefully extravagant",hi:"Jo paise ya resources bina soche-samjhe uda deta hai",hd:"फिजूलखर्चा करने वाला व्यक्ति; अत्यधिक खर्चीला",dates:["21 MAY 2025 - SHIFT 2","24 MAY 2025 - SHIFT 1"]},
+  {word:"Prodigious",en:"Remarkably large or impressive",hi:"Bahut zyada bada, extraordinary cheez ya talent",hd:"अत्यंत विशाल / अद्भुत",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Profligate",en:"Wasteful, overly extravagant",hi:"Fuzool kharch",hd:"अपव्ययी",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Prolix",en:"Using or containing too many words; tediously lengthy",hi:"Prapanchee",hd:"प्रपंची",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Prolixity",en:"The state of being unnecessarily wordy or long-winded",hi:"Lambai, Ati vistar",hd:"लंबाई, अति विस्तार",dates:["16 MAY 2025 - SHIFT 1"]},
+  {word:"Proliferate",en:"Increase rapidly",hi:"Tezi se badhna",hd:"तेजी से फैलना",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Prologue",en:"An introduction to a book or play",hi:"Kahani ya drama ki shuruaat",hd:"भूमिका",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Prophecy",en:"A prediction of the future",hi:"Aane wale samay ke baare mein pehle se keh dena",hd:"भविष्यवाणी",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Protagonist",en:"An important supporter of an idea or political system",hi:"Nayak, tarafdaar",hd:"तरफ़दार, नायक",dates:["19 MAY 2025 - SHIFT 1"]},
+  {word:"Provoked",en:"Stimulated or caused to act",hi:"Jab kisi ko gussa dilaya ho",hd:"उकसाया गया",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Prowess",en:"Skill or expertise in a particular activity / bravery in battle",hi:"Kaushal",hd:"कौशल",dates:["15 MAY 2025 - SHIFT 2"]},
+  {word:"Prudent",en:"Wise and careful in decision-making",hi:"Jo soch-samajh kar faisla le, aage ka sochne wala / Soch samajh ke faisla lene wala",hd:"समझदार / विवेकी",dates:["24 MAY 2025 - SHIFT 2","3 JUNE 2025 - SHIFT 1"]},
+  {word:"Pseudonym",en:"A fictitious name, especially one used by an author",hi:"Upanaam",hd:"उपनाम",dates:["16 MAY 2025 - SHIFT 1"]},
+  {word:"Puerile",en:"Childishly silly or immature",hi:"Bachkani harkatein ya soch",hd:"बचकाना",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Pugnacious",en:"Eager or quick to argue, quarrel or fight",hi:"Jhagadaalu",hd:"झगड़ालू",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Purge",en:"To cleanse or remove something undesirable, often forcefully",hi:"Saaf karna, hata dena burai ya gandagi ko",hd:"शुद्धिकरण / सफ़ाई",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Putrid",en:"Rotting and having a foul smell",hi:"Sada hua aur badbu daar",hd:"सड़ा-गला और दुर्गंधयुक्त",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Querulous",en:"Complaining in a whining manner",hi:"Hamesha shikayat karne wala",hd:"हमेशा शिकायत करने वाला",dates:["3 JUNE 2025 - SHIFT 1"]},
+  {word:"Quirk",en:"A peculiar aspect of a person's character or behaviour",hi:"Kisi vyakti, cheez ya vyavahar me ek khas or anokhi vishesta",hd:"किसी व्यक्ति, चीज, या व्यवहार में एक खास और अनोखी विशेषता",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Radiant",en:"Sending out light; shining or glowing brightly",hi:"Chamakdaar",hd:"दीप्तिमान",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Recalcitrant",en:"Stubbornly resistant to authority or control; disobedient",hi:"Adiyal / aagya na maananevaala / Naa manne wala",hd:"हठी, अवज्ञाकारी / उद्दंड",dates:["21 MAY 2025 - SHIFT 2","28 MAY 2025 - SHIFT 1","31 MAY 2025 - SHIFT 1"]},
+  {word:"Recondite",en:"Difficult to understand; obscure",hi:"Mushkil ya gehri baat jo samajhna tough ho",hd:"कठिन या गूढ़ (जो समझना आसान न हो)",dates:["2 JUNE 2025 - SHIFT 1"]},
+  {word:"Reign",en:"Rule or authority, especially of a king or queen",hi:"Raja ya leader ka rule karna",hd:"शासन / राज्य",dates:["23 MAY 2025 - SHIFT 2"]},
+  {word:"Reiki master",en:"A person certified to heal using Reiki energy techniques",hi:"Jo healing energy se logon ka ilaaj karta ho",hd:"रेकी ऊर्जाचिकित्सा में माहिर व्यक्ति",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Relegate",en:"Assign an inferior rank or position",hi:"Vyakti ya Vastu ka Pad ghatana",hd:"व्यक्ति या वस्तु का स्तर या पद घटाना",dates:["20 MAY 2025 - SHIFT 1"]},
+  {word:"Relinquish",en:"Voluntarily cease to keep or claim; give up",hi:"Tyaagana",hd:"त्यागना",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Reluctantly",en:"Unwillingly",hi:"Majboori se",hd:"अनिच्छा से",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Remarkable",en:"Worth noticing; extraordinary",hi:"Jo sabki nazar mein aaye, bohot khaas ya alag",hd:"उल्लेखनीय",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Remember",en:"To recall something",hi:"Yaad rakhna",hd:"याद करना",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Rendezvous",en:"Meeting at an agreed time or place",hi:"Sabha ka sthan",hd:"सभा का स्थान",dates:["16 MAY 2025 - SHIFT 1"]},
+  {word:"Repeal",en:"To revoke or annul a law or congressional act",hi:"Kanoon ko hata dena",hd:"निरसन, रद्द करना",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Repercussions",en:"An unintended consequence of an event or action, especially an unwelcome one",hi:"Nateejaa",hd:"नतीजा",dates:["19 MAY 2025 - SHIFT 1"]},
+  {word:"Repress",en:"To hold back or suppress",hi:"Dabana",hd:"दमन करना",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Repudiated",en:"Refuse to accept; reject",hi:"Asveekar karna",hd:"अस्वीकार करना",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Repugnant",en:"Extremely distasteful / unacceptable",hi:"Viruddh",hd:"विरुद्ध",dates:["16 MAY 2025 - SHIFT 1"]},
+  {word:"Repulsive",en:"Causing intense distaste or disgust",hi:"Ganda ya nafrat janak",hd:"घृणास्पद",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Resurrect",en:"To bring back to life or activity",hi:"Zinda karna",hd:"पुनर्जीवित करना",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Reticent",en:"Not revealing one's thought or feelings readily; reserved, not willing to speak",hi:"Chup rehene wala, alpbhashi / Kam bolne waala, apni baat na batane waala",hd:"अल्पभाषी / कम बोलने वाला, संकोची",dates:["14 MAY 2025 - SHIFT 2","31 MAY 2025 - SHIFT 1","2 JUNE 2025 - SHIFT 1"]},
+  {word:"Retract",en:"To say that something you have said is not true; draw back / withdraw a statement",hi:"Baat se peeche hat jana / Vaapas lena",hd:"अपनी बात से पीछे हट जाना / वापस लेना",dates:["15 MAY 2025 - SHIFT 2","21 MAY 2025 - SHIFT 2"]},
+  {word:"Retraction",en:"Withdrawal of a statement or belief",hi:"Kahi hui baat ya likha hua wapas lena",hd:"वापस लेना (कथन या वक्तव्य का)",dates:["3 JUNE 2025 - SHIFT 1"]},
+  {word:"Retribution",en:"Punishment for a crime",hi:"Pratishodh / badlaa",hd:"प्रतिशोध, दंड",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Reverberate",en:"(Of a loud noise) be repeated several times as an echo / have continuing effect",hi:"Goonjana",hd:"गूंजना",dates:["15 MAY 2025 - SHIFT 2"]},
+  {word:"Rejuvenate",en:"To make young or fresh again",hi:"Dobara energy dena, refresh feel karwana",hd:"फिर से तरोताजा करना",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Sagacious",en:"Having or showing keen mental discernment and good judgement; wise or shrewd",hi:"Medhaavee / Samajhdaar aur achhi soch waala / Samajhdar aur acchi soch wala",hd:"मेधावी / बुद्धिमान / दूरदर्शी",dates:["21 MAY 2025 - SHIFT 1","26 MAY 2025 - SHIFT 1","2 JUNE 2025 - SHIFT 1"]},
+  {word:"Satirical",en:"Using humor, irony, or ridicule to criticize or mock",hi:"Chhupke se taana maarna",hd:"व्यंग्यात्मक",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Sanctum",en:"A private place from which most people are excluded",hi:"Ekant kamraa",hd:"एकांत कमरा",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Sanctuary",en:"A place of refuge and protection",hi:"Abhayaranya",hd:"अभयारण्य",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Sanguinity",en:"The quality of being optimistic or positive",hi:"Umeed aur positivity se bhara",hd:"आशावादिता",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Salubrious",en:"Health-giving; healthy; beneficial to health or well-being",hi:"Sehat ke liye achha, healthy",hd:"स्वास्थ्यवर्धक / सेहतमंद",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Satiate",en:"Satisfied to the full; sated",hi:"Puraa karna; Santusht",hd:"पूरा करना, संतुष्ट",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Scholarly",en:"Involving or relating to serious academic study",hi:"Padha-likha, gyaan se bhara hua",hd:"विद्वत्तापूर्ण / विद्वान से संबंधित",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Scrutiny",en:"Critical observation or examination",hi:"Jaanch",hd:"जांच",dates:["20 MAY 2025 - SHIFT 1"]},
+  {word:"Scrupulous",en:"Very careful, honest, and moral",hi:"Bahut imaandar aur nishthavan vyakti",hd:"ईमानदार / नैतिक रूप से सजग",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Sedation",en:"The act of calming someone using medicine",hi:"Dawa ke zariye patient ko shaant ya behosh karna",hd:"बेहोशी / शांत करने की प्रक्रिया",dates:["23 MAY 2025 - SHIFT 2"]},
+  {word:"Servile",en:"Having or showing an excessive willingness to serve or please others",hi:"Chaaploos",hd:"चापलूस",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Site",en:"A location or area",hi:"Jagah, location",hd:"स्थल, स्थान",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Sluggish",en:"Slow and lazy",hi:"Dheere-dheere chalne waala, energy nahi hona",hd:"सुस्त / धीमा",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Soliloquy",en:"A speech to oneself, especially in a play / a speech made by a character alone on stage",hi:"Jab koi akela apne aap se baat karta hai (theatre mein hota hai)",hd:"स्वगत भाषण / एकालाप",dates:["24 MAY 2025 - SHIFT 1","2 JUNE 2025 - SHIFT 2"]},
+  {word:"Soluble",en:"Capable of being dissolved",hi:"Jo cheez paani (ya kisi liquid) mein ghul sakti ho",hd:"घुलनशील",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Somber",en:"Dark or dull in color or tone; gloomy",hi:"Udaas ya ghamgeen",hd:"गंभीर",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Somniloqus",en:"Talking in one's sleep",hi:"Neend mein baat karna",hd:"नींद में बोलने वाला",dates:["3 JUNE 2025 - SHIFT 1"]},
+  {word:"Somnolent",en:"Sleepy or drowsy",hi:"Neend mein ya neend se bhara hua / Neend aane waala",hd:"उनींदा / निद्रालु",dates:["24 MAY 2025 - SHIFT 2","2 JUNE 2025 - SHIFT 1","2 JUNE 2025 - SHIFT 2"]},
+  {word:"Soporific",en:"Causing sleep",hi:"Neend lane waala",hd:"निद्राजनक (जो नींद लाता हो)",dates:["2 JUNE 2025 - SHIFT 1"]},
+  {word:"Sophisticated",en:"Cultured, refined, or complex",hi:"High-class, stylish ya samajhdaar tareeke se complex",hd:"परिष्कृत, जटिल, और समझदार",dates:["2 JUNE 2025 - SHIFT 1"]},
+  {word:"Sordid",en:"Involving ignoble actions and motives; arousing moral distaste and contempt",hi:"Ganda ya beizzat",hd:"गंदा",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Sporadic",en:"Occurring at irregular intervals or only in a few places; scattered or isolated",hi:"Chhitput / Chhitaput",hd:"छिटपुट",dates:["19 MAY 2025 - SHIFT 2","20 MAY 2025 - SHIFT 2"]},
+  {word:"Spendthrift",en:"A person who spends money in an extravagant, irresponsible way",hi:"Udao / vyay karne wala",hd:"अपव्ययी, खर्चीला",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Spoilt",en:"Ruined or pampered excessively",hi:"Jo kharaab ho gaya ho ya zyada pamper hone se bigad gaya ho",hd:"बिगड़ा हुआ",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Spurious",en:"False or fake",hi:"Nakli, jhootha",hd:"मिथ्या, झूठा",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Squander",en:"To waste (time, money, resources) recklessly",hi:"Bina soch samajh ke barbaad kar dena",hd:"पैसे, समय या संसाधनों को लापरवाही से बर्बाद करना",dates:["16 MAY 2025 - SHIFT 1"]},
+  {word:"Stalwart",en:"Loyal, reliable, and strong",hi:"Wafadar aur majboot",hd:"निष्ठावान और मजबूत",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Stationery",en:"Writing materials, such as paper, pens, and envelopes",hi:"Likhnay ka samaan (pen, pencil, paper)",hd:"लेखन-सामग्री (जैसे पेन, कागज़)",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Stationary",en:"Not moving; staying in one place",hi:"Jo hilta-dulta nahi, still",hd:"स्थिर / अचल",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Sterility",en:"Failing to produce or incapable of producing offspring",hi:"Baanjhapan",hd:"बांझपन",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Stoic",en:"Enduring pain or hardship without showing feelings or complaining",hi:"Udaaseen",hd:"उदासीन",dates:["20 MAY 2025 - SHIFT 1"]},
+  {word:"Stolid",en:"Showing little or no emotion; impassive",hi:"Jo zyada react nahi karta",hd:"निष्कलंक",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Stubborn",en:"Unwilling to change opinion",hi:"Ziddi",hd:"जिद्दी",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Subversive",en:"Seeking to destroy or overthrow",hi:"Jo system ya rule ke khilaf kaam kare",hd:"विध्वंसकारी / सरकार विरो",dates:["23 MAY 2025 - SHIFT 2"]},
+  {word:"Succinct",en:"Briefly and clearly expressed",hi:"Sankshipt / chootaa",hd:"संक्षिप्त",dates:["19 MAY 2025 - SHIFT 1","21 MAY 2025 - SHIFT 2"]},
+  {word:"Supercilious",en:"Behaving or looking as though one thinks one is superior to others",hi:"Uparwala",hd:"घमंडी",dates:["29 MAY 2025 - SHIFT 1"]},
+  {word:"Surly",en:"Bad-tempered, unfriendly",hi:"Chidchida aur rude nature wala",hd:"चिड़चिड़ा और असभ्य",dates:["3 JUNE 2025 - SHIFT 1"]},
+  {word:"Taciturn",en:"Someone who speaks very little; quiet and reserved",hi:"Jo kam bolta hai, chup rehne wala / Kam bolne waala, chup rehne waala",hd:"बहुत कम बोलने वाला / मितभाषी",dates:["14 MAY 2025 - SHIFT 2","19 MAY 2025 - SHIFT 2","23 MAY 2025 - SHIFT 1"]},
+  {word:"Taciturnity",en:"The trait of being uncommunicative, reserved, and habitually silent",hi:"Chup rehne ki aadat",hd:"मितभाषिता",dates:["20 MAY 2025 - SHIFT 2"]},
+  {word:"Tactic",en:"An action or strategy carefully planned to achieve a specific end",hi:"Rajaneeti",hd:"रणनीति",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Temerity",en:"Reckless boldness; excessive confidence",hi:"Bevajeh himmat ya overconfidence",hd:"दुस्साहस, अत्यधिक साहस",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Tenuous",en:"Weak, slight, or not firm/strong (like a weak connection or argument)",hi:"Kamzor ya halki si baat ya rishte",hd:"कमजोर या बहुत हल्का (जैसे बहुत कमजोर तर्क या रिश्ता)",dates:["2 JUNE 2025 - SHIFT 1"]},
+  {word:"Tenor",en:"A fairly high singing voice for a man",hi:"Accha Gayak",hd:"अच्छा गायक",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Tenure",en:"Period during which someone holds a particular office or position",hi:"Kisi chiz ko rakhne ki avadhi",hd:"किसी चीज़ को रखने की अवधि",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Theist",en:"A person who believes in God",hi:"Bhagwan mein vishwas rakhne wala",hd:"ईश्वर में विश्वास करने वाला व्यक्ति",dates:["26 MAY 2025 - SHIFT 1"]},
+  {word:"Theology",en:"The study of the nature of God and religious belief",hi:"Dharmik vicharon aur Ishwar ke swaroop ka adhyayan",hd:"धर्मशास्त्र",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Therapeutic",en:"Having healing or beneficial effects, especially on the body or mind",hi:"Sehat ya man ko theek karne wala",hd:"उपचारात्मक, आरोग्यकारी",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Tidy",en:"Neat and clean",hi:"Jo achhi tarah se saaf aur arrange kiya gaya ho",hd:"साफ-सुथरा",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Timid",en:"Showing a lack of courage or confidence",hi:"Darapok",hd:"डरपोक",dates:["20 MAY 2025 - SHIFT 1"]},
+  {word:"Trite",en:"Lacking originality; cliché",hi:"Purani aur boring baat, cliché",hd:"घिसा-पिटा या मामूली",dates:["3 JUNE 2025 - SHIFT 1"]},
+  {word:"Truculent",en:"Eager or quick to argue or fight",hi:"Ladaakoo",hd:"लड़ाकू",dates:["19 MAY 2025 - SHIFT 1"]},
+  {word:"Truce",en:"An agreement between enemies or opponents to stop fighting for a certain time",hi:"Yuddhaviraam sandhi / samzhota karna",hd:"युद्धविराम, शांति समझौता",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Trudging",en:"Walking slowly with heavy steps",hi:"Bhaari kadmon se chalna",hd:"भारी कदमों से चलना",dates:["30 MAY 2025 - SHIFT 1"]},
+  {word:"Ubiquitous",en:"Present everywhere",hi:"Har jagah paya jaata hai",hd:"सर्वव्यापी",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Uncouth",en:"Lacking good manners, refinement, or grace",hi:"Ganvaar, Battameez / Jo badtamiz ya rude ho",hd:"गंवार, बत्तमीज / असभ्य / गंवार",dates:["19 MAY 2025 - SHIFT 1","24 MAY 2025 - SHIFT 1"]},
+  {word:"Unkempt",en:"Untidy or messy in appearance",hi:"Jiska look ya kapde saaf-suthre na ho, bichhda hua",hd:"अस्त-व्यस्त / बिखरा हुआ",dates:["24 MAY 2025 - SHIFT 1"]},
+  {word:"Unrestrained",en:"Not controlled or limited",hi:"Jise koi control nahi kare, poori tarah se azaad",hd:"बेलगाम / अनियंत्रित",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Unscrupulous",en:"Having or showing no moral principles; not honest or fair",hi:"Besharam, Nirllajj",hd:"बेशरम",dates:["14 MAY 2025 - SHIFT 2"]},
+  {word:"Usurped",en:"Taken (a position of power or importance) illegally or by force",hi:"Jab kisi ne galat tareeke se kuch le liya ho",hd:"हड़प लिया गया",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Vague",en:"Not clear or definite; ambiguous",hi:"Spasht nahi, unclear",hd:"अस्पष्ट, धुंधला",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Vain",en:"Full of self-pride; useless",hi:"Ghamandi ya bekaar / koi fayda nahi",hd:"घमंडी / व्यर्थ",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Vale",en:"A valley (poetic word)",hi:"Ghati (kavitaon ya poetic sense mein)",hd:"घाटी",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Valiant",en:"Brave and determined, especially in difficult situations",hi:"Bahadur aur himmati",hd:"वीर",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Valour",en:"Great courage in the face of danger",hi:"Bahaduri ya veerta",hd:"वीरता",dates:["27 MAY 2025 - SHIFT 1"]},
+  {word:"Vane",en:"A device that shows wind direction (like a weather vane)",hi:"Hawa ka direction batane wala yantra",hd:"पवनदर्शक",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Vanquish",en:"Defeat thoroughly",hi:"Haraana",hd:"हराना",dates:["19 MAY 2025 - SHIFT 2"]},
+  {word:"Veil",en:"A cloth covering (especially worn on face/head); something that hides",hi:"Parda ya ghunghat",hd:"घूंघट / पर्दा",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Vein",en:"Blood vessel; also used metaphorically",hi:"Nas (body ke andar blood lane wali)",hd:"नस",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Venal",en:"Corrupt, easily bribed",hi:"Rishwat lene waala, bhrasht vyakti",hd:"रिश्वतखोर / भ्रष्ट",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Veneer",en:"A thin layer; a false outward appearance",hi:"Bahari chamak ya jhooti dikhaava",hd:"ऊपर की चमक / दिखावटी परत",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Venerable",en:"Respected due to age, wisdom, or character",hi:"Jise sab izzat dete hain, jo sammaan ke laayak ho",hd:"आदरणीय",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Venerate",en:"To deeply respect or worship",hi:"Bahut izzat dena, poojna",hd:"श्रद्धा और सम्मान देना",dates:["3 JUNE 2025 - SHIFT 2"]},
+  {word:"Venial",en:"A minor or forgivable fault, sin, or mistake",hi:"Chhoti si galti jo maaf ki ja sakti ho",hd:"मामूली और क्षम्य गलती या पाप",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Vent",en:"Provide with an outlet for air, gas or liquid",hi:"Baahar nikalne dena",hd:"बाहर निकलने देना",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Veracious",en:"Truthful; honest",hi:"Hamesha sach bolne waala, jhooth se door",hd:"सत्यवादी",dates:["24 MAY 2025 - SHIFT 2"]},
+  {word:"Veracity",en:"Truthfulness",hi:"Satyata / Sachchai",hd:"सत्यता",dates:["30 MAY 2025 - SHIFT 1","31 MAY 2025 - SHIFT 1"]},
+  {word:"Verbatim",en:"In exactly the same words as were used originally",hi:"Shabd prati shabd",hd:"शब्द प्रति शब्द",dates:["21 MAY 2025 - SHIFT 1"]},
+  {word:"Verbose",en:"Using or expressed in more words than needed; wordy",hi:"Vaachaal / Bahut zyada bolne waala",hd:"वाचाल / शब्दाडंबरपूर्ण, बहुत ज़्यादा बोलने वाला",dates:["16 MAY 2025 - SHIFT 1","19 MAY 2025 - SHIFT 1","19 MAY 2025 - SHIFT 2","23 MAY 2025 - SHIFT 1","28 MAY 2025 - SHIFT 1"]},
+  {word:"Versatile",en:"Able to adapt or be used in many ways",hi:"Bahuparkiya, bahumukhi",hd:"बहुपरकीय, बहुमुखी",dates:["30 MAY 2025 - SHIFT 1"]},
+  {word:"Viciate",en:"Spoil or impair the quality or efficiency of",hi:"Bigaadnaa",hd:"बिगड़ना",dates:["20 MAY 2025 - SHIFT 2"]},
+  {word:"Vindictive",en:"Wanting revenge; unforgiving",hi:"Badla lene wala, chhoti baat nahi bhoolta",hd:"प्रतिशोधी या बदला लेने वाला",dates:["3 JUNE 2025 - SHIFT 1"]},
+  {word:"Virtuosity",en:"Great skill in art or music",hi:"Kala mein maharat",hd:"कौशल, निपुणता",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Villainy",en:"Evil or criminal behavior",hi:"Bura vyavhaar",hd:"अपराध या दुष्ट व्यवहार",dates:["31 MAY 2025 - SHIFT 1"]},
+  {word:"Vivacious",en:"Attractively; Lively and animated (typically used of a woman)",hi:"Prafullit, jindadil / Zinda-dil, energetic aur khushmizaj",hd:"जिंदादिल, प्रफुल्लित / चंचल / जीवंत",dates:["14 MAY 2025 - SHIFT 2","23 MAY 2025 - SHIFT 1"]},
+  {word:"Volatile",en:"Likely to change rapidly and unpredictably",hi:"Kabhi bhi badal sakta hai",hd:"अस्थिर, चंचल",dates:["28 MAY 2025 - SHIFT 1"]},
+  {word:"Vulnerable",en:"Capable of being hurt or affected emotionally or physically",hi:"Asurakshit, aasani se hurt ho sakta hai",hd:"असुरक्षित / आहत होने योग्य",dates:["21 MAY 2025 - SHIFT 2"]},
+  {word:"Waive",en:"To give up a right or claim voluntarily",hi:"Kisi adhikaar ya claim ko chhod dena",hd:"छोड़ देना / माफ कर देना",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Wave",en:"A moving ridge of water; to move back and forth",hi:"Lehar ya haath hilaana",hd:"लहर / हाथ हिलाना",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Warily",en:"Cautiously, carefully, especially to avoid danger",hi:"Bahut hi saavdhaani se, alert hokar",hd:"सतर्कता से / सावधानी से",dates:["23 MAY 2025 - SHIFT 1"]},
+  {word:"Witticism",en:"A clever or witty remark",hi:"Chatur ya mazakiya baat",hd:"चुटीली बात, चतुराईपूर्ण कटाक्ष",dates:["2 JUNE 2025 - SHIFT 2"]},
+  {word:"Xenophobia",en:"Dislike of or prejudice against people from other countries",hi:"Videshee logon ko naa pasand karana",hd:"विदेशी लोगों को नापसंद करना",dates:["19 MAY 2025 - SHIFT 1"]},
+  {word:"Zenith",en:"The highest point or peak",hi:"Shikhar ya ucha point",hd:"शिखर",dates:["27 MAY 2025 - SHIFT 1"]},
+];
+
+// Deduplicate by word
+const seen = new Set();
+const WORDS = RAW_WORDS.filter(w => {
+  if (seen.has(w.word.toLowerCase())) return false;
+  seen.add(w.word.toLowerCase()); return true;
+}).sort((a,b) => a.word.localeCompare(b.word));
+
+let filtered = [...WORDS];
+
+function buildAlphaNav() {
+  const nav = document.getElementById('alphaNav');
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const wordLetters = new Set(WORDS.map(w => w.word[0].toUpperCase()));
+  nav.innerHTML = '<button class="alpha-btn active" onclick="filterAlpha(\'all\', this)">All</button>' +
+    letters.map(l => `<button class="alpha-btn ${wordLetters.has(l)?'has-words':''}" onclick="filterAlpha('${l}', this)">${l}</button>`).join('');
+}
+
+function filterAlpha(letter, btn) {
+  document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  if (letter === 'all') {
+    filtered = WORDS.filter(w => !q || w.word.toLowerCase().includes(q) || w.en.toLowerCase().includes(q));
+  } else {
+    filtered = WORDS.filter(w => w.word[0].toUpperCase() === letter && (!q || w.word.toLowerCase().includes(q) || w.en.toLowerCase().includes(q)));
+  }
+  renderCards();
+}
+
+document.getElementById('searchInput').addEventListener('input', function() {
+  const q = this.value.toLowerCase().trim();
+  const activeLetter = document.querySelector('.alpha-btn.active')?.textContent || 'All';
+  if (activeLetter === 'All') {
+    filtered = WORDS.filter(w => !q || w.word.toLowerCase().includes(q) || w.en.toLowerCase().includes(q) || w.hd.includes(q));
+  } else {
+    filtered = WORDS.filter(w => w.word[0].toUpperCase() === activeLetter && (!q || w.word.toLowerCase().includes(q) || w.en.toLowerCase().includes(q)));
+  }
+  renderCards();
+});
+
+function renderCards() {
+  const grid = document.getElementById('cardsGrid');
+  document.getElementById('countDisplay').textContent = filtered.length;
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty-state">No words found. Try a different search.</div>';
+    return;
+  }
+  let html = '';
+  let lastLetter = '';
+  filtered.forEach((w, i) => {
+    const fl = w.word[0].toUpperCase();
+    if (fl !== lastLetter) {
+      html += `<div class="alpha-group-header"><span>${fl}</span><hr/></div>`;
+      lastLetter = fl;
+    }
+    html += `<div class="flashcard-wrapper">
+      <div class="flashcard" onclick="openModal(${i})">
+        <div class="card-face card-front">
+          <div class="word">${w.word}</div>
+          <div class="tap-hint">tap to reveal</div>
+        </div>
+        <div class="card-face card-back"></div>
+      </div>
+    </div>`;
+  });
+  grid.innerHTML = html;
+}
+
+function openModal(idx) {
+  const w = filtered[idx];
+  document.getElementById('mWord').textContent = w.word;
+  document.getElementById('mDates').innerHTML = w.dates.map(d => `<span class="modal-date-tag">${d}</span>`).join('');
+  document.getElementById('mMeanings').innerHTML = `
+    <div class="meaning-block">
+      <div class="meaning-label">🇬🇧 English Meaning</div>
+      <div class="meaning-text">${w.en}</div>
+    </div>
+    <div class="meaning-block">
+      <div class="meaning-label">🗣️ Hinglish Meaning</div>
+      <div class="meaning-text">${w.hi}</div>
+    </div>
+    <div class="meaning-block">
+      <div class="meaning-label">🇮🇳 Hindi Meaning</div>
+      <div class="meaning-text hindi-text">${w.hd}</div>
+    </div>
+  `;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModalBtn();
+}
+function closeModalBtn() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
+
+window.addEventListener('scroll', () => {
+  document.getElementById('scrollTopBtn').classList.toggle('show', window.scrollY > 300);
+});
+
+buildAlphaNav();
+renderCards();
+</script>
+</body>
+</html>
