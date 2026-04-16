@@ -425,6 +425,143 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
   .tab-btn { font-size: 0.76rem; padding: 10px 14px; }
   .tab-bar  { padding: 14px 12px 0; }
 }
+
+/* ============ DETAILED SOLUTION OVERLAY ============ */
+.solution-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2200;
+  background: #f0f4fb;
+  flex-direction: column;
+  overflow: hidden;
+}
+.solution-overlay.open { display: flex; }
+.sol-header {
+  background: var(--card-back);
+  color: #fff;
+  padding: 0 20px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.sol-header-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; }
+.sol-close-btn {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.sol-close-btn:hover { background: rgba(255,255,255,0.25); }
+.sol-body { flex: 1; overflow-y: auto; padding: 20px; max-width: 860px; margin: 0 auto; width: 100%; }
+.sol-q-card {
+  background: var(--card-bg);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.sol-q-num  { font-size: 0.72rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px; }
+.sol-q-text { font-size: 0.96rem; font-weight: 600; color: var(--text); margin-bottom: 14px; line-height: 1.55; }
+.sol-options { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+.sol-opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  font-size: 0.9rem;
+  background: var(--card-bg);
+}
+.sol-opt.student-correct { background: #dcfce7; border-color: #16a34a; }
+.sol-opt.student-wrong   { background: #fee2e2; border-color: #dc2626; }
+.sol-opt.correct-ans     { background: #dcfce7; border-color: #16a34a; }
+.sol-opt.skipped-correct { background: #e0f2fe; border-color: #0284c7; }
+.sol-opt-icon { font-size: 1rem; flex-shrink: 0; width: 20px; text-align: center; }
+.sol-opt-key  { font-weight: 700; color: var(--muted); font-size: 0.82rem; flex-shrink: 0; width: 22px; }
+.sol-opt-text { flex: 1; }
+.sol-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: var(--card-bg);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 16px;
+  margin-bottom: 18px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.sol-legend span { display: flex; align-items: center; gap: 5px; font-weight: 500; }
+.sol-verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.sol-verdict.correct  { background: #dcfce7; color: #166534; }
+.sol-verdict.wrong    { background: #fee2e2; color: #991b1b; }
+.sol-verdict.skipped  { background: #e0f2fe; color: #075985; }
+.sol-explanation {
+  background: #fafbff;
+  border-left: 3px solid var(--accent2);
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+  font-size: 0.84rem;
+  color: #374151;
+  line-height: 1.65;
+}
+.sol-explanation strong { color: var(--text); font-weight: 700; }
+.sol-explanation ul { margin: 6px 0 0 16px; }
+.sol-explanation li { margin-bottom: 3px; }
+@media (max-width: 540px) { .sol-body { padding: 12px; } .sol-q-card { padding: 14px 14px; } }
+
+
+
+/* WHATSAPP FLOATING BUTTON */
+.wa-btn {
+  position: fixed;
+  bottom: 72px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #25D366;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 16px 10px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(37,211,102,0.45);
+  text-decoration: none;
+  z-index: 300;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+.wa-btn:hover { transform: scale(1.05); box-shadow: 0 6px 24px rgba(37,211,102,0.6); }
+@media (max-width: 480px) {
+  .wa-btn { font-size: 0; padding: 0; gap: 0; border-radius: 50%; width: 48px; height: 48px; justify-content: center; }
+  .wa-btn svg { width: 26px; height: 26px; }
+}
+
 </style>
 </head>
 <body>
@@ -576,11 +713,22 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
       <div class="result-stat-box"><div class="result-stat-num stat-wrong"    id="resWrong"></div><div class="result-stat-label">&#10060; Wrong</div></div>
       <div class="result-stat-box" style="grid-column:1/-1;"><div class="result-stat-num stat-total" id="resTotal"></div><div class="result-stat-label">&#127919; Final Score (Marks Obtained / Total Marks)</div></div>
     </div>
-    <button class="result-close-btn" onclick="closeResult()">&#8592; Close &amp; Return to Tests</button>
+    <div style="display:flex;gap:10px;margin-top:4px;">
+      <button class="result-close-btn" onclick="closeResult()" style="flex:1;">&#8592; Return to Tests</button>
+      <button class="result-close-btn" onclick="openSolution()" style="flex:1;background:var(--accent2);border:none;">&#128214; Detailed Solution</button>
+    </div>
   </div>
 </div>
 
 
+<!-- DETAILED SOLUTION OVERLAY -->
+<div class="solution-overlay" id="solutionOverlay">
+  <div class="sol-header">
+    <div class="sol-header-title" id="solTitle">Detailed Solution</div>
+    <button class="sol-close-btn" onclick="closeSolution()">&#8592; Back to Results</button>
+  </div>
+  <div class="sol-body" id="solBody"></div>
+</div>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
@@ -592,6 +740,10 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
   </div>
 </div>
 
+<a class="wa-btn" href="https://whatsapp.com/channel/0029Vb7gLPh7j6g9q1OUBy3Q" target="_blank" rel="noopener" title="Join WhatsApp Community">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.59 5.97L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.22-3.48-8.52zM12 22c-1.85 0-3.67-.5-5.25-1.44l-.38-.22-3.67.96.98-3.56-.25-.38A9.93 9.93 0 0 1 2 12C2 6.49 6.49 2 12 2c2.66 0 5.16 1.04 7.05 2.95A9.94 9.94 0 0 1 22 12c0 5.51-4.49 10-10 10zm5.47-7.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15s-.77.97-.95 1.17c-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.49-.9-.8-1.5-1.79-1.67-2.09-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.49-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47 0 1.46 1.06 2.87 1.21 3.07.15.2 2.09 3.19 5.07 4.35.71.31 1.26.49 1.69.62.71.23 1.36.19 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.19-.57-.34z"/></svg>
+  Join the WhatsApp Community
+</a>
 <button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
@@ -1602,6 +1754,225 @@ const MOCK_TESTS = [
 }
 ];
 
+// ===== DETAILED SOLUTIONS (Tests 1-9 from PDF, Tests 10-15 use auto-generated) =====
+const DETAILED_SOLUTIONS = {
+0: [ // Test 1
+  {explanation:"<strong>Loquacious</strong> means tending to talk a lot; very talkative. <ul><li>Silent = Not speaking at all</li><li>Talkative = Fond of talking frequently ✓</li><li>Reserved = Quiet and not expressive</li><li>Angry = Feeling strong displeasure</li></ul>"},
+  {explanation:"<strong>Reticent</strong> means not revealing thoughts easily; reserved in speech. <ul><li>Outspoken = Speaking openly and freely</li><li>Talkative = Talking a lot</li><li>Reserved = Quiet and restrained ✓</li><li>Confident = Sure of oneself</li></ul>"},
+  {explanation:"<strong>Optimist</strong> means a person who expects positive outcomes. <ul><li>Doubter = One who questions or lacks belief</li><li>Cynic = One who believes people are selfish</li><li>Hopeful = Feeling or showing optimism ✓</li><li>Worrier = One who frequently feels anxious</li></ul>"},
+  {explanation:"<strong>Pessimist</strong> means a person who expects negative outcomes. <ul><li>Believer = One who has faith</li><li>Cynical = Distrusting human motives ✓</li><li>Dreamer = One who imagines ideal situations</li><li>Cheerleader = Someone who encourages others</li></ul>"},
+  {explanation:"<strong>Dumbfounded</strong> means extremely surprised or shocked. <ul><li>Unsurprised = Not feeling any surprise</li><li>Amazed = Filled with wonder or shock ✓</li><li>Prepared = Ready for something</li><li>Expectant = Anticipating something</li></ul>"},
+  {explanation:"<strong>Vivacious</strong> means full of life, energy, and enthusiasm. <ul><li>Lively = Energetic and active ✓</li><li>Dull = Lacking interest or excitement</li><li>Boring = Not interesting</li><li>Lazy = Unwilling to work or move</li></ul>"},
+  {explanation:"<strong>Equitable</strong> means fair and just in treatment. <ul><li>Biased = Showing unfair preference</li><li>Unfair = Not just or equal</li><li>Fair = Treating people equally ✓</li><li>Partial = Favoring one side unfairly</li></ul>"},
+  {explanation:"<strong>Unscrupulous</strong> means lacking moral principles; dishonest. <ul><li>Honest = Truthful and fair</li><li>Moral = Following ethical principles</li><li>Immoral = Not following moral standards ✓</li><li>Ethical = Relating to right conduct</li></ul>"},
+  {explanation:"<strong>Ambidextrous</strong> means able to use both hands equally well. <ul><li>Clumsy = Awkward in movement</li><li>Skillful with both hands = Equal ability in both hands ✓</li><li>Inept = Lacking skill</li><li>One-handed = Using only one hand</li></ul>"},
+  {explanation:"<strong>Equivalent</strong> means equal in value or meaning. <ul><li>Unequal = Not equal</li><li>Different = Not the same</li><li>Equal = Same in quantity or value ✓</li><li>Disproportionate = Not balanced or equal</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Taciturn</strong> (habitually silent or quiet). <ul><li>Quiet = Making little noise</li><li>Silent = Not speaking</li><li>Talkative = Speaking a lot ✓ (opposite)</li><li>Reserved = Not expressive</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Meander</strong> (to wander without a fixed direction). <ul><li>Wander = Move aimlessly</li><li>Stroll = Walk in a relaxed way</li><li>Go straight = Move directly without deviation ✓ (opposite)</li><li>Roam = Move about freely</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Ambivalent</strong> (having mixed or conflicting feelings). <ul><li>Unsure = Not certain</li><li>Certain = Confident and sure ✓ (opposite)</li><li>Confused = Unable to think clearly</li><li>Mixed = Having different feelings together</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Persistence</strong> (continuing firmly despite difficulty). <ul><li>Endurance = Ability to last over time</li><li>Tenacity = Determination to keep going</li><li>Surrender = Giving up ✓ (opposite)</li><li>Grit = Courage and determination</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Obnoxious</strong> (very unpleasant or offensive). <ul><li>Unpleasant = Not enjoyable</li><li>Annoying = Causing irritation</li><li>Pleasant = Giving enjoyment ✓ (opposite)</li><li>Offensive = Causing anger or hurt</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Reverberate</strong> (to echo or resound repeatedly). <ul><li>Echo = Reflect sound</li><li>Resound = Fill with sound</li><li>Quiet down = Become silent ✓ (opposite)</li><li>Vibrate = Move back and forth rapidly</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Enunciate</strong> (to pronounce words clearly). <ul><li>Articulate = Speak clearly</li><li>Mumble = Speak unclearly ✓ (opposite)</li><li>Pronounce = Say a word correctly</li><li>State clearly = Express plainly</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Bolster</strong> (to support or strengthen). <ul><li>Support = Give assistance</li><li>Strengthen = Make stronger</li><li>Weaken = Make less strong ✓ (opposite)</li><li>Boost = Increase or improve</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Retract</strong> (to withdraw or take back a statement). <ul><li>Withdraw = Take back</li><li>Confirm = Approve or verify ✓ (opposite)</li><li>Cancel = Call off</li><li>Revoke = Officially cancel</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Infringe</strong> (to violate or break a rule or law). <ul><li>Violate = Break a law</li><li>Break = Fail to follow rules</li><li>Obey = Follow rules ✓ (opposite)</li><li>Breach = Break an agreement</li></ul>"}
+],
+1: [ // Test 2
+  {explanation:"<strong>Prowess</strong> means exceptional skill or expertise. <ul><li>Skill = The ability to perform a task effectively ✓</li><li>Clumsiness = Lack of coordination</li><li>Inability = Lack of capacity</li><li>Weakness = Lack of strength</li></ul>"},
+  {explanation:"<strong>Repugnant</strong> means extremely unpleasant or offensive. <ul><li>Delightful = Giving great pleasure</li><li>Unacceptable = Not able to be approved ✓</li><li>Attractive = Pleasing to the senses</li><li>Pleasing = Giving happiness</li></ul>"},
+  {explanation:"<strong>Rendezvous</strong> means a planned meeting at a specific time and place. <ul><li>Separation = Moving apart</li><li>Meeting = Coming together ✓</li><li>Departure = The act of leaving</li><li>Division = Splitting into parts</li></ul>"},
+  {explanation:"<strong>Pertinent</strong> means directly related and relevant to the topic. <ul><li>Irrelevant = Not connected</li><li>Unrelated = Having no connection</li><li>Relevant = Closely connected ✓</li><li>Inappropriate = Not suitable</li></ul>"},
+  {explanation:"<strong>Pseudonym</strong> means a fictitious name used instead of a real name. <ul><li>Real name = The actual name</li><li>True identity = The real identity</li><li>Fictitious name = A false or invented name ✓</li><li>Legal name = The officially registered name</li></ul>"},
+  {explanation:"<strong>Jovial</strong> means cheerful and full of happiness. <ul><li>Sad = Feeling sorrow</li><li>Cheerful = Noticeably happy and positive ✓</li><li>Depressed = Experiencing deep sadness</li><li>Miserable = Extremely unhappy</li></ul>"},
+  {explanation:"<strong>Paradigm</strong> means a typical example or model of something. <ul><li>Anomaly = Something not fitting the normal pattern</li><li>Exception = Something not following a rule</li><li>Model = A standard example to follow ✓</li><li>Irregularity = Something not usual</li></ul>"},
+  {explanation:"<strong>Prolixity</strong> means the use of too many words to express an idea. <ul><li>Brevity = The quality of being brief</li><li>Wordiness = Using more words than necessary ✓</li><li>Conciseness = Expressing ideas clearly in few words</li><li>Silence = Complete absence of speech</li></ul>"},
+  {explanation:"<strong>Squander</strong> means to waste something carelessly or foolishly. <ul><li>Save = To keep for future use</li><li>Hoard = To collect and store excessively</li><li>Waste = To use without care or purpose ✓</li><li>Collect = To gather things together</li></ul>"},
+  {explanation:"<strong>Clairvoyant</strong> means a person who claims to predict the future. <ul><li>Blind = Unable to see</li><li>Psychic = A person believed to have supernatural insight ✓</li><li>Unseeing = Not able to perceive clearly</li><li>Ignorant = Lacking knowledge</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Evasive</strong> (avoiding direct answers or clear responses). <ul><li>Indirect = Not straightforward</li><li>Deceitful = Intentionally misleading</li><li>Direct = Clear and straightforward ✓ (opposite)</li><li>Vague = Not clearly expressed</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Abstruse</strong> (difficult to understand). <ul><li>Clear = Easy to understand ✓ (opposite)</li><li>Complex = Complicated</li><li>Deep = Having significant meaning</li><li>Obscure = Not clear or difficult to understand</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Genteel</strong> (polite, refined, and well-mannered). <ul><li>Polite = Showing good manners</li><li>Rude = Lacking manners or respect ✓ (opposite)</li><li>Refined = Elegant and cultured</li><li>Respectable = Worthy of respect</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Disgruntled</strong> (feeling unhappy or dissatisfied). <ul><li>Annoyed = Slightly angry</li><li>Disappointed = Sad due to unmet expectations</li><li>Satisfied = Feeling content or pleased ✓ (opposite)</li><li>Unhappy = Not feeling happy</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Succinct</strong> (expressed clearly in a few words). <ul><li>Brief = Short in length</li><li>Clear = Easy to understand</li><li>Wordy = Using more words than necessary ✓ (opposite)</li><li>Short = Limited in length</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Protagonist</strong> (the main character in a story). <ul><li>Supporter = A person who supports someone</li><li>Hero = The central positive character</li><li>Antagonist = A person who opposes the main character ✓ (opposite)</li><li>Leader = A person who guides others</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Pragmatic</strong> (dealing with things in a practical way). <ul><li>Realistic = Accepting situations as they are</li><li>Practical = Focused on usefulness</li><li>Sensible = Showing good judgment</li><li>Idealistic = Guided by ideals rather than reality ✓ (opposite)</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Extravagant</strong> (spending more than necessary). <ul><li>Lavish = Rich, elaborate, and luxurious</li><li>Wasteful = Using resources carelessly</li><li>Thrifty = Careful with money and resources ✓ (opposite)</li><li>Excessive = More than what is needed</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Xenophobia</strong> (fear or dislike of people from other countries). <ul><li>Fear of foreigners = Dislike of people from abroad</li><li>Dislike of outsiders = Strong dislike for outsiders</li><li>Acceptance of foreigners = Welcoming people from other countries ✓ (opposite)</li><li>Prejudice = Opinion formed without proper knowledge</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Allegiance</strong> (loyalty or commitment to a person or cause). <ul><li>Loyalty = Strong faithfulness or support</li><li>Commitment = Dedication to something</li><li>Betrayal = Breaking trust or loyalty ✓ (opposite)</li><li>Devotion = Deep love or dedication</li></ul>"}
+],
+2: [ // Test 3
+  {explanation:"<strong>Obtrusive</strong> means noticeable in an unpleasant or unwanted way. <ul><li>Hidden = Kept out of sight</li><li>Noticeable = Easily seen or attracting attention ✓</li><li>Inconspicuous = Not clearly visible</li><li>Subtle = Not obvious and hard to notice</li></ul>"},
+  {explanation:"<strong>Uncouth</strong> means lacking good manners or refinement. <ul><li>Refined = Polite and cultured</li><li>Polite = Showing good manners</li><li>Unmannered = Lacking proper behavior ✓</li><li>Graceful = Showing elegance</li></ul>"},
+  {explanation:"<strong>Detract</strong> means to reduce the value or importance of something. <ul><li>Enhance = To improve quality</li><li>Improve = To make something better</li><li>Diminish = To make something smaller or less important ✓</li><li>Increase = To make something larger</li></ul>"},
+  {explanation:"<strong>Truculent</strong> means aggressively hostile or eager to fight. <ul><li>Peaceful = Free from conflict</li><li>Aggressive = Ready to attack or confront ✓</li><li>Calm = Free from agitation</li><li>Friendly = Kind and pleasant</li></ul>"},
+  {explanation:"<strong>Bucolic</strong> means related to the countryside or rural life. <ul><li>Urban = Related to a city</li><li>City-like = Having characteristics of a city</li><li>Rural = Related to villages or countryside ✓</li><li>Metropolitan = Related to a large city</li></ul>"},
+  {explanation:"<strong>Repercussions</strong> means unintended consequences of an action. <ul><li>Causes = Reasons that make something happen</li><li>Origins = The starting point</li><li>Consequences = Results or effects of an action ✓</li><li>Beginnings = The initial stage</li></ul>"},
+  {explanation:"<strong>Gullible</strong> means easily fooled or tricked. <ul><li>Suspicious = Doubting others' intentions</li><li>Skeptical = Not easily convinced</li><li>Credulous = Ready to believe things easily ✓</li><li>Doubting = Feeling uncertain</li></ul>"},
+  {explanation:"<strong>Fickle</strong> means frequently changing opinions or feelings. <ul><li>Constant = Staying the same over time</li><li>Stable = Firm and not likely to change</li><li>Changeable = Likely to change often ✓</li><li>Loyal = Faithful and committed</li></ul>"},
+  {explanation:"<strong>Abate</strong> means to reduce in intensity or amount. <ul><li>Increase = To become larger</li><li>Intensify = To make stronger</li><li>Decrease = To become smaller ✓</li><li>Grow = To increase in size</li></ul>"},
+  {explanation:"<strong>Exult</strong> means to feel or express great joy. <ul><li>Mourn = To feel sorrow over loss</li><li>Grieve = To experience deep sadness</li><li>Rejoice = To feel or show happiness ✓</li><li>Lament = To express sorrow</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Exalt</strong> (to praise or raise someone to a high position). <ul><li>Praise = Express approval or admiration</li><li>Criticize = To find fault ✓ (opposite)</li><li>Elevate = To raise to a higher level</li><li>Promote = To support or advance</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Ignominious</strong> (deserving shame or public disgrace). <ul><li>Honorable = Worthy of respect and admiration ✓ (opposite)</li><li>Shameful = Causing embarrassment</li><li>Disgraceful = Bringing shame</li><li>Embarrassing = Causing discomfort</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Sporadic</strong> (occurring at irregular intervals). <ul><li>Irregular = Not following a pattern</li><li>Scattered = Spread out over an area</li><li>Frequent = Happening often at short intervals ✓ (opposite)</li><li>Isolated = Occurring separately</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Satiate</strong> (to fully satisfy a desire or hunger). <ul><li>Satisfy = To meet a need</li><li>Fill = To make something full</li><li>Starve = To suffer from lack of food ✓ (opposite)</li><li>Quench = To satisfy thirst</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Ostentatious</strong> (showy in a way meant to impress). <ul><li>Flashy = Bright and attention-grabbing</li><li>Showy = Designed to attract attention</li><li>Modest = Simple and not showing off ✓ (opposite)</li><li>Impressive = Evoking admiration</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Churlish</strong> (rude and lacking good manners). <ul><li>Polite = Showing good manners ✓ (opposite)</li><li>Rude = Offensively impolite</li><li>Unfriendly = Not kind or welcoming</li><li>Unpleasant = Not enjoyable</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Servile</strong> (excessively submissive or obedient). <ul><li>Submissive = Ready to obey others</li><li>Dominant = Having control or authority ✓ (opposite)</li><li>Obedient = Willing to follow commands</li><li>Pleasing = Giving satisfaction</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Obdurate</strong> (stubbornly refusing to change opinion). <ul><li>Stubborn = Unwilling to change</li><li>Compliant = Willing to agree or obey ✓ (opposite)</li><li>Inflexible = Not willing to change</li><li>Rigid = Strict and unbending</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Vanquish</strong> (to defeat completely in a contest). <ul><li>Defeat = To win against someone</li><li>Conquer = To overcome or take control</li><li>Surrender = To give up or yield ✓ (opposite)</li><li>Overcome = To succeed in dealing with</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Enervate</strong> (to weaken or drain energy). <ul><li>Weaken = To make less strong</li><li>Exhaust = To tire out completely</li><li>Energize = To give energy or strength ✓ (opposite)</li><li>Drain = To remove energy</li></ul>"}
+],
+3: [ // Test 4
+  {explanation:"<strong>Sanctum</strong> means a private or sacred place meant for quiet and safety. <ul><li>Public square = An open area where people gather publicly</li><li>Private place = A location meant for personal use ✓</li><li>Open field = A large uncovered area of land</li><li>Busy street = A road full of people and traffic</li></ul>"},
+  {explanation:"<strong>Panegyric</strong> means a speech or writing that praises someone highly. <ul><li>Criticism = Expression of disapproval</li><li>Insult = A remark that disrespects someone</li><li>Praise = Expression of approval or admiration ✓</li><li>Complaint = Expression of dissatisfaction</li></ul>"},
+  {explanation:"<strong>Alleviate</strong> means to make pain or difficulty less severe. <ul><li>Worsen = To make something more severe</li><li>Aggravate = To increase the seriousness</li><li>Relieve = To reduce pain or discomfort ✓</li><li>Intensify = To make something stronger</li></ul>"},
+  {explanation:"<strong>Gratification</strong> means a feeling of pleasure or satisfaction. <ul><li>Dissatisfaction = Feeling of not being pleased</li><li>Pleasure = A feeling of enjoyment or happiness ✓</li><li>Misery = A state of great unhappiness</li><li>Sorrow = A feeling of deep sadness</li></ul>"},
+  {explanation:"<strong>Conspicuous</strong> means clearly visible or attracting attention. <ul><li>Hidden = Kept out of sight</li><li>Visible = Able to be seen ✓</li><li>Obscure = Not clearly seen</li><li>Invisible = Not able to be seen</li></ul>"},
+  {explanation:"<strong>Evident</strong> means clearly seen or understood without doubt. <ul><li>Unclear = Not easy to understand</li><li>Doubtful = Uncertain or unsure</li><li>Obvious = Easy to notice or understand ✓</li><li>Vague = Not clearly expressed</li></ul>"},
+  {explanation:"<strong>Timid</strong> means lacking courage or confidence. <ul><li>Bold = Showing confidence and bravery</li><li>Fearful = Feeling afraid easily ✓</li><li>Courageous = Showing bravery in danger</li><li>Brave = Ready to face danger without fear</li></ul>"},
+  {explanation:"<strong>Glutton</strong> means a person who eats excessively or greedily. <ul><li>Dieter = A person who controls food intake</li><li>Faster = A person who avoids eating</li><li>Greedy eater = A person who eats too much ✓</li><li>Nibbler = A person who eats small amounts</li></ul>"},
+  {explanation:"<strong>Stoic</strong> means a person who endures pain without showing emotions. <ul><li>Emotional = Easily affected by feelings</li><li>Complaining = Expressing dissatisfaction frequently</li><li>Enduring = Able to tolerate pain or hardship ✓</li><li>Expressive = Showing feelings openly</li></ul>"},
+  {explanation:"<strong>Credulous</strong> means easily believing things without proof. <ul><li>Suspicious = Doubting others' intentions</li><li>Trusting = Willing to believe others ✓</li><li>Skeptical = Not easily convinced</li><li>Doubtful = Feeling uncertain</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Effeminate</strong> (having qualities traditionally associated with women). <ul><li>Feminine = Having characteristics typical of women</li><li>Manly = Having qualities associated with men ✓ (opposite)</li><li>Delicate = Fine or easily damaged</li><li>Unmanly = Not having qualities expected of a man</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Grisly</strong> (causing horror or disgust). <ul><li>Horrific = Extremely frightening</li><li>Disgusting = Causing strong dislike</li><li>Pleasant = Giving happiness or enjoyment ✓ (opposite)</li><li>Gruesome = Causing horror or repulsion</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Eccentric</strong> (unconventional or slightly strange in behavior). <ul><li>Strange = Unusual or odd</li><li>Unconventional = Not following traditional norms</li><li>Normal = Following usual or expected patterns ✓ (opposite)</li><li>Odd = Different from what is usual</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Scrutiny</strong> (careful and detailed examination). <ul><li>Examination = The act of inspecting closely</li><li>Glance = A quick or brief look ✓ (opposite)</li><li>Inspection = Careful observation</li><li>Observation = The act of watching</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Innocuous</strong> (not harmful or dangerous). <ul><li>Harmless = Not causing harm</li><li>Safe = Free from danger</li><li>Harmful = Causing damage or injury ✓ (opposite)</li><li>Innocent = Not guilty</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Relegate</strong> (to assign to a lower or less important position). <ul><li>Demote = To reduce in rank</li><li>Downgrade = To lower the status</li><li>Promote = To raise to a higher position ✓ (opposite)</li><li>Lower = To reduce in level</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Insufferable</strong> (too extreme to be tolerated). <ul><li>Intolerable = Impossible to endure</li><li>Unbearable = Too difficult to tolerate</li><li>Tolerable = Able to be endured ✓ (opposite)</li><li>Extreme = Very great in degree</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Endurable</strong> (able to be tolerated or endured). <ul><li>Bearable = Able to be tolerated</li><li>Unbearable = Too painful to endure ✓ (opposite)</li><li>Tolerable = Acceptable or manageable</li><li>Manageable = Able to be handled easily</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Momentous</strong> (very important or significant). <ul><li>Important = Having great value</li><li>Trivial = Of little importance ✓ (opposite)</li><li>Significant = Having great importance</li><li>Crucial = Extremely important</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Creditable</strong> (worthy of praise or approval). <ul><li>Praiseworthy = Deserving praise</li><li>Commendable = Worthy of admiration</li><li>Blameworthy = Deserving criticism ✓ (opposite)</li><li>Respectable = Worthy of respect</li></ul>"}
+],
+4: [ // Test 5
+  {explanation:"<strong>Lexicon</strong> means the vocabulary or set of words used in a language. <ul><li>Ignorance = Lack of knowledge</li><li>Vocabulary = The collection of words known or used ✓</li><li>Silence = Complete absence of sound</li><li>Number = A mathematical value</li></ul>"},
+  {explanation:"<strong>Officious</strong> means too eager to give orders or interfere unnecessarily. <ul><li>Unobtrusive = Not attracting attention</li><li>Bossy = Fond of giving orders to others ✓</li><li>Modest = Not showing off</li><li>Shy = Nervous in social situations</li></ul>"},
+  {explanation:"<strong>Vitiate</strong> means to spoil or weaken the quality of something. <ul><li>Improve = To make something better</li><li>Spoil = To damage or ruin something ✓</li><li>Cleanse = To make something clean</li><li>Purify = To remove impurities</li></ul>"},
+  {explanation:"<strong>Acquittal</strong> means the act of being declared not guilty in a court. <ul><li>Conviction = The act of being found guilty</li><li>Clearance = The act of removing obstacles or doubt ✓</li><li>Blame = Responsibility for a fault</li><li>Sentence = The punishment given by a court</li></ul>"},
+  {explanation:"<strong>Taciturnity</strong> means the habit of being quiet and not speaking much. <ul><li>Talkativeness = The tendency to talk a lot</li><li>Silence = The absence of speech ✓</li><li>Chatter = Light and continuous talk</li><li>Loudness = The quality of making a strong sound</li></ul>"},
+  {explanation:"<strong>Plaintiff</strong> means a person who brings a case against another in court. <ul><li>Defendant = A person accused in a court case</li><li>Judge = A person who decides cases</li><li>Accuser = A person who claims someone has done wrong ✓</li><li>Jury = A group that decides the outcome</li></ul>"},
+  {explanation:"<strong>Callous</strong> means showing no concern or sympathy for others. <ul><li>Sensitive = Easily affected by emotions</li><li>Cruel = Causing pain intentionally ✓</li><li>Caring = Showing kindness and concern</li><li>Compassionate = Feeling sympathy for others</li></ul>"},
+  {explanation:"<strong>Conceal</strong> means to hide something from sight. <ul><li>Reveal = To make something known</li><li>Show = To display something</li><li>Hide = To keep something out of sight ✓</li><li>Display = To present something openly</li></ul>"},
+  {explanation:"<strong>Relinquish</strong> means to give up something willingly. <ul><li>Retain = To keep possession</li><li>Give up = To stop holding or owning something ✓</li><li>Keep = To continue having something</li><li>Hold = To have or grasp something</li></ul>"},
+  {explanation:"<strong>Peremptory</strong> means insisting on immediate attention without argument. <ul><li>Lenient = Not strict or harsh</li><li>Insistent = Demanding something firmly ✓</li><li>Flexible = Willing to change</li><li>Yielding = Giving in easily</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Repudiated</strong> (refused to accept or denied). <ul><li>Rejected = Refused to accept</li><li>Accepted = Agreed to receive something ✓ (opposite)</li><li>Refused = Declined to accept</li><li>Denied = Declared something untrue</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Enervated</strong> (feeling weak or drained of energy). <ul><li>Drained = Lacking energy</li><li>Weakened = Made less strong</li><li>Energized = Filled with energy ✓ (opposite)</li><li>Exhausted = Extremely tired</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Languid</strong> (lacking energy or vitality). <ul><li>Weak = Not strong</li><li>Faint = Feeling dizzy or weak</li><li>Active = Full of energy ✓ (opposite)</li><li>Sluggish = Moving slowly with low energy</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Havoc</strong> (widespread destruction or chaos). <ul><li>Destruction = The act of destroying something</li><li>Chaos = Complete disorder</li><li>Order = Arrangement or organization ✓ (opposite)</li><li>Ruin = Complete destruction</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Mayhem</strong> (violent disorder or chaos). <ul><li>Disorder = Lack of order</li><li>Violence = Use of physical force</li><li>Peace = Freedom from disturbance ✓ (opposite)</li><li>Chaos = Complete confusion</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Tactic</strong> (a planned method to achieve something). <ul><li>Strategy = A long-term plan</li><li>Plan = A detailed method</li><li>Blunder = A careless mistake ✓ (opposite)</li><li>Method = A way of doing something</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Indict</strong> (to formally accuse someone of a crime). <ul><li>Accuse = To charge someone with wrongdoing</li><li>Charge = To formally accuse in law</li><li>Exonerate = To declare someone not guilty ✓ (opposite)</li><li>Blame = To hold responsible</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Accuse</strong> (to claim someone has done something wrong). <ul><li>Blame = To hold someone responsible</li><li>Charge = To formally accuse</li><li>Defend = To protect against accusation ✓ (opposite)</li><li>Indict = To formally charge</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Flare</strong> (to burst suddenly into flame or emotion). <ul><li>Burst = To break open suddenly</li><li>Blaze = A strong bright fire</li><li>Fade = To gradually disappear ✓ (opposite)</li><li>Flash = A sudden burst of light</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Assent</strong> (agreement or approval). <ul><li>Agreement = Harmony of opinion</li><li>Approval = Permission or acceptance</li><li>Dissent = Disagreement ✓ (opposite)</li><li>Consent = Permission or agreement</li></ul>"}
+],
+5: [ // Test 6
+  {explanation:"<strong>Ascent</strong> means the act of rising or climbing upward. <ul><li>Climb = To move upward using effort ✓</li><li>Descent = The act of moving downward</li><li>Fall = To drop down suddenly</li><li>Jump = To push oneself off the ground</li></ul>"},
+  {explanation:"<strong>Paradox</strong> means a statement that seems contradictory but may be true. <ul><li>Agreement = Harmony of opinion</li><li>Contradiction = A statement that opposes another ✓</li><li>Standard = A level of quality or norm</li><li>Logic = Reasoning based on principles</li></ul>"},
+  {explanation:"<strong>Vent</strong> means an opening that allows air, gas, or emotions to escape. <ul><li>Blockage = Something that stops flow</li><li>Outlet = A passage for releasing something ✓</li><li>Closure = The act of closing</li><li>Silence = Absence of sound</li></ul>"},
+  {explanation:"<strong>Quirk</strong> means a peculiar or unusual behavior or trait. <ul><li>Normality = The state of being usual</li><li>Habit = A regular practice</li><li>Peculiarity = A strange or unique feature ✓</li><li>Certainty = Being sure about something</li></ul>"},
+  {explanation:"<strong>Jubilation</strong> means a feeling of great happiness and celebration. <ul><li>Sorrow = Deep sadness</li><li>Joy = A feeling of happiness ✓</li><li>Anger = Strong feeling of displeasure</li><li>Apathy = Lack of interest or emotion</li></ul>"},
+  {explanation:"<strong>Sagacious</strong> means having wisdom and good judgment. <ul><li>Foolish = Lacking sense or judgment</li><li>Wise = Having experience and good judgment ✓</li><li>Ignorant = Lacking knowledge</li><li>Clumsy = Awkward in movement</li></ul>"},
+  {explanation:"<strong>Indispensable</strong> means absolutely necessary and essential. <ul><li>Unnecessary = Not needed</li><li>Trivial = Of little importance</li><li>Essential = Extremely important or necessary ✓</li><li>Optional = Not compulsory</li></ul>"},
+  {explanation:"<strong>Fascist</strong> means supporting strict authoritarian control and power. <ul><li>Democrat = Believer in democracy</li><li>Authoritarian = Favoring strict obedience to authority ✓</li><li>Liberal = Supporting freedom and equality</li><li>Pacifist = Opposed to violence</li></ul>"},
+  {explanation:"<strong>Pugnacious</strong> means ready to fight or argue aggressively. <ul><li>Peaceful = Free from conflict</li><li>Friendly = Kind and pleasant</li><li>Quarrelsome = Likely to argue frequently ✓</li><li>Calm = Free from agitation</li></ul>"},
+  {explanation:"<strong>Verbatim</strong> means in exactly the same words. <ul><li>Loosely = Not strictly exact</li><li>Summarized = Presented briefly</li><li>Exactly = In a precise and accurate way ✓</li><li>Vaguely = Not clearly expressed</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Esoteric</strong> (intended for or understood by a small group). <ul><li>Obscure = Not clear or known</li><li>Secret = Kept hidden</li><li>Common = Widely known or ordinary ✓ (opposite)</li><li>Hidden = Kept out of sight</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Erratic</strong> (not consistent or predictable). <ul><li>Unpredictable = Not able to be anticipated</li><li>Consistent = Acting in the same way over time ✓ (opposite)</li><li>Random = Without a definite pattern</li><li>Chaotic = Completely disordered</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Prolix</strong> (using too many words). <ul><li>Wordy = Using more words than necessary</li><li>Lengthy = Very long in time or text</li><li>Brief = Short and concise ✓ (opposite)</li><li>Verbose = Using excessive words</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Onerous</strong> (involving a lot of effort or burden). <ul><li>Difficult = Not easy to do</li><li>Easy = Not requiring much effort ✓ (opposite)</li><li>Heavy = Having great weight</li><li>Burdensome = Causing difficulty</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Prodigal</strong> (spending money or resources wastefully). <ul><li>Wasteful = Using resources carelessly</li><li>Lavish = Spending generously</li><li>Thrifty = Careful with money ✓ (opposite)</li><li>Extravagant = Spending excessively</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Inglorious</strong> (not bringing honor or fame). <ul><li>Shameful = Causing embarrassment</li><li>Disgraceful = Bringing shame</li><li>Honorable = Worthy of respect ✓ (opposite)</li><li>Unknown = Not recognized</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Innocuous</strong> (not harmful or dangerous). <ul><li>Harmless = Not causing harm</li><li>Harmful = Causing damage ✓ (opposite)</li><li>Safe = Free from danger</li><li>Innocent = Not guilty</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Recalcitrant</strong> (stubbornly refusing to obey authority). <ul><li>Stubborn = Unwilling to change</li><li>Obedient = Willing to follow rules ✓ (opposite)</li><li>Rebellious = Resisting authority</li><li>Defiant = Boldly resisting authority</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Munificent</strong> (very generous in giving). <ul><li>Generous = Willing to give freely</li><li>Bountiful = Giving in large amounts</li><li>Stingy = Unwilling to spend money ✓ (opposite)</li><li>Giving = Ready to provide help</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Churlish</strong> (rude and lacking good manners). <ul><li>Rude = Offensively impolite</li><li>Polite = Showing good manners ✓ (opposite)</li><li>Surly = Bad-tempered and unfriendly</li><li>Mean = Unkind or cruel</li></ul>"}
+],
+6: [ // Test 7
+  {explanation:"<strong>Retract</strong> means to take back or withdraw a statement or claim. <ul><li>Assert = To state something confidently</li><li>Withdraw = To take something back ✓</li><li>Proclaim = To announce publicly</li><li>Extend = To stretch or expand something</li></ul>"},
+  {explanation:"<strong>Feeble</strong> means lacking physical strength or effectiveness. <ul><li>Strong = Having great power or strength</li><li>Weak = Lacking strength ✓</li><li>Mighty = Very powerful</li><li>Robust = Strong and healthy</li></ul>"},
+  {explanation:"<strong>Amenable</strong> means willing to agree or respond positively. <ul><li>Stubborn = Unwilling to change opinion</li><li>Responsive = Reacting positively to suggestions ✓</li><li>Fixed = Firm and not changing</li><li>Rigid = Strict and inflexible</li></ul>"},
+  {explanation:"<strong>Hypochondriac</strong> means a person overly worried about having illnesses. <ul><li>Health-anxious = Excessively concerned about health ✓</li><li>Carefree = Free from worry</li><li>Doctor = A medical professional</li><li>Athlete = A person skilled in sports</li></ul>"},
+  {explanation:"<strong>Inclement</strong> means harsh or severe in weather conditions. <ul><li>Sunny = Bright with sunlight</li><li>Harsh = Severe and unpleasant ✓</li><li>Mild = Not severe or strong</li><li>Pleasant = Enjoyable and comfortable</li></ul>"},
+  {explanation:"<strong>Extravagant</strong> means spending excessively or being overly elaborate. <ul><li>Thrifty = Careful with money</li><li>Frugal = Economical in spending</li><li>Lavish = Rich and generous in spending ✓</li><li>Cheap = Low in cost</li></ul>"},
+  {explanation:"<strong>Spendthrift</strong> means a person who spends money carelessly. <ul><li>Miser = A person who saves money excessively</li><li>Saver = A person who avoids spending</li><li>Waster = A person who uses resources carelessly ✓</li><li>Banker = A person working in financial services</li></ul>"},
+  {explanation:"<strong>Truce</strong> means an agreement to stop fighting temporarily. <ul><li>War = A state of armed conflict</li><li>Ceasefire = A temporary stop in fighting ✓</li><li>Battle = A fight between forces</li><li>Conflict = A serious disagreement</li></ul>"},
+  {explanation:"<strong>Ambush</strong> means a surprise attack from a hidden position. <ul><li>Surprise attack = An unexpected attack ✓</li><li>Retreat = To move back from danger</li><li>Defense = Protection against attack</li><li>Surrender = To give up to an opponent</li></ul>"},
+  {explanation:"<strong>Retribution</strong> means punishment for wrongdoing. <ul><li>Forgiveness = Letting go of resentment</li><li>Reward = Something given for good action</li><li>Punishment = A penalty for wrongdoing ✓</li><li>Pardon = Official forgiveness</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Opulent</strong> (rich and luxurious in appearance). <ul><li>Rich = Having a lot of money</li><li>Wealthy = Possessing great wealth</li><li>Poor = Lacking money or resources ✓ (opposite)</li><li>Lavish = Very luxurious</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Atrocity</strong> (an extremely cruel or violent act). <ul><li>Cruelty = Causing pain intentionally</li><li>Kindness = Being caring and helpful ✓ (opposite)</li><li>Horror = Intense fear or shock</li><li>Wickedness = Evil behavior</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Mellifluous</strong> (sweet and pleasant sounding). <ul><li>Sweet = Pleasing to the senses</li><li>Musical = Having a pleasant melody</li><li>Grating = Harsh and unpleasant to hear ✓ (opposite)</li><li>Smooth = Even and pleasant</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Excruciating</strong> (extremely painful or intense). <ul><li>Painful = Causing physical pain</li><li>Severe = Very intense or harsh</li><li>Mild = Not strong or severe ✓ (opposite)</li><li>Intense = Very strong in feeling</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Lackadaisical</strong> (lacking enthusiasm or effort). <ul><li>Lazy = Unwilling to work</li><li>Careless = Not paying attention</li><li>Enthusiastic = Showing excitement and interest ✓ (opposite)</li><li>Apathetic = Showing no interest</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Malevolence</strong> (the intention to do evil or harm). <ul><li>Spite = Desire to hurt others</li><li>Goodwill = Friendly and helpful attitude ✓ (opposite)</li><li>Malice = Intention to harm</li><li>Hatred = Strong dislike</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Insolence</strong> (rude and disrespectful behavior). <ul><li>Disrespect = Lack of respect</li><li>Rudeness = Impolite behavior</li><li>Respect = Showing regard and honor ✓ (opposite)</li><li>Arrogance = Excessive pride</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Oxymoron</strong> (a figure of speech combining contradictory terms). <ul><li>Contradiction = Opposing ideas</li><li>Paradox = A seemingly contradictory statement</li><li>Consistency = Agreement without contradiction ✓ (opposite)</li><li>Irony = Expression opposite to literal meaning</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Ferment</strong> (a state of agitation or unrest). <ul><li>Agitation = State of disturbance</li><li>Calm = Peaceful and relaxed state ✓ (opposite)</li><li>Turmoil = Great confusion or disorder</li><li>Uproar = Loud disturbance</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Laudable</strong> (worthy of praise). <ul><li>Praiseworthy = Deserving praise</li><li>Commendable = Worthy of approval</li><li>Blameworthy = Deserving criticism ✓ (opposite)</li><li>Excellent = Extremely good</li></ul>"}
+],
+7: [ // Test 8
+  {explanation:"<strong>Palette</strong> means a range of colors used by an artist. <ul><li>Bed = A piece of furniture for sleeping</li><li>Color range = A variety of colors available or used ✓</li><li>Taste = The sensation of flavor</li><li>Building = A structure with walls and a roof</li></ul>"},
+  {explanation:"<strong>Palate</strong> means the sense of taste or the roof of the mouth. <ul><li>Painting = A work of art created with colors</li><li>Sense of taste = The ability to detect flavors ✓</li><li>Friend = A person you like and trust</li><li>Tool = An instrument used to perform tasks</li></ul>"},
+  {explanation:"<strong>Laudatory</strong> means expressing praise or admiration. <ul><li>Critical = Expressing disapproval</li><li>Praising = Showing approval or admiration ✓</li><li>Insulting = Showing disrespect</li><li>Blaming = Holding someone responsible</li></ul>"},
+  {explanation:"<strong>Foment</strong> means to stir up or incite trouble or feelings. <ul><li>Calm = To make peaceful</li><li>Instigate = To provoke or start something ✓</li><li>Soothe = To calm or relieve</li><li>Suppress = To put an end to something</li></ul>"},
+  {explanation:"<strong>Forbears</strong> means ancestors or people from whom one is descended. <ul><li>Descendants = People who come after</li><li>Enemies = People opposed to someone</li><li>Ancestors = Family members from earlier generations ✓</li><li>Friends = People you trust and like</li></ul>"},
+  {explanation:"<strong>Succinct</strong> means briefly and clearly expressed. <ul><li>Wordy = Using too many words</li><li>Brief = Short in length ✓</li><li>Lengthy = Very long</li><li>Endless = Without limit or end</li></ul>"},
+  {explanation:"<strong>Lugubrious</strong> means looking or sounding sad and gloomy. <ul><li>Cheerful = Happy and positive</li><li>Gloomy = Dark or sad ✓</li><li>Happy = Feeling pleasure or joy</li><li>Joyful = Full of happiness</li></ul>"},
+  {explanation:"<strong>Salubrious</strong> means health-giving or beneficial to health. <ul><li>Unhealthy = Harmful to health</li><li>Toxic = Poisonous</li><li>Healthy = Promoting good health ✓</li><li>Poisonous = Causing harm or death</li></ul>"},
+  {explanation:"<strong>Impertinent</strong> means rude or not showing proper respect. <ul><li>Polite = Showing good manners</li><li>Respectful = Showing regard for others</li><li>Rude = Offensively impolite ✓</li><li>Courteous = Polite and considerate</li></ul>"},
+  {explanation:"<strong>Proclivity</strong> means a natural tendency or inclination toward something. <ul><li>Aversion = Strong dislike</li><li>Dislike = Feeling of not liking something</li><li>Inclination = A natural tendency ✓</li><li>Hatred = Intense dislike</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Aver</strong> (to state or assert something confidently). <ul><li>Affirm = To declare something true</li><li>Deny = To refuse to accept or admit ✓ (opposite)</li><li>State = To express in words</li><li>Declare = To announce formally</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Melancholy</strong> (a deep, persistent sadness). <ul><li>Sadness = Feeling unhappy</li><li>Sorrow = Deep distress</li><li>Joyful = Full of happiness ✓ (opposite)</li><li>Depression = A state of severe unhappiness</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Inclination</strong> (a tendency to feel or behave in a certain way). <ul><li>Tendency = A natural leaning</li><li>Urge = A strong desire</li><li>Aversion = Strong dislike ✓ (opposite)</li><li>Preference = A greater liking</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Disinterest</strong> (lack of interest or concern). <ul><li>Impartiality = Fairness without bias</li><li>Fairness = Just treatment</li><li>Bias = Prejudice in favor or against something ✓ (opposite)</li><li>Neutrality = Not taking sides</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Principal</strong> (the main or most important thing). <ul><li>Main = Most important</li><li>Chief = Leader or most important</li><li>Minor = Less important ✓ (opposite)</li><li>Primary = First in importance</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Principle</strong> (a fundamental truth or belief). <ul><li>Rule = A prescribed guide</li><li>Truth = Something that is true</li><li>Exception = Something that does not follow a rule ✓ (opposite)</li><li>Belief = An accepted idea</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Stationary</strong> (not moving or staying in one place). <ul><li>Fixed = Firmly in place</li><li>Still = Not moving</li><li>Moving = Changing position ✓ (opposite)</li><li>Immobile = Unable to move</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Beside</strong> (next to or at the side of something). <ul><li>Next to = Very close to something</li><li>Near = At a short distance</li><li>Distant = Far away ✓ (opposite)</li><li>Alongside = Side by side</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Scholarly</strong> (showing deep knowledge or learning). <ul><li>Academic = Related to education</li><li>Learned = Having a lot of knowledge</li><li>Ignorant = Lacking knowledge ✓ (opposite)</li><li>Studious = Spending time studying</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Pedantic</strong> (excessively concerned with minor details or rules). <ul><li>Exacting = Demanding precision</li><li>Precise = Exact and accurate</li><li>Casual = Relaxed and informal ✓ (opposite)</li><li>Fussy = Overly concerned about small details</li></ul>"}
+],
+8: [ // Test 9
+  {explanation:"<strong>Highbrow</strong> means intellectual or having refined cultural tastes. <ul><li>Ignorant = Lacking knowledge</li><li>Intellectual = Engaging in deep thinking ✓</li><li>Simple = Easy to understand</li><li>Uneducated = Lacking formal education</li></ul>"},
+  {explanation:"<strong>Ingenuous</strong> means innocent, honest, and free from deceit. <ul><li>Deceitful = Dishonest and misleading</li><li>Innocent = Free from guilt or wrongdoing ✓</li><li>Crafty = Clever in a dishonest way</li><li>Sly = Secretively clever</li></ul>"},
+  {explanation:"<strong>Vulnerable</strong> means exposed to harm or attack. <ul><li>Protected = Kept safe from harm</li><li>Secure = Safe and free from danger</li><li>Defenseless = Unable to protect oneself ✓</li><li>Guarded = Protected or cautious</li></ul>"},
+  {explanation:"<strong>Erudite</strong> means having great knowledge gained from study. <ul><li>Learned = Highly knowledgeable ✓</li><li>Illiterate = Unable to read or write</li><li>Ignorant = Lacking knowledge</li><li>Uneducated = Without formal education</li></ul>"},
+  {explanation:"<strong>Invincible</strong> means impossible to defeat or overcome. <ul><li>Fragile = Easily broken</li><li>Weak = Lacking strength</li><li>Unbeatable = Cannot be defeated ✓</li><li>Vulnerable = Open to harm</li></ul>"},
+  {explanation:"<strong>Avid</strong> means showing great enthusiasm or eagerness. <ul><li>Apathetic = Showing no interest</li><li>Enthusiastic = Showing excitement and interest ✓</li><li>Uninterested = Lacking curiosity</li><li>Indifferent = Having no strong feelings</li></ul>"},
+  {explanation:"<strong>Euphoria</strong> means a feeling of intense happiness and excitement. <ul><li>Despair = Complete loss of hope</li><li>Misery = Great suffering</li><li>Elation = Great happiness or joy ✓</li><li>Sadness = Feeling unhappy</li></ul>"},
+  {explanation:"<strong>Oblivion</strong> means a state of being unaware or forgotten. <ul><li>Awareness = Knowledge or perception</li><li>Forgetfulness = Tendency to forget things ✓</li><li>Memory = The ability to remember</li><li>Consciousness = Being awake and aware</li></ul>"},
+  {explanation:"<strong>Gregariously</strong> means in a sociable and outgoing manner. <ul><li>Sociably = Enjoying the company of others ✓</li><li>Shyly = In a nervous or reserved way</li><li>Quietly = Without much noise</li><li>Alone = Without others</li></ul>"},
+  {explanation:"<strong>Vivacious</strong> means lively and full of energy. <ul><li>Dull = Lacking interest</li><li>Lively = Full of energy and enthusiasm ✓</li><li>Boring = Not interesting</li><li>Sluggish = Moving slowly</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Warily</strong> (in a cautious or careful manner). <ul><li>Cautiously = Acting carefully</li><li>Carefully = Paying attention to avoid mistakes</li><li>Recklessly = Without thinking of consequences ✓ (opposite)</li><li>Safely = In a secure manner</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Incompetent</strong> (not having the ability or skill). <ul><li>Incapable = Unable to do something</li><li>Useless = Not serving any purpose</li><li>Capable = Having the ability to do something ✓ (opposite)</li><li>Unskilled = Lacking expertise</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Unrestrained</strong> (not controlled or limited). <ul><li>Uncontrolled = Not regulated</li><li>Free = Not restricted</li><li>Restricted = Limited or controlled ✓ (opposite)</li><li>Wild = Lacking discipline</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Acceded</strong> (agreed to a request or demand). <ul><li>Agreed = Accepted or consented</li><li>Consented = Gave permission</li><li>Refused = Declined to accept ✓ (opposite)</li><li>Accepted = Took or received willingly</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Ascended</strong> (moved upward or rose). <ul><li>Climbed = Went upward</li><li>Rose = Moved upward</li><li>Descended = Moved downward ✓ (opposite)</li><li>Lifted = Raised to a higher position</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Belligerent</strong> (hostile and aggressive). <ul><li>Aggressive = Ready to attack</li><li>Hostile = Showing opposition</li><li>Peaceful = Free from conflict ✓ (opposite)</li><li>Combative = Eager to fight</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Audacious</strong> (bold and daring). <ul><li>Bold = Confident and brave</li><li>Daring = Willing to take risks</li><li>Timid = Lacking courage ✓ (opposite)</li><li>Fearless = Without fear</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Cynic</strong> (a person who doubts the sincerity of others). <ul><li>Doubter = One who questions or mistrusts</li><li>Skeptic = One who questions accepted beliefs</li><li>Believer = One who accepts something as true ✓ (opposite)</li><li>Pessimist = One who expects the worst</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Venerable</strong> (deserving respect due to age or wisdom). <ul><li>Respected = Admired by others</li><li>Honored = Given recognition</li><li>Disreputable = Lacking a good reputation ✓ (opposite)</li><li>Esteemed = Highly respected</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Venal</strong> (open to bribery or corruption). <ul><li>Corrupt = Dishonest or immoral</li><li>Bribable = Able to be influenced by money</li><li>Honest = Truthful and fair ✓ (opposite)</li><li>Dishonest = Not truthful</li></ul>"}
+]
+};
+
+// For tests 10-15 without PDF solutions, generate smart fallback
+function getAutoSolution(testIdx, qIdx) {
+  const q = MOCK_TESTS[testIdx].questions[qIdx];
+  const keys = ['(a)','(b)','(c)','(d)'];
+  const correctKey = keys[q.ans];
+  const optsList = q.opts.map((o,i) => `<li>${keys[i]} ${o}${i===q.ans?' ✓':''}</li>`).join('');
+  return `<strong>Correct Answer: ${correctKey} — ${q.opts[q.ans]}</strong><ul>${optsList}</ul>`;
+}
+
+function getSolution(testIdx, qIdx) {
+  if (DETAILED_SOLUTIONS[testIdx]) {
+    return DETAILED_SOLUTIONS[testIdx][qIdx].explanation;
+  }
+  return getAutoSolution(testIdx, qIdx);
+}
+
+
 // ===== MOCK TEST LISTING =====
 function buildMockGrid() {
   const grid = document.getElementById('mockGrid');
@@ -1767,6 +2138,9 @@ function doSubmit() {
   const accuracy  = attempted > 0 ? ((correct / attempted) * 100).toFixed(1) : '0.0';
   const scorePct  = ((finalScore / totalMarks) * 100).toFixed(1);
 
+  // Save state for detailed solution
+  lastSubmitState = { testIdx: examState.testIdx, answers: [...examState.answers] };
+
   // Populate result dashboard
   document.getElementById('resSubtitle').textContent   = test.title;
   document.getElementById('resScore').textContent      = finalScore;
@@ -1786,6 +2160,75 @@ function closeResult() {
   document.getElementById('examResult').classList.remove('open');
   document.body.style.overflow = '';
   switchTab(2);
+}
+
+
+// ===== DETAILED SOLUTION LOGIC =====
+let lastSubmitState = null; // store answers & testIdx at submit time
+
+function openSolution() {
+  if (!lastSubmitState) return;
+  const { testIdx, answers } = lastSubmitState;
+  const test = MOCK_TESTS[testIdx];
+  const keys = ['(a)','(b)','(c)','(d)'];
+
+  document.getElementById('solTitle').textContent = 'Detailed Solution — ' + test.title;
+
+  let html = `<div class="sol-legend">
+    <span><span style="display:inline-block;width:14px;height:14px;background:#dcfce7;border:1.5px solid #16a34a;border-radius:3px;"></span> Your correct answer</span>
+    <span><span style="display:inline-block;width:14px;height:14px;background:#fee2e2;border:1.5px solid #dc2626;border-radius:3px;"></span> Your wrong answer</span>
+    <span><span style="display:inline-block;width:14px;height:14px;background:#e0f2fe;border:1.5px solid #0284c7;border-radius:3px;"></span> Correct answer (skipped by you)</span>
+  </div>`;
+
+  test.questions.forEach((q, i) => {
+    const studentAns = answers[i]; // null/-1 = skipped, 0-3 = chosen
+    const isSkipped  = studentAns === null || studentAns === -1;
+    const isCorrect  = !isSkipped && studentAns === q.ans;
+    const isWrong    = !isSkipped && studentAns !== q.ans;
+
+    let verdictHtml = '';
+    if (isCorrect)      verdictHtml = `<div class="sol-verdict correct">&#9989; Correct Answer</div>`;
+    else if (isWrong)   verdictHtml = `<div class="sol-verdict wrong">&#10060; Wrong Answer</div>`;
+    else                verdictHtml = `<div class="sol-verdict skipped">&#9197; Skipped</div>`;
+
+    let optsHtml = '<div class="sol-options">';
+    q.opts.forEach((opt, oi) => {
+      const isStudentChoice = studentAns === oi;
+      const isCorrectOpt    = oi === q.ans;
+      let cls = '';
+      let icon = '<span class="sol-opt-icon"></span>';
+      if (isStudentChoice && isCorrectOpt) {
+        cls = 'student-correct'; icon = '<span class="sol-opt-icon">&#9989;</span>';
+      } else if (isStudentChoice && !isCorrectOpt) {
+        cls = 'student-wrong'; icon = '<span class="sol-opt-icon">&#10060;</span>';
+      } else if (!isStudentChoice && isCorrectOpt && (isSkipped || isWrong)) {
+        cls = 'skipped-correct'; icon = '<span class="sol-opt-icon">&#10003;</span>';
+      }
+      optsHtml += `<div class="sol-opt ${cls}">${icon}<span class="sol-opt-key">${keys[oi]}</span><span class="sol-opt-text">${opt}</span></div>`;
+    });
+    optsHtml += '</div>';
+
+    const explanation = getSolution(testIdx, i);
+    html += `<div class="sol-q-card">
+      <div class="sol-q-num">Question ${i+1}</div>
+      <div class="sol-q-text">${i+1}. ${q.q}</div>
+      ${optsHtml}
+      ${verdictHtml}
+      <div class="sol-explanation">${explanation}</div>
+    </div>`;
+  });
+
+  document.getElementById('solBody').innerHTML = html;
+  document.getElementById('solBody').scrollTop = 0;
+
+  // Hide result, show solution
+  document.getElementById('examResult').classList.remove('open');
+  document.getElementById('solutionOverlay').classList.add('open');
+}
+
+function closeSolution() {
+  document.getElementById('solutionOverlay').classList.remove('open');
+  document.getElementById('examResult').classList.add('open');
 }
 
 buildMockGrid();
