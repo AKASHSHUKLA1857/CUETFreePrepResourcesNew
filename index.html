@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,8 +27,8 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 @keyframes gradientMove { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
 
 /* HEADER */
-header { background: var(--card-back); color: #fff; padding: 22px 24px 18px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(0,0,0,0.18); }
-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 4vw, 1.85rem); font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; }
+header { background: var(--card-back); color: #fff; padding: 14px 24px 14px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(0,0,0,0.18); }
+header h1 { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 3.5vw, 1.65rem); font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; }
 header h1 span { color: #f4a44a; }
 header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; }
 
@@ -101,16 +102,9 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
 .mentor-sidebar {
   width: 262px;
   flex-shrink: 0;
-  position: sticky;
-  top: 78px;
   padding: 22px 16px 22px 6px;
-  height: fit-content;
-  max-height: calc(100vh - 90px);
-  overflow-y: auto;
+  align-self: flex-start;
 }
-.mentor-sidebar::-webkit-scrollbar { width: 3px; }
-.mentor-sidebar::-webkit-scrollbar-track { background: transparent; }
-.mentor-sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
 .mentor-card {
   background: var(--card-bg);
@@ -281,6 +275,9 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
   .mentor-stats { display: none; }
   .mentor-mission { display: none; }
 }
+
+  header { padding: 11px 14px; }
+}
 @media (max-width: 540px) {
   .mentor-card { flex-direction: column; }
   .mentor-img-wrap {
@@ -303,6 +300,131 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
   .controls { padding: 0 12px 12px; }
   .section-label { padding: 16px 12px 8px; }
 }
+
+/* ============ MOCK TEST SECTION ============ */
+.mock-section { padding: 0 20px 48px; }
+.mock-section-header { display: flex; align-items: center; gap: 12px; padding: 28px 0 18px; }
+.mock-section-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.05rem, 3vw, 1.45rem); font-weight: 700; color: var(--text); }
+.mock-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.mock-card { background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 14px; padding: 18px 18px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px; transition: box-shadow 0.2s, transform 0.15s; }
+.mock-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+.mock-card-top { display: flex; align-items: flex-start; gap: 12px; }
+.mock-badge { background: linear-gradient(135deg, var(--card-back), #2a3f6f); color: #f4a44a; font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.mock-card-info { flex: 1; }
+.mock-card-title { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 5px; }
+.mock-card-meta { font-size: 0.73rem; color: var(--muted); }
+.mock-card-meta span { margin-right: 10px; }
+.attempt-btn { background: var(--card-back); color: #fff; border: none; border-radius: 9px; padding: 9px 0; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; letter-spacing: 0.03em; transition: background 0.15s, transform 0.1s; width: 100%; }
+.attempt-btn:hover { background: #243566; transform: scale(1.01); }
+/* ============ EXAM INTERFACE ============ */
+.exam-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: #eaf0fb; flex-direction: column; overflow: hidden; }
+.exam-overlay.open { display: flex; }
+.exam-header { background: var(--card-back); color: #fff; padding: 0 20px; height: 52px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.exam-header-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; }
+.exam-timer { background: #e85d26; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700; padding: 5px 14px; border-radius: 8px; letter-spacing: 0.05em; min-width: 80px; text-align: center; }
+.exam-timer.warning { background: #dc2626; animation: timerPulse 1s ease-in-out infinite; }
+@keyframes timerPulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+.exam-body { display: flex; flex: 1; overflow: hidden; }
+.exam-question-panel { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; }
+.exam-qnum { font-size: 0.78rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+.exam-qtext { font-size: 1.05rem; font-weight: 600; color: var(--text); line-height: 1.6; margin-bottom: 22px; }
+.exam-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.exam-option { display: flex; align-items: center; gap: 14px; padding: 13px 16px; border: 2px solid var(--border); border-radius: 10px; cursor: pointer; background: var(--card-bg); transition: all 0.15s; user-select: none; }
+.exam-option:hover { border-color: #93b4e8; background: #f0f5ff; }
+.exam-option.selected { border-color: var(--accent2); background: #eff6ff; }
+.exam-option.selected .opt-radio { background: var(--accent2); border-color: var(--accent2); }
+.exam-option.selected .opt-radio::after { display: block; }
+.opt-radio { width: 20px; height: 20px; border: 2px solid #aab; border-radius: 50%; flex-shrink: 0; position: relative; background: #fff; transition: all 0.15s; }
+.opt-radio::after { content:''; width:9px; height:9px; background:#fff; border-radius:50%; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:none; }
+.opt-label { font-size: 0.95rem; color: var(--text); flex: 1; }
+.opt-key { font-weight: 700; color: var(--muted); font-size: 0.85rem; width: 22px; flex-shrink: 0; }
+.exam-nav-buttons { display: flex; gap: 10px; margin-top: auto; padding-top: 16px; }
+.exam-nav-btn { flex: 1; padding: 11px; border-radius: 9px; border: 1.5px solid var(--border); background: var(--card-bg); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--text); transition: all 0.15s; }
+.exam-nav-btn:hover { background: #e8eaee; }
+.exam-nav-btn.primary { background: var(--card-back); color: #fff; border-color: var(--card-back); }
+.exam-nav-btn.primary:hover { background: #243566; }
+.exam-nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.exam-palette-panel { width: 240px; background: var(--card-bg); border-left: 1.5px solid var(--border); overflow-y: auto; padding: 16px; flex-shrink: 0; }
+.palette-title { font-size: 0.76rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.palette-legend { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.68rem; color: var(--muted); font-weight: 500; }
+.legend-dot { width: 14px; height: 14px; border-radius: 4px; flex-shrink:0; }
+.palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-bottom: 16px; }
+.palette-btn { aspect-ratio: 1; border-radius: 6px; border: none; font-size: 0.75rem; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: transform 0.1s; }
+.palette-btn:hover { transform: scale(1.12); }
+.palette-btn.not-visited { background: #e2e8f0; color: #64748b; }
+.palette-btn.answered { background: #16a34a; color: #fff; }
+.palette-btn.not-answered { background: #dc2626; color: #fff; }
+.palette-btn.marked { background: #7c3aed; color: #fff; }
+.palette-btn.current { outline: 3px solid var(--accent2); outline-offset: 1px; }
+.submit-panel { text-align: center; padding: 20px 16px 0; }
+.submit-panel p { font-size: 0.85rem; color: var(--muted); margin-bottom: 12px; line-height: 1.55; }
+.exam-result { display: none; position: fixed; inset: 0; z-index: 2100; background: rgba(10,15,30,0.7); align-items: center; justify-content: center; padding: 16px; backdrop-filter: blur(4px); }
+.exam-result.open { display: flex; }
+.result-card { background: var(--card-bg); border-radius: 20px; padding: 28px 24px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 24px 80px rgba(0,0,0,0.4); animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both; }
+.result-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+.result-subtitle { font-size: 0.78rem; color: var(--muted); margin-bottom: 20px; line-height: 1.4; }
+.result-score-row { background: linear-gradient(135deg, var(--card-back), #2a3f6f); border-radius: 14px; padding: 20px; text-align: center; margin-bottom: 18px; }
+.result-score-big { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; line-height: 1; color: #f4a44a; }
+.result-score-label { font-size: 0.78rem; color: #a0aec0; margin-top: 4px; letter-spacing: 0.06em; text-transform: uppercase; }
+.result-percent { font-size: 1.15rem; font-weight: 700; color: #fff; margin-top: 7px; }
+.result-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+.result-stat-box { background: #f8f9fb; border: 1.5px solid var(--border); border-radius: 10px; padding: 12px; text-align: center; }
+.result-stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; }
+.result-stat-label { font-size: 0.68rem; color: var(--muted); font-weight: 500; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.06em; }
+.stat-attempted { color: #2563eb; }
+.stat-correct { color: #16a34a; }
+.stat-wrong { color: #dc2626; }
+.stat-skipped { color: #d97706; }
+.stat-total { color: var(--card-back); }
+.result-close-btn { width: 100%; padding: 12px; background: var(--card-back); color: #fff; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.15s; }
+.result-close-btn:hover { background: #243566; }
+@media (max-width: 700px) { .exam-palette-panel { display: none; } .exam-question-panel { padding: 16px; } }
+@media (max-width: 540px) { .mock-grid { grid-template-columns: 1fr; } .mock-section { padding: 0 12px 40px; } }
+
+
+/* ============ TABS ============ */
+.tab-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  padding: 18px 20px 0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.tab-btn {
+  flex: 0 1 auto;
+  padding: 11px 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  background: var(--card-bg);
+  color: var(--muted);
+  transition: all 0.18s;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  position: relative;
+}
+.tab-btn:first-child { border-radius: 10px 0 0 10px; border-right: none; }
+.tab-btn:last-child  { border-radius: 0 10px 10px 0; border-left: none; }
+.tab-btn.active {
+  background: var(--card-back);
+  color: #fff;
+  border-color: var(--card-back);
+  z-index: 1;
+}
+.tab-btn:not(.active):hover {
+  background: #eef0f4;
+  color: var(--text);
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+@media (max-width: 600px) {
+  .tab-btn { font-size: 0.76rem; padding: 10px 14px; }
+  .tab-bar  { padding: 14px 12px 0; }
+}
 </style>
 </head>
 <body>
@@ -312,6 +434,14 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
   <p class="subtitle">English Language · Vocabulary Flashcards</p>
 </header>
 
+<!-- ===== TAB BAR ===== -->
+<div class="tab-bar">
+  <button class="tab-btn active" id="tab1Btn" onclick="switchTab(1)">&#128218; English Vocabulary Flashcards</button>
+  <button class="tab-btn" id="tab2Btn" onclick="switchTab(2)">&#128196; Previous Years&#39; Vocabulary Practice (15 Mock Tests)</button>
+</div>
+
+<!-- ===== TAB 1: FLASHCARDS ===== -->
+<div class="tab-panel active" id="tab1Panel">
 <div class="page-layout">
 
 <!-- MAIN CONTENT -->
@@ -378,6 +508,79 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
 </aside>
 
 </div><!-- end page-layout -->
+</div><!-- end tab1Panel -->
+
+<!-- ===== TAB 2: MOCK TESTS ===== -->
+<div class="tab-panel" id="tab2Panel">
+<div class="mock-section">
+  <div class="section-label mock-section-header">
+    <h2>Previous Years' Vocabulary Practice</h2>
+    <span class="pill">15 Mock Tests</span>
+  </div>
+  <div class="mock-grid" id="mockGrid"></div>
+</div>
+
+</div><!-- end mock-section -->
+</div><!-- end tab2Panel -->
+
+<!-- EXAM OVERLAY -->
+<div class="exam-overlay" id="examOverlay">
+  <div class="exam-header">
+    <div class="exam-header-title" id="examTitle">Vocabulary Test</div>
+    <div class="exam-timer" id="examTimer">15:00</div>
+    <button onclick="confirmSubmit()" style="background:#16a34a;color:#fff;border:none;border-radius:8px;padding:6px 16px;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;letter-spacing:0.03em;">Submit Test</button>
+  </div>
+  <div class="exam-body">
+    <div class="exam-question-panel">
+      <div class="exam-qnum" id="examQNum">Question 1 of 20</div>
+      <div class="exam-qtext" id="examQText"></div>
+      <div class="exam-options" id="examOptions"></div>
+      <div class="exam-nav-buttons">
+        <button class="exam-nav-btn" style="background:#fff7ed;color:var(--accent);border-color:#fed7aa;" onclick="clearResponse()">Clear</button>
+        <button class="exam-nav-btn" id="prevBtn" onclick="goQuestion(-1)">&#8592; Prev</button>
+        <button class="exam-nav-btn primary" id="nextBtn" onclick="goQuestion(1)">Next &#8594;</button>
+      </div>
+    </div>
+    <div class="exam-palette-panel">
+      <div class="palette-title">Question Palette</div>
+      <div class="palette-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#e2e8f0;"></div>Not Visited</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#16a34a;"></div>Answered</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#dc2626;"></div>Not Answered</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#7c3aed;"></div>Marked</div>
+      </div>
+      <div class="palette-grid" id="paletteGrid"></div>
+      <div class="submit-panel" id="submitConfirm" style="display:none;">
+        <p>Are you sure you want to <strong>submit</strong> this test? You cannot change answers after submission.</p>
+        <button class="exam-nav-btn" style="width:100%;background:#16a34a;color:#fff;border-color:#16a34a;margin-bottom:8px;" onclick="doSubmit()">Yes, Submit</button>
+        <button class="exam-nav-btn" style="width:100%;" onclick="document.getElementById('submitConfirm').style.display='none'">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT MODAL -->
+<div class="exam-result" id="examResult">
+  <div class="result-card">
+    <div class="result-title">&#127942; Test Analysis</div>
+    <div class="result-subtitle" id="resSubtitle"></div>
+    <div class="result-score-row">
+      <div class="result-score-big" id="resScore"></div>
+      <div class="result-score-label">Marks Obtained (out of 100)</div>
+      <div class="result-percent" id="resPercent"></div>
+    </div>
+    <div class="result-stats">
+      <div class="result-stat-box"><div class="result-stat-num stat-attempted" id="resAttempted"></div><div class="result-stat-label">&#128221; Attempted</div></div>
+      <div class="result-stat-box"><div class="result-stat-num stat-skipped"  id="resSkipped"></div><div class="result-stat-label">&#9197; Skipped</div></div>
+      <div class="result-stat-box"><div class="result-stat-num stat-correct"  id="resCorrect"></div><div class="result-stat-label">&#9989; Correct</div></div>
+      <div class="result-stat-box"><div class="result-stat-num stat-wrong"    id="resWrong"></div><div class="result-stat-label">&#10060; Wrong</div></div>
+      <div class="result-stat-box" style="grid-column:1/-1;"><div class="result-stat-num stat-total" id="resTotal"></div><div class="result-stat-label">&#127919; Final Score (Marks Obtained / Total Marks)</div></div>
+    </div>
+    <button class="result-close-btn" onclick="closeResult()">&#8592; Close &amp; Return to Tests</button>
+  </div>
+</div>
+
+
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
@@ -1018,6 +1221,584 @@ window.addEventListener('scroll', () => {
 
 buildAlphaNav();
 renderCards();
+
+
+// ===== ALL 15 MOCK TESTS DATA =====
+const MOCK_TESTS = [
+{
+  title: "CUET English Language Previous Years' Vocabulary Test-1",
+  questions: [
+    {q:'Choose the word closest in meaning to "loquacious":', opts:['Silent','Talkative','Reserved','Angry'], ans:1},
+    {q:'Choose the word closest in meaning to "reticent":', opts:['Outspoken','Talkative','Reserved','Confident'], ans:2},
+    {q:'Choose the word closest in meaning to "optimist":', opts:['Doubter','Cynic','Hopeful','Worrier'], ans:2},
+    {q:'Choose the word closest in meaning to "pessimist":', opts:['Believer','Cynical','Dreamer','Cheerleader'], ans:1},
+    {q:'Choose the word closest in meaning to "dumbfounded":', opts:['Unsurprised','Amazed','Prepared','Expectant'], ans:1},
+    {q:'Choose the word closest in meaning to "vivacious":', opts:['Lively','Dull','Boring','Lazy'], ans:0},
+    {q:'Choose the word closest in meaning to "equitable":', opts:['Biased','Unfair','Fair','Partial'], ans:2},
+    {q:'Choose the word closest in meaning to "unscrupulous":', opts:['Honest','Moral','Immoral','Ethical'], ans:2},
+    {q:'Choose the word closest in meaning to "ambidextrous":', opts:['Clumsy','Skillful with both hands','Inept','One-handed'], ans:1},
+    {q:'Choose the word closest in meaning to "equivalent":', opts:['Unequal','Different','Equal','Disproportionate'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "taciturn":', opts:['Quiet','Silent','Talkative','Reserved'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "meander":', opts:['Wander','Stroll','Go straight','Roam'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "ambivalent":', opts:['Unsure','Certain','Confused','Mixed'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "persistence":', opts:['Endurance','Tenacity','Surrender','Grit'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "obnoxious":', opts:['Unpleasant','Annoying','Pleasant','Offensive'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "reverberate":', opts:['Echo','Resound','Quiet down','Vibrate'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "enunciate":', opts:['Articulate','Mumble','Pronounce','State clearly'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "bolster":', opts:['Support','Strengthen','Weaken','Boost'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "retract":', opts:['Withdraw','Confirm','Cancel','Revoke'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "infringe":', opts:['Violate','Break','Obey','Breach'], ans:2},
+  ]
+},
+{
+  title: "CUET English Language Previous Years' Vocabulary Test-2",
+  questions: [
+    {q:'Choose the word closest in meaning to "prowess":', opts:['Skill','Clumsiness','Inability','Weakness'], ans:0},
+    {q:'Choose the word closest in meaning to "repugnant":', opts:['Delightful','Unacceptable','Attractive','Pleasing'], ans:1},
+    {q:'Choose the word closest in meaning to "rendezvous":', opts:['Separation','Meeting','Departure','Division'], ans:1},
+    {q:'Choose the word closest in meaning to "pertinent":', opts:['Irrelevant','Unrelated','Relevant','Inappropriate'], ans:2},
+    {q:'Choose the word closest in meaning to "pseudonym":', opts:['Real name','True identity','Fictitious name','Legal name'], ans:2},
+    {q:'Choose the word closest in meaning to "jovial":', opts:['Sad','Cheerful','Depressed','Miserable'], ans:1},
+    {q:'Choose the word closest in meaning to "paradigm":', opts:['Anomaly','Exception','Model','Irregularity'], ans:2},
+    {q:'Choose the word closest in meaning to "prolixity":', opts:['Brevity','Wordiness','Conciseness','Silence'], ans:1},
+    {q:'Choose the word closest in meaning to "squander":', opts:['Save','Hoard','Waste','Collect'], ans:2},
+    {q:'Choose the word closest in meaning to "clairvoyant":', opts:['Blind','Psychic','Unseeing','Ignorant'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "evasive":', opts:['Indirect','Deceitful','Direct','Vague'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "abstruse":', opts:['Clear','Complex','Deep','Obscure'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "genteel":', opts:['Polite','Rude','Refined','Respectable'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "disgruntled":', opts:['Annoyed','Disappointed','Satisfied','Unhappy'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "succinct":', opts:['Brief','Clear','Wordy','Short'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "protagonist":', opts:['Supporter','Hero','Antagonist','Leader'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "pragmatic":', opts:['Realistic','Practical','Sensible','Idealistic'], ans:3},
+    {q:'Choose the word that is OPPOSITE in meaning to "extravagant":', opts:['Lavish','Wasteful','Thrifty','Excessive'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "xenophobia":', opts:['Fear of foreigners','Dislike of outsiders','Acceptance of foreigners','Prejudice'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "allegiance":', opts:['Loyalty','Commitment','Betrayal','Devotion'], ans:2},
+  ]
+},
+{
+  title: "CUET English Language Previous Years' Vocabulary Test-3",
+  questions: [
+    {q:'Choose the word closest in meaning to "obtrusive":', opts:['Hidden','Noticeable','Inconspicuous','Subtle'], ans:1},
+    {q:'Choose the word closest in meaning to "uncouth":', opts:['Refined','Polite','Unmannered','Graceful'], ans:2},
+    {q:'Choose the word closest in meaning to "detract":', opts:['Enhance','Improve','Diminish','Increase'], ans:2},
+    {q:'Choose the word closest in meaning to "truculent":', opts:['Peaceful','Aggressive','Calm','Friendly'], ans:1},
+    {q:'Choose the word closest in meaning to "bucolic":', opts:['Urban','City-like','Rural','Metropolitan'], ans:2},
+    {q:'Choose the word closest in meaning to "repercussions":', opts:['Causes','Origins','Consequences','Beginnings'], ans:2},
+    {q:'Choose the word closest in meaning to "gullible":', opts:['Suspicious','Skeptical','Credulous','Doubting'], ans:2},
+    {q:'Choose the word closest in meaning to "fickle":', opts:['Constant','Stable','Changeable','Loyal'], ans:2},
+    {q:'Choose the word closest in meaning to "abate":', opts:['Increase','Intensify','Decrease','Grow'], ans:2},
+    {q:'Choose the word closest in meaning to "exult":', opts:['Mourn','Grieve','Rejoice','Lament'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "exalt":', opts:['Praise','Criticize','Elevate','Promote'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "ignominious":', opts:['Honorable','Shameful','Disgraceful','Embarrassing'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "sporadic":', opts:['Irregular','Scattered','Frequent','Isolated'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "satiate":', opts:['Satisfy','Fill','Starve','Quench'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "ostentatious":', opts:['Flashy','Showy','Modest','Impressive'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "churlish":', opts:['Polite','Rude','Unfriendly','Unpleasant'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "servile":', opts:['Submissive','Dominant','Obedient','Pleasing'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "obdurate":', opts:['Stubborn','Compliant','Inflexible','Rigid'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "vanquish":', opts:['Defeat','Conquer','Surrender','Overcome'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "enervate":', opts:['Weaken','Exhaust','Energize','Drain'], ans:2},
+  ]
+},
+{
+  title: "CUET English Language Previous Years' Vocabulary Test-4",
+  questions: [
+    {q:'Choose the word closest in meaning to "sanctum":', opts:['Public square','Private place','Open field','Busy street'], ans:1},
+    {q:'Choose the word closest in meaning to "panegyric":', opts:['Criticism','Insult','Praise','Complaint'], ans:2},
+    {q:'Choose the word closest in meaning to "alleviate":', opts:['Worsen','Aggravate','Relieve','Intensify'], ans:2},
+    {q:'Choose the word closest in meaning to "gratification":', opts:['Dissatisfaction','Pleasure','Misery','Sorrow'], ans:1},
+    {q:'Choose the word closest in meaning to "conspicuous":', opts:['Hidden','Visible','Obscure','Invisible'], ans:1},
+    {q:'Choose the word closest in meaning to "evident":', opts:['Unclear','Doubtful','Obvious','Vague'], ans:2},
+    {q:'Choose the word closest in meaning to "timid":', opts:['Bold','Fearful','Courageous','Brave'], ans:1},
+    {q:'Choose the word closest in meaning to "glutton":', opts:['Dieter','Faster','Greedy eater','Nibbler'], ans:2},
+    {q:'Choose the word closest in meaning to "stoic":', opts:['Emotional','Complaining','Enduring','Expressive'], ans:2},
+    {q:'Choose the word closest in meaning to "credulous":', opts:['Suspicious','Trusting','Skeptical','Doubtful'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "effeminate":', opts:['Feminine','Manly','Delicate','Unmanly'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "grisly":', opts:['Horrific','Disgusting','Pleasant','Gruesome'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "eccentric":', opts:['Strange','Unconventional','Normal','Odd'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "scrutiny":', opts:['Examination','Glance','Inspection','Observation'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "innocuous":', opts:['Harmless','Safe','Harmful','Innocent'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "relegate":', opts:['Demote','Downgrade','Promote','Lower'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "insufferable":', opts:['Intolerable','Unbearable','Tolerable','Extreme'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "endurable":', opts:['Bearable','Unbearable','Tolerable','Manageable'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "momentous":', opts:['Important','Trivial','Significant','Crucial'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "creditable":', opts:['Praiseworthy','Commendable','Blameworthy','Respectable'], ans:2},
+  ]
+},
+{
+  title: "CUET English Language Previous Years' Vocabulary Test-5",
+  questions: [
+    {q:'Choose the word closest in meaning to "lexicon":', opts:['Ignorance','Vocabulary','Silence','Number'], ans:1},
+    {q:'Choose the word closest in meaning to "officious":', opts:['Unobtrusive','Bossy','Modest','Shy'], ans:1},
+    {q:'Choose the word closest in meaning to "vitiate":', opts:['Improve','Spoil','Cleanse','Purify'], ans:1},
+    {q:'Choose the word closest in meaning to "acquittal":', opts:['Conviction','Clearance','Blame','Sentence'], ans:1},
+    {q:'Choose the word closest in meaning to "taciturnity":', opts:['Talkativeness','Silence','Chatter','Loudness'], ans:1},
+    {q:'Choose the word closest in meaning to "plaintiff":', opts:['Defendant','Judge','Accuser','Jury'], ans:2},
+    {q:'Choose the word closest in meaning to "callous":', opts:['Sensitive','Cruel','Caring','Compassionate'], ans:1},
+    {q:'Choose the word closest in meaning to "conceal":', opts:['Reveal','Show','Hide','Display'], ans:2},
+    {q:'Choose the word closest in meaning to "relinquish":', opts:['Retain','Give up','Keep','Hold'], ans:1},
+    {q:'Choose the word closest in meaning to "peremptory":', opts:['Lenient','Insistent','Flexible','Yielding'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "repudiated":', opts:['Rejected','Accepted','Refused','Denied'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "enervated":', opts:['Drained','Weakened','Energized','Exhausted'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "languid":', opts:['Weak','Faint','Active','Sluggish'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "havoc":', opts:['Destruction','Chaos','Order','Ruin'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "mayhem":', opts:['Disorder','Violence','Peace','Chaos'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "tactic":', opts:['Strategy','Plan','Blunder','Method'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "indict":', opts:['Accuse','Charge','Exonerate','Blame'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "accuse":', opts:['Blame','Charge','Defend','Indict'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "flare":', opts:['Burst','Blaze','Fade','Flash'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "assent":', opts:['Agreement','Approval','Dissent','Consent'], ans:2},
+  ]
+},
+{
+  title: "CUET English Language Previous Years' Vocabulary Test-6",
+  questions: [
+    {q:'Choose the word closest in meaning to "ascent":', opts:['Climb','Descent','Fall','Jump'], ans:0},
+    {q:'Choose the word closest in meaning to "paradox":', opts:['Agreement','Contradiction','Standard','Logic'], ans:1},
+    {q:'Choose the word closest in meaning to "vent":', opts:['Blockage','Outlet','Closure','Silence'], ans:1},
+    {q:'Choose the word closest in meaning to "quirk":', opts:['Normality','Habit','Peculiarity','Certainty'], ans:2},
+    {q:'Choose the word closest in meaning to "jubilation":', opts:['Sorrow','Joy','Anger','Apathy'], ans:1},
+    {q:'Choose the word closest in meaning to "sagacious":', opts:['Foolish','Wise','Ignorant','Clumsy'], ans:1},
+    {q:'Choose the word closest in meaning to "indispensable":', opts:['Unnecessary','Trivial','Essential','Optional'], ans:2},
+    {q:'Choose the word closest in meaning to "fascist":', opts:['Democrat','Authoritarian','Liberal','Pacifist'], ans:1},
+    {q:'Choose the word closest in meaning to "pugnacious":', opts:['Peaceful','Friendly','Quarrelsome','Calm'], ans:2},
+    {q:'Choose the word closest in meaning to "verbatim":', opts:['Loosely','Summarized','Exactly','Vaguely'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "esoteric":', opts:['Obscure','Secret','Common','Hidden'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "erratic":', opts:['Unpredictable','Consistent','Random','Chaotic'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "prolix":', opts:['Wordy','Lengthy','Brief','Verbose'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "onerous":', opts:['Difficult','Easy','Heavy','Burdensome'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "prodigal":', opts:['Wasteful','Lavish','Thrifty','Extravagant'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "inglorious":', opts:['Shameful','Disgraceful','Honorable','Unknown'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "innocuous":', opts:['Harmless','Harmful','Safe','Innocent'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "recalcitrant":', opts:['Stubborn','Obedient','Rebellious','Defiant'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "munificent":', opts:['Generous','Bountiful','Stingy','Giving'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "churlish":', opts:['Rude','Polite','Surly','Mean'], ans:1},
+  ]
+},
+{
+  title: "CUET English Language Previous Years' Vocabulary Test-7",
+  questions: [
+    {q:'Choose the word closest in meaning to "retract":', opts:['Assert','Withdraw','Proclaim','Extend'], ans:1},
+    {q:'Choose the word closest in meaning to "feeble":', opts:['Strong','Weak','Mighty','Robust'], ans:1},
+    {q:'Choose the word closest in meaning to "amenable":', opts:['Stubborn','Responsive','Fixed','Rigid'], ans:1},
+    {q:'Choose the word closest in meaning to "hypochondriac":', opts:['Health-anxious','Carefree','Doctor','Athlete'], ans:0},
+    {q:'Choose the word closest in meaning to "inclement":', opts:['Sunny','Harsh','Mild','Pleasant'], ans:1},
+    {q:'Choose the word closest in meaning to "extravagant":', opts:['Thrifty','Frugal','Lavish','Cheap'], ans:2},
+    {q:'Choose the word closest in meaning to "spendthrift":', opts:['Miser','Saver','Waster','Banker'], ans:2},
+    {q:'Choose the word closest in meaning to "truce":', opts:['War','Ceasefire','Battle','Conflict'], ans:1},
+    {q:'Choose the word closest in meaning to "ambush":', opts:['Surprise attack','Retreat','Defense','Surrender'], ans:0},
+    {q:'Choose the word closest in meaning to "retribution":', opts:['Forgiveness','Reward','Punishment','Pardon'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "opulent":', opts:['Rich','Wealthy','Poor','Lavish'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "atrocity":', opts:['Cruelty','Kindness','Horror','Wickedness'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "mellifluous":', opts:['Sweet','Musical','Grating','Smooth'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "excruciating":', opts:['Painful','Severe','Mild','Intense'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "lackadaisical":', opts:['Lazy','Careless','Enthusiastic','Apathetic'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "malevolence":', opts:['Spite','Goodwill','Malice','Hatred'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "insolence":', opts:['Disrespect','Rudeness','Respect','Arrogance'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "oxymoron":', opts:['Contradiction','Paradox','Consistency','Irony'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "ferment":', opts:['Agitation','Calm','Turmoil','Uproar'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "laudable":', opts:['Praiseworthy','Commendable','Blameworthy','Excellent'], ans:2},
+  ]
+},
+{
+  title: "CUET English Language Previous Years' Vocabulary Test-8",
+  questions: [
+    {q:'Choose the word closest in meaning to "palette":', opts:['Bed','Color range','Taste','Building'], ans:1},
+    {q:'Choose the word closest in meaning to "palate":', opts:['Painting','Sense of taste','Friend','Tool'], ans:1},
+    {q:'Choose the word closest in meaning to "laudatory":', opts:['Critical','Praising','Insulting','Blaming'], ans:1},
+    {q:'Choose the word closest in meaning to "foment":', opts:['Calm','Instigate','Soothe','Suppress'], ans:1},
+    {q:'Choose the word closest in meaning to "forbears":', opts:['Descendants','Enemies','Ancestors','Friends'], ans:2},
+    {q:'Choose the word closest in meaning to "succinct":', opts:['Wordy','Brief','Lengthy','Endless'], ans:1},
+    {q:'Choose the word closest in meaning to "lugubrious":', opts:['Cheerful','Gloomy','Happy','Joyful'], ans:1},
+    {q:'Choose the word closest in meaning to "salubrious":', opts:['Unhealthy','Toxic','Healthy','Poisonous'], ans:2},
+    {q:'Choose the word closest in meaning to "impertinent":', opts:['Polite','Respectful','Rude','Courteous'], ans:2},
+    {q:'Choose the word closest in meaning to "proclivity":', opts:['Aversion','Dislike','Inclination','Hatred'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "aver":', opts:['Affirm','Deny','State','Declare'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "melancholy":', opts:['Sadness','Sorrow','Joyful','Depression'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "inclination":', opts:['Tendency','Urge','Aversion','Preference'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "disinterest":', opts:['Impartiality','Fairness','Bias','Neutrality'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "principal":', opts:['Main','Chief','Minor','Primary'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "principle":', opts:['Rule','Truth','Exception','Belief'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "stationary":', opts:['Fixed','Still','Moving','Immobile'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "beside":', opts:['Next to','Near','Distant','Alongside'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "scholarly":', opts:['Academic','Learned','Ignorant','Studious'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "pedantic":', opts:['Exacting','Precise','Casual','Fussy'], ans:2},
+  ]
+},
+{
+  title: "CUET English Language Previous Years' Vocabulary Test-9",
+  questions: [
+    {q:'Choose the word closest in meaning to "highbrow":', opts:['Ignorant','Intellectual','Simple','Uneducated'], ans:1},
+    {q:'Choose the word closest in meaning to "ingenuous":', opts:['Deceitful','Innocent','Crafty','Sly'], ans:1},
+    {q:'Choose the word closest in meaning to "vulnerable":', opts:['Protected','Secure','Defenseless','Guarded'], ans:2},
+    {q:'Choose the word closest in meaning to "erudite":', opts:['Learned','Illiterate','Ignorant','Uneducated'], ans:0},
+    {q:'Choose the word closest in meaning to "invincible":', opts:['Fragile','Weak','Unbeatable','Vulnerable'], ans:2},
+    {q:'Choose the word closest in meaning to "avid":', opts:['Apathetic','Enthusiastic','Uninterested','Indifferent'], ans:1},
+    {q:'Choose the word closest in meaning to "euphoria":', opts:['Despair','Misery','Elation','Sadness'], ans:2},
+    {q:'Choose the word closest in meaning to "oblivion":', opts:['Awareness','Forgetfulness','Memory','Consciousness'], ans:1},
+    {q:'Choose the word closest in meaning to "gregariously":', opts:['Sociably','Shyly','Quietly','Alone'], ans:0},
+    {q:'Choose the word closest in meaning to "vivacious":', opts:['Dull','Lively','Boring','Sluggish'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "warily":', opts:['Cautiously','Carefully','Recklessly','Safely'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "incompetent":', opts:['Incapable','Useless','Capable','Unskilled'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "unrestrained":', opts:['Uncontrolled','Free','Restricted','Wild'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "acceded":', opts:['Agreed','Consented','Refused','Accepted'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "ascended":', opts:['Climbed','Rose','Descended','Lifted'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "belligerent":', opts:['Aggressive','Hostile','Peaceful','Combative'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "audacious":', opts:['Bold','Daring','Timid','Fearless'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "cynic":', opts:['Doubter','Skeptic','Believer','Pessimist'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "venerable":', opts:['Respected','Honored','Disreputable','Esteemed'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "venal":', opts:['Corrupt','Bribable','Honest','Dishonest'], ans:2},
+  ]
+},
+{
+  title: "CUET English Language Previous Years' Vocabulary Test-10",
+  questions: [
+    {q:'Choose the word closest in meaning to "wave":', opts:['Fluctuate','Stabilize','Fix','Solidify'], ans:0},
+    {q:'Choose the word closest in meaning to "waive":', opts:['Claim','Forgo','Demand','Assert'], ans:1},
+    {q:'Choose the word closest in meaning to "bale":', opts:['Single','Bundle','Piece','Fragment'], ans:1},
+    {q:'Choose the word closest in meaning to "bail":', opts:['Conviction','Security','Imprisonment','Sentence'], ans:1},
+    {q:'Choose the word closest in meaning to "vale":', opts:['Mountain','Valley','Peak','Hill'], ans:1},
+    {q:'Choose the word closest in meaning to "vain":', opts:['Humble','Modest','Proud','Selfless'], ans:2},
+    {q:'Choose the word closest in meaning to "veil":', opts:['Uncover','Reveal','Cover','Expose'], ans:2},
+    {q:'Choose the word closest in meaning to "vein":', opts:['Blood vessel','Bone','Muscle','Skin'], ans:0},
+    {q:'Choose the word closest in meaning to "vane":', opts:['Engine','Weathercock','Anchor','Wheel'], ans:1},
+    {q:'Choose the word closest in meaning to "verbose":', opts:['Concise','Wordy','Brief','Silent'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "embezzle":', opts:['Steal','Rob','Reimburse','Pilfer'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "peevish":', opts:['Irritable','Cranky','Amiable','Grumpy'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "venial":', opts:['Forgivable','Minor','Unforgivable','Slight'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "juxtapose":', opts:['Compare','Connect','Separate','Align'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "genial":', opts:['Friendly','Cheerful','Unfriendly','Warm'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "parochial":', opts:['Narrow-minded','Limited','Broad-minded','Local'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "taciturn":', opts:['Quiet','Silent','Talkative','Reserved'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "hysterical":', opts:['Frantic','Wild','Calm','Emotional'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "brash":', opts:['Bold','Rude','Cautious','Aggressive'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "incontinence":', opts:['Restraint','Weakness','Loss','Failure'], ans:0},
+  ]
+},
+{
+  title: "CUET English Language Previous Years' Vocabulary Test-11",
+  questions: [
+    {q:'Choose the word closest in meaning to "innate":', opts:['Inborn','Acquired','Learned','Artificial'], ans:0},
+    {q:'Choose the word closest in meaning to "extraneous":', opts:['Essential','Crucial','Irrelevant','Important'], ans:2},
+    {q:'Choose the word closest in meaning to "pedagogy":', opts:['Childcare','Teaching method','Medicine','Engineering'], ans:1},
+    {q:'Choose the word closest in meaning to "frail":', opts:['Robust','Strong','Tough','Delicate'], ans:3},
+    {q:'Choose the word closest in meaning to "subversive":', opts:['Rebellious','Obedient','Loyal','Compliant'], ans:0},
+    {q:'Choose the word closest in meaning to "dissimilar":', opts:['Identical','Alike','Different','Twin'], ans:2},
+    {q:'Choose the word closest in meaning to "dyslexia":', opts:['Perfect vision','Reading disorder','Hearing loss','Muscle weakness'], ans:1},
+    {q:'Choose the word closest in meaning to "obviate":', opts:['Include','Invite','Welcome','Prevent'], ans:3},
+    {q:'Choose the word closest in meaning to "despondent":', opts:['Hopeless','Cheerful','Joyful','Optimistic'], ans:0},
+    {q:'Choose the word closest in meaning to "sedation":', opts:['Agitation','Calming','Excitement','Panic'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "impudent":', opts:['Rude','Disrespectful','Respectful','Bold'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "reign":', opts:['Submission','Rule','Authority','Command'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "bellicose":', opts:['Aggressive','Hostile','Combative','Peaceful'], ans:3},
+    {q:'Choose the word that is OPPOSITE in meaning to "benign":', opts:['Kind','Malignant','Gentle','Safe'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "unkempt":', opts:['Neat','Messy','Untidy','Disordered'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "tidy":', opts:['Clean','Organized','Messy','Pure'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "soliloquy":', opts:['Monologue','Solo','Speech','Dialogue'], ans:3},
+    {q:'Choose the word that is OPPOSITE in meaning to "coax":', opts:['Persuade','Bully','Convince','Entice'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "prodigious":', opts:['Tiny','Massive','Huge','Enormous'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "religious":', opts:['Devout','Pious','Secular','Faithful'], ans:2},
+  ]
+},
+{
+  title: "CUET English Language Previous Years' Vocabulary Test-12",
+  questions: [
+    {q:'Choose the word closest in meaning to "spoilt":', opts:['Improved','Ruined','Enhanced','Fixed'], ans:1},
+    {q:'Choose the word closest in meaning to "remarkable":', opts:['Extraordinary','Ordinary','Average','Mundane'], ans:0},
+    {q:'Choose the word closest in meaning to "capricious":', opts:['Stable','Steady','Constant','Unpredictable'], ans:3},
+    {q:'Choose the word closest in meaning to "industrious":', opts:['Lazy','Idle','Hardworking','Sluggish'], ans:2},
+    {q:'Choose the word closest in meaning to "denounce":', opts:['Praise','Criticize','Applaud','Commend'], ans:1},
+    {q:'Choose the word closest in meaning to "nuanced":', opts:['Subtle','Obvious','Blatant','Clear'], ans:0},
+    {q:'Choose the word closest in meaning to "faze":', opts:['Calm','Soothe','Relax','Disturb'], ans:3},
+    {q:'Choose the word closest in meaning to "peculiar":', opts:['Normal','Standard','Strange','Typical'], ans:2},
+    {q:'Choose the word closest in meaning to "clemency":', opts:['Mercy','Cruelty','Harshness','Punishment'], ans:0},
+    {q:'Choose the word closest in meaning to "idiosyncrasy":', opts:['Normality','Peculiarity','Conformity','Regularity'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "laurels":', opts:['Honors','Awards','Disgrace','Trophies'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "colloquial":', opts:['Formal','Casual','Conversational','Informal'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "prophecy":', opts:['Prediction','Forecast','Vision','Hindsight'], ans:3},
+    {q:'Choose the word that is OPPOSITE in meaning to "disparity":', opts:['Difference','Equality','Gap','Contrast'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "distinction":', opts:['Mediocrity','Excellence','Honor','Greatness'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "maladroit":', opts:['Clumsy','Awkward','Skillful','Inept'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "rejuvenate":', opts:['Refresh','Renew','Revive','Tire'], ans:3},
+    {q:'Choose the word that is OPPOSITE in meaning to "nuisance":', opts:['Annoyance','Delight','Bother','Pest'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "devour":', opts:['Nibble','Consume','Ingest','Swallow'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "ebrious":', opts:['Intoxicated','Drunk','Sober','Inebriated'], ans:2},
+  ]
+},
+{
+  title: "CUET English Language Previous Years' Vocabulary Test-13",
+  questions: [
+    {q:'Choose the word closest in meaning to "counselled":', opts:['Ignored','Neglected','Abandoned','Advised'], ans:3},
+    {q:'Choose the word closest in meaning to "consoled":', opts:['Comforted','Upset','Agitated','Distressed'], ans:0},
+    {q:'Choose the word closest in meaning to "canceled":', opts:['Scheduled','Annulled','Planned','Arranged'], ans:1},
+    {q:'Choose the word closest in meaning to "elegy":', opts:['Comedy','Joke','Mournful poem','Celebration'], ans:2},
+    {q:'Choose the word closest in meaning to "epistle":', opts:['Letter','Novel','Biography','Dictionary'], ans:0},
+    {q:'Choose the word closest in meaning to "novellet":', opts:['Epic','Long textbook','Encyclopedia','Short novel'], ans:3},
+    {q:'Choose the word closest in meaning to "prudent":', opts:['Reckless','Wise','Careless','Foolish'], ans:1},
+    {q:'Choose the word closest in meaning to "veracious":', opts:['Deceitful','Lying','Truthful','Dishonest'], ans:2},
+    {q:'Choose the word closest in meaning to "laconic":', opts:['Brief','Wordy','Talkative','Chatty'], ans:0},
+    {q:'Choose the word closest in meaning to "gloomy":', opts:['Bright','Cheerful','Sunny','Dark'], ans:3},
+    {q:'Choose the word that is OPPOSITE in meaning to "indolent":', opts:['Lazy','Energetic','Sluggish','Idle'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "prevaricate":', opts:['Tell truth','Lie','Deceive','Mislead'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "somnolent":', opts:['Sleepy','Drowsy','Alert','Tired'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "impeccable":', opts:['Perfect','Flawless','Spotless','Flawed'], ans:3},
+    {q:'Choose the word that is OPPOSITE in meaning to "charade":', opts:['Pretense','Reality','Act','Trick'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "foible":', opts:['Strength','Weakness','Flaw','Defect'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "deft":', opts:['Skillful','Quick','Clumsy','Nimble'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "prevalent":', opts:['Common','Widespread','Frequent','Rare'], ans:3},
+    {q:'Choose the word that is OPPOSITE in meaning to "sluggish":', opts:['Brisk','Slow','Lazy','Inactive'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "implement":', opts:['Apply','Cancel','Execute','Enforce'], ans:1},
+  ]
+},
+{
+  title: "CUET English Language Previous Years' Vocabulary Test-14",
+  questions: [
+    {q:'Choose the word closest in meaning to "interrupt":', opts:['Continue','Proceed','Stop','Advance'], ans:2},
+    {q:'Choose the word closest in meaning to "depressed":', opts:['Sad','Elated','Joyful','Happy'], ans:0},
+    {q:'Choose the word closest in meaning to "leisurely":', opts:['Rushed','Relaxed','Hurried','Hasty'], ans:1},
+    {q:'Choose the word closest in meaning to "ecstatic":', opts:['Miserable','Depressed','Sorrowful','Joyful'], ans:3},
+    {q:'Choose the word closest in meaning to "fluent":', opts:['Smoothly spoken','Stuttering','Hesitant','Halting'], ans:0},
+    {q:'Choose the word closest in meaning to "optimal":', opts:['Worst','Poorest','Best','Weakest'], ans:2},
+    {q:'Choose the word closest in meaning to "alter":', opts:['Keep','Change','Maintain','Preserve'], ans:1},
+    {q:'Choose the word closest in meaning to "altar":', opts:['Sacred table','Chair','Window','Door'], ans:0},
+    {q:'Choose the word closest in meaning to "anchor":', opts:['Kite','Balloon','Cloud','Heavy weight'], ans:3},
+    {q:'Choose the word closest in meaning to "invective":', opts:['Compliment','Abusive language','Praise','Flattery'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "credible":', opts:['Trustworthy','Reliable','Unbelievable','Dependable'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "plausible":', opts:['Unlikely','Reasonable','Probable','Possible'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "cryptography":', opts:['Codes','Ciphers','Encryption','Plaintext'], ans:3},
+    {q:'Choose the word that is OPPOSITE in meaning to "orography":', opts:['Mountains','Oceanography','Hills','Peaks'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "ornography":', opts:['Simplicity','Decoration','Embellishment','Ornaments'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "oceanography":', opts:['Sea study','Marine biology','Orography','Deep water'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "disparage":', opts:['Belittle','Criticize','Mock','Praise'], ans:3},
+    {q:'Choose the word that is OPPOSITE in meaning to "scrupulous":', opts:['Honest','Careless','Careful','Moral'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "languish":', opts:['Thrive','Fade','Wither','Decline'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "ostentate":', opts:['Display','Show off','Hide','Flaunt'], ans:2},
+  ]
+},
+{
+  title: "CUET English Language Previous Years' Vocabulary Test-15",
+  questions: [
+    {q:'Choose the word closest in meaning to "bard":', opts:['Scientist','Poet','Mathematician','Athlete'], ans:1},
+    {q:'Choose the word closest in meaning to "barred":', opts:['Opened','Allowed','Permitted','Blocked'], ans:3},
+    {q:'Choose the word closest in meaning to "theist":', opts:['Believer in God','Atheist','Skeptic','Doubter'], ans:0},
+    {q:'Choose the word closest in meaning to "ostentation":', opts:['Modesty','Humility','Showiness','Shyness'], ans:2},
+    {q:'Choose the word closest in meaning to "auger":', opts:['Boring tool','Hammer','Wrench','Screwdriver'], ans:0},
+    {q:'Choose the word closest in meaning to "augur":', opts:['Ignore','Predict','Forget','Neglect'], ans:1},
+    {q:'Choose the word closest in meaning to "intrepid":', opts:['Fearful','Scared','Terrified','Fearless'], ans:3},
+    {q:'Choose the word closest in meaning to "patricide":', opts:['Saving a life','Healing','Killing of father','Rescuing'], ans:2},
+    {q:'Choose the word closest in meaning to "marital":', opts:['Relating to marriage','Single life','Divorce','Solitude'], ans:0},
+    {q:'Choose the word closest in meaning to "paternal":', opts:['Motherly','Fatherly','Brotherly','Sisterly'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "fraternal":', opts:['Brotherly','Friendly','Close','Unbrotherly'], ans:3},
+    {q:'Choose the word that is OPPOSITE in meaning to "oppressive":', opts:['Gentle','Harsh','Cruel','Tyrannical'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "precocious":', opts:['Advanced','Early','Delayed','Gifted'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "valour":', opts:['Bravery','Cowardice','Courage','Heroism'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "adroit":', opts:['Inept','Skillful','Clever','Deft'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "zenith":', opts:['Peak','Top','Summit','Nadir'], ans:3},
+    {q:'Choose the word that is OPPOSITE in meaning to "contemptuous":', opts:['Scornful','Respectful','Disdainful','Mocking'], ans:1},
+    {q:'Choose the word that is OPPOSITE in meaning to "disillusioned":', opts:['Disappointed','Let down','Enchanted','Cynical'], ans:2},
+    {q:'Choose the word that is OPPOSITE in meaning to "ephemeral":', opts:['Permanent','Short-lived','Brief','Passing'], ans:0},
+    {q:'Choose the word that is OPPOSITE in meaning to "somber":', opts:['Dark','Gloomy','Dull','Cheerful'], ans:3},
+  ]
+}
+];
+
+// ===== MOCK TEST LISTING =====
+function buildMockGrid() {
+  const grid = document.getElementById('mockGrid');
+  grid.innerHTML = MOCK_TESTS.map((t, i) => `
+    <div class="mock-card">
+      <div class="mock-card-top">
+        <div class="mock-badge">${i+1}</div>
+        <div class="mock-card-info">
+          <div class="mock-card-title">${t.title}</div>
+          <div class="mock-card-meta">
+            <span>📝 20 Questions</span>
+            <span>⏱ 15 Minutes</span>
+            <span>🏆 100 Marks</span>
+          </div>
+        </div>
+      </div>
+      <button class="attempt-btn" onclick="startExam(${i})">Attempt Now →</button>
+    </div>
+  `).join('');
+}
+
+// ===== EXAM STATE =====
+let examState = {
+  testIdx: 0,
+  currentQ: 0,
+  answers: [],       // null = not visited, -1 = visited/not answered, 0-3 = answered
+  marked: [],
+  timerInterval: null,
+  timeLeft: 900,
+};
+
+function startExam(testIdx) {
+  const test = MOCK_TESTS[testIdx];
+  examState.testIdx = testIdx;
+  examState.currentQ = 0;
+  examState.answers = new Array(20).fill(null);
+  examState.marked = new Array(20).fill(false);
+  examState.timeLeft = 900;
+
+  document.getElementById('examTitle').textContent = `Test ${testIdx+1} · ${test.title.split('Test-')[1] ? 'Vocabulary Test-'+test.title.split('Test-')[1] : 'Vocabulary Test'}`;
+  document.getElementById('examOverlay').classList.add('open');
+  document.getElementById('submitConfirm').style.display = 'none';
+  document.body.style.overflow = 'hidden';
+
+  clearInterval(examState.timerInterval);
+  examState.timerInterval = setInterval(tickTimer, 1000);
+
+  renderQuestion();
+  renderPalette();
+}
+
+function tickTimer() {
+  examState.timeLeft--;
+  const m = Math.floor(examState.timeLeft / 60);
+  const s = examState.timeLeft % 60;
+  const el = document.getElementById('examTimer');
+  el.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  if (examState.timeLeft <= 60) el.classList.add('warning');
+  if (examState.timeLeft <= 0) { clearInterval(examState.timerInterval); doSubmit(); }
+}
+
+function renderQuestion() {
+  const test = MOCK_TESTS[examState.testIdx];
+  const q = test.questions[examState.currentQ];
+  const i = examState.currentQ;
+  const keys = ['(a)','(b)','(c)','(d)'];
+
+  // Mark as visited if null
+  if (examState.answers[i] === null) examState.answers[i] = -1;
+
+  document.getElementById('examQNum').textContent = `Question ${i+1} of ${test.questions.length}`;
+  document.getElementById('examQText').textContent = `${i+1}. ${q.q}`;
+
+  const optHtml = q.opts.map((opt, oi) => `
+    <div class="exam-option ${examState.answers[i] === oi ? 'selected':''}" onclick="selectOption(${oi})">
+      <div class="opt-radio"></div>
+      <span class="opt-key">${keys[oi]}</span>
+      <span class="opt-label">${opt}</span>
+    </div>
+  `).join('');
+  document.getElementById('examOptions').innerHTML = optHtml;
+
+  document.getElementById('prevBtn').disabled = i === 0;
+  document.getElementById('prevBtn').style.opacity = i === 0 ? '0.4' : '1';
+  const isLast = i === test.questions.length - 1;
+  document.getElementById('nextBtn').textContent = isLast ? 'Save & Next →' : 'Next →';
+}
+
+function selectOption(oi) {
+  const i = examState.currentQ;
+  examState.answers[i] = oi;
+  renderQuestion();
+  renderPalette();
+}
+
+function clearResponse() {
+  const i = examState.currentQ;
+  examState.answers[i] = -1;
+  examState.marked[i] = false;
+  renderQuestion();
+  renderPalette();
+}
+
+function goQuestion(dir) {
+  const total = MOCK_TESTS[examState.testIdx].questions.length;
+  const ni = examState.currentQ + dir;
+  if (ni >= 0 && ni < total) {
+    examState.currentQ = ni;
+    renderQuestion();
+    renderPalette();
+  }
+}
+
+function renderPalette() {
+  const grid = document.getElementById('paletteGrid');
+  const total = MOCK_TESTS[examState.testIdx].questions.length;
+  grid.innerHTML = Array.from({length: total}, (_, i) => {
+    let cls = 'not-visited';
+    if (examState.answers[i] !== null) {
+      if (examState.answers[i] === -1) cls = 'not-answered';
+      else cls = 'answered';
+    }
+    if (examState.marked[i]) cls = 'marked';
+    if (i === examState.currentQ) cls += ' current';
+    return `<button class="palette-btn ${cls}" onclick="jumpToQ(${i})">${i+1}</button>`;
+  }).join('');
+}
+
+function jumpToQ(i) {
+  examState.currentQ = i;
+  renderQuestion();
+  renderPalette();
+}
+
+function confirmSubmit() {
+  document.getElementById('submitConfirm').style.display = 'block';
+}
+
+function doSubmit() {
+  clearInterval(examState.timerInterval);
+  document.getElementById('examOverlay').classList.remove('open');
+  document.getElementById('submitConfirm').style.display = 'none';
+  document.body.style.overflow = '';
+
+  const test = MOCK_TESTS[examState.testIdx];
+  let correct = 0, wrong = 0, skipped = 0, attempted = 0;
+
+  test.questions.forEach((q, i) => {
+    const ans = examState.answers[i];
+    if (ans === null || ans === -1) {
+      skipped++;
+    } else {
+      attempted++;
+      if (ans === q.ans) correct++;
+      else wrong++;
+    }
+  });
+
+  // Scoring: +5 per correct, -1 per wrong, minimum score = 0
+  const rawScore = (correct * 5) - (wrong * 1);
+  const finalScore = Math.max(0, rawScore);
+  const totalMarks = test.questions.length * 5;
+  const accuracy  = attempted > 0 ? ((correct / attempted) * 100).toFixed(1) : '0.0';
+  const scorePct  = ((finalScore / totalMarks) * 100).toFixed(1);
+
+  // Populate result dashboard
+  document.getElementById('resSubtitle').textContent   = test.title;
+  document.getElementById('resScore').textContent      = finalScore;
+  document.getElementById('resPercent').textContent    = 'Score: ' + scorePct + '%  ·  Accuracy: ' + accuracy + '%';
+  document.getElementById('resAttempted').textContent  = attempted;
+  document.getElementById('resSkipped').textContent    = skipped;
+  document.getElementById('resCorrect').textContent    = correct;
+  document.getElementById('resWrong').textContent      = wrong;
+  document.getElementById('resTotal').textContent      = finalScore + ' / ' + totalMarks;
+
+  // Show result modal
+  document.getElementById('examResult').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeResult() {
+  document.getElementById('examResult').classList.remove('open');
+  document.body.style.overflow = '';
+  switchTab(2);
+}
+
+buildMockGrid();
+
+// ===== TAB SWITCHING =====
+function switchTab(n) {
+  document.getElementById('tab1Panel').classList.toggle('active', n === 1);
+  document.getElementById('tab2Panel').classList.toggle('active', n === 2);
+  document.getElementById('tab1Btn').classList.toggle('active', n === 1);
+  document.getElementById('tab2Btn').classList.toggle('active', n === 2);
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
 </script>
 </body>
 </html>
