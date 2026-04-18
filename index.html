@@ -24,7 +24,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 
 /* PROGRESS BAR */
 .progress-bar { height: 3px; background: linear-gradient(90deg, var(--accent), #f4a44a, var(--accent2)); background-size: 200%; animation: gradientMove 3s linear infinite; }
-@keyframes gradientMove { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
+
 
 /* HEADER */
 header { background: var(--card-back); color: #fff; padding: 14px 24px 14px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(0,0,0,0.18); }
@@ -52,7 +52,7 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
 
 /* ALPHA NAV */
 .alpha-nav { padding: 0 20px 16px; display: flex; flex-wrap: wrap; gap: 5px; }
-.alpha-btn { padding: 4px 8px; border-radius: 7px; border: 1.5px solid var(--border); background: var(--card-bg); font-size: 0.76rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
+.alpha-btn { padding: 5px 9px; border-radius: 7px; border: 1.5px solid var(--border); background: var(--card-bg); font-size: 0.76rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .alpha-btn:hover, .alpha-btn.active { background: var(--card-back); color: #fff; border-color: var(--card-back); }
 .alpha-btn.has-words { color: var(--text); border-color: #c0bbb0; }
 
@@ -79,7 +79,7 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
 .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(10,15,30,0.65); z-index: 999; align-items: center; justify-content: center; padding: 16px; backdrop-filter: blur(3px); }
 .modal-overlay.open { display: flex; }
 .modal-card { background: var(--card-back); color: #fff; border-radius: 20px; padding: 26px 22px 22px; max-width: 420px; width: 100%; box-shadow: 0 24px 80px rgba(0,0,0,0.45); position: relative; animation: modalIn 0.28s cubic-bezier(0.34,1.56,0.64,1) both; }
-@keyframes modalIn { from{opacity:0;transform:scale(0.88) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+
 .modal-close { position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,0.12); border: none; color: #fff; width: 30px; height: 30px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
 .modal-close:hover { background: rgba(255,255,255,0.22); }
 .modal-word { font-family: 'Playfair Display', serif; font-size: 1.65rem; font-weight: 700; color: #fff; margin-bottom: 6px; line-height: 1.2; }
@@ -243,64 +243,6 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
   font-style: italic;
 }
 
-/* ============ RESPONSIVE ============ */
-@media (max-width: 960px) {
-  .page-layout { flex-direction: column-reverse; }
-  .mentor-sidebar {
-    width: 100%;
-    position: static;
-    padding: 12px 16px 0;
-    max-height: none;
-    overflow-y: visible;
-  }
-  .mentor-card {
-    display: flex;
-    flex-direction: row;
-    border-radius: 16px;
-  }
-  .mentor-img-wrap {
-    width: 120px;
-    flex-shrink: 0;
-    padding-top: 0;
-    align-items: stretch;
-  }
-  .mentor-img-wrap img {
-    width: 120px;
-    height: 100%;
-    border-radius: 0;
-    object-fit: cover;
-    object-position: center top;
-  }
-  .mentor-body { flex: 1; }
-  .mentor-stats { display: none; }
-  .mentor-mission { display: none; }
-}
-
-  header { padding: 11px 14px; }
-}
-@media (max-width: 540px) {
-  .mentor-card { flex-direction: column; }
-  .mentor-img-wrap {
-    width: 100%;
-    height: 155px;
-    padding-top: 14px;
-    justify-content: center;
-    align-items: flex-end;
-  }
-  .mentor-img-wrap img {
-    width: 128px;
-    height: 138px;
-    border-radius: 10px 10px 0 0;
-    object-fit: cover;
-    object-position: center top;
-  }
-  .mentor-stats { display: flex; }
-  .cards-grid { grid-template-columns: repeat(auto-fill, minmax(128px,1fr)); gap: 9px; padding: 4px 12px 40px; }
-  .alpha-nav { padding: 0 12px 12px; }
-  .controls { padding: 0 12px 12px; }
-  .section-label { padding: 16px 12px 8px; }
-}
-
 /* ============ MOCK TEST SECTION ============ */
 .mock-section { padding: 0 20px 48px; }
 .mock-section-header { display: flex; align-items: center; gap: 12px; padding: 28px 0 18px; }
@@ -314,7 +256,7 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
 .mock-card-title { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 5px; }
 .mock-card-meta { font-size: 0.73rem; color: var(--muted); }
 .mock-card-meta span { margin-right: 10px; }
-.attempt-btn { background: var(--card-back); color: #fff; border: none; border-radius: 9px; padding: 9px 0; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; letter-spacing: 0.03em; transition: background 0.15s, transform 0.1s; width: 100%; }
+.attempt-btn { background: var(--card-back); color: #fff; border: none; border-radius: 9px; padding: 12px 0; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; letter-spacing: 0.03em; transition: background 0.15s, transform 0.1s; width: 100%; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .attempt-btn:hover { background: #243566; transform: scale(1.01); }
 /* ============ EXAM INTERFACE ============ */
 .exam-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: #eaf0fb; flex-direction: column; overflow: hidden; }
@@ -323,13 +265,13 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
 .exam-header-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; }
 .exam-timer { background: #e85d26; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700; padding: 5px 14px; border-radius: 8px; letter-spacing: 0.05em; min-width: 80px; text-align: center; }
 .exam-timer.warning { background: #dc2626; animation: timerPulse 1s ease-in-out infinite; }
-@keyframes timerPulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+
 .exam-body { display: flex; flex: 1; overflow: hidden; }
 .exam-question-panel { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; -webkit-overflow-scrolling: touch; }
 .exam-qnum { font-size: 0.78rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
 .exam-qtext { font-size: 1.05rem; font-weight: 600; color: var(--text); line-height: 1.6; margin-bottom: 22px; }
 .exam-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
-.exam-option { display: flex; align-items: center; gap: 14px; padding: 13px 16px; border: 2px solid var(--border); border-radius: 10px; cursor: pointer; background: var(--card-bg); transition: all 0.15s; user-select: none; }
+.exam-option { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 2px solid var(--border); border-radius: 10px; cursor: pointer; background: var(--card-bg); transition: all 0.15s; user-select: none; touch-action: manipulation; -webkit-tap-highlight-color: transparent; min-height: 52px; }
 .exam-option:hover { border-color: #93b4e8; background: #f0f5ff; }
 .exam-option.selected { border-color: var(--accent2); background: #eff6ff; }
 .exam-option.selected .opt-radio { background: var(--accent2); border-color: var(--accent2); }
@@ -339,7 +281,7 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
 .opt-label { font-size: 0.95rem; color: var(--text); flex: 1; }
 .opt-key { font-weight: 700; color: var(--muted); font-size: 0.85rem; width: 22px; flex-shrink: 0; }
 .exam-nav-buttons { display: flex; gap: 10px; margin-top: auto; padding-top: 16px; }
-.exam-nav-btn { flex: 1; padding: 11px; border-radius: 9px; border: 1.5px solid var(--border); background: var(--card-bg); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--text); transition: all 0.15s; }
+.exam-nav-btn { flex: 1; padding: 11px; border-radius: 9px; border: 1.5px solid var(--border); background: var(--card-bg); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--text); transition: all 0.15s; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .exam-nav-btn:hover { background: #e8eaee; }
 .exam-nav-btn.primary { background: var(--card-back); color: #fff; border-color: var(--card-back); }
 .exam-nav-btn.primary:hover { background: #243566; }
@@ -350,7 +292,7 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
 .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.68rem; color: var(--muted); font-weight: 500; }
 .legend-dot { width: 14px; height: 14px; border-radius: 4px; flex-shrink:0; }
 .palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-bottom: 16px; }
-.palette-btn { aspect-ratio: 1; border-radius: 6px; border: none; font-size: 0.75rem; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: transform 0.1s; }
+.palette-btn { aspect-ratio: 1; border-radius: 6px; border: none; font-size: 0.75rem; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: transform 0.1s; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .palette-btn:hover { transform: scale(1.12); }
 .palette-btn.not-visited { background: #e2e8f0; color: #64748b; }
 .palette-btn.answered { background: #16a34a; color: #fff; }
@@ -361,7 +303,7 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
 .submit-panel p { font-size: 0.85rem; color: var(--muted); margin-bottom: 12px; line-height: 1.55; }
 .exam-result { display: none; position: fixed; inset: 0; z-index: 2100; background: rgba(10,15,30,0.7); align-items: center; justify-content: center; padding: 16px; backdrop-filter: blur(4px); }
 .exam-result.open { display: flex; }
-.result-card { background: var(--card-bg); border-radius: 20px; padding: 28px 24px; max-width: 500px; width: 100%; max-height: 95dvh; max-height: 95vh; overflow-y: auto; box-shadow: 0 24px 80px rgba(0,0,0,0.4); animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both; -webkit-overflow-scrolling: touch; }
+.result-card { background: var(--card-bg); border-radius: 20px; padding: 28px 24px; max-width: 500px; width: 100%; max-height: 92dvh; max-height: 92vh; overflow-y: auto; box-shadow: 0 24px 80px rgba(0,0,0,0.4); animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
 .result-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--text); margin-bottom: 5px; }
 .result-subtitle { font-size: 0.78rem; color: var(--muted); margin-bottom: 20px; line-height: 1.4; }
 .result-score-row { background: linear-gradient(135deg, var(--card-back), #2a3f6f); border-radius: 14px; padding: 20px; text-align: center; margin-bottom: 18px; }
@@ -394,6 +336,8 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
 .tab-btn {
   flex: 0 1 auto;
   padding: 11px 28px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   font-family: 'DM Sans', sans-serif;
   font-size: 0.88rem;
   font-weight: 600;
@@ -525,7 +469,7 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
 .sol-explanation strong { color: var(--text); font-weight: 700; }
 .sol-explanation ul { margin: 6px 0 0 16px; }
 .sol-explanation li { margin-bottom: 3px; }
-@media (max-width: 540px) { .sol-body { padding: 12px; } .sol-q-card { padding: 14px 14px; } }
+
 
 
 
@@ -553,10 +497,7 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
   white-space: nowrap;
 }
 .wa-btn:hover { transform: scale(1.05); box-shadow: 0 6px 24px rgba(37,211,102,0.6); }
-@media (max-width: 480px) {
-  .wa-btn { font-size: 0; padding: 0; gap: 0; border-radius: 50%; width: 48px; height: 48px; justify-content: center; }
-  .wa-btn svg { width: 26px; height: 26px; }
-}
+
 
 
 /* ═══════════════════════════════════════════════════════════
@@ -564,42 +505,15 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
    ═══════════════════════════════════════════════════════════ */
 
 /* ── Tabs ── */
-@media (max-width: 680px) {
-  .tab-bar { flex-direction: column; gap: 8px; padding: 12px 14px 0; }
-  .tab-btn { border-radius: 10px !important; border: 1.5px solid var(--border) !important; font-size: 0.82rem; padding: 11px 14px; white-space: normal; text-align: center; }
-  .tab-btn.active { border-color: var(--card-back) !important; }
-}
+
 
 /* ── Header ── */
-@media (max-width: 480px) {
-  header { padding: 11px 14px; }
-  header h1 { font-size: clamp(0.9rem, 5vw, 1.2rem); }
-  header p.subtitle { font-size: 0.7rem; }
-}
+
 
 /* ── Mentor sidebar stack ── */
-@media (max-width: 960px) {
-  .page-layout { flex-direction: column-reverse; }
-  .mentor-sidebar { width: 100%; position: static; padding: 12px 14px 0; align-self: auto; }
-  .mentor-card { display: flex; flex-direction: row; border-radius: 14px; }
-  .mentor-img-wrap { width: 110px; flex-shrink: 0; padding-top: 0; align-items: stretch; }
-  .mentor-img-wrap img { width: 110px; height: 100%; border-radius: 0; object-fit: cover; object-position: center top; }
-  .mentor-body { flex: 1; }
-  .mentor-stats { display: none; }
-  .mentor-mission { display: none; }
-}
-@media (max-width: 540px) {
-  .mentor-card { flex-direction: column; }
-  .mentor-img-wrap { width: 100%; height: 145px; padding-top: 12px; justify-content: center; align-items: flex-end; }
-  .mentor-img-wrap img { width: 118px; height: 128px; border-radius: 10px 10px 0 0; }
-  .mentor-stats { display: flex; }
-  .cards-grid { grid-template-columns: repeat(auto-fill, minmax(128px,1fr)); gap: 9px; padding: 4px 12px 40px; }
-  .alpha-nav { padding: 0 12px 12px; }
-  .controls { padding: 0 12px 12px; }
-  .section-label { padding: 16px 12px 8px; }
-  .mock-grid { grid-template-columns: 1fr; }
-  .mock-section { padding: 0 12px 40px; }
-}
+
+
+
 
 /* ══════════════════════════════════════
    EXAM INTERFACE — MOBILE REDESIGN
@@ -611,97 +525,184 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
 .exam-palette-panel { width: 240px; background: var(--card-bg); border-left: 1.5px solid var(--border); overflow-y: auto; padding: 16px; flex-shrink: 0; }
 
 /* Mobile: stacked — question on top, mini-palette + submit at bottom */
+
+
+
+
+/* ── Result card on small screens ── */
+
+
+/* ── Solution overlay mobile ── */
+
+
+/* ── WA button ── */
+
+
+/* ── Mock test cards on mobile ── */
+
+/* ═══════════════════════════════════════
+   CLEAN MERGED RESPONSIVE OVERRIDES
+   ═══════════════════════════════════════ */
+
+/* ============================================================
+   KEYFRAME (kept outside media queries)
+   ============================================================ */
+@keyframes gradientMove { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
+@keyframes modalIn { from{opacity:0;transform:scale(0.88) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+@keyframes timerPulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+
+/* ============================================================
+   960px — Mentor sidebar stacks below flashcards
+   ============================================================ */
+@media (max-width: 960px) {
+  .page-layout          { flex-direction: column-reverse; }
+  .mentor-sidebar       { width: 100%; position: static; padding: 12px 14px 0; align-self: auto; }
+  .mentor-card          { display: flex; flex-direction: row; border-radius: 14px; overflow: hidden; }
+  .mentor-img-wrap      { width: 110px; flex-shrink: 0; padding-top: 0; align-items: stretch; }
+  .mentor-img-wrap img  { width: 110px; height: 100%; border-radius: 0; object-fit: cover; object-position: center top; }
+  .mentor-body          { flex: 1; }
+  .mentor-stats         { display: none; }
+  .mentor-mission       { display: none; }
+}
+
+/* ============================================================
+   768px — Exam interface: stacked mobile layout
+   ============================================================ */
 @media (max-width: 768px) {
-  /* Exam overlay uses column layout */
-  .exam-overlay { display: none; flex-direction: column; overflow: hidden; }
-  .exam-overlay.open { display: flex; }
+  /* Exam overlay column stack */
+  .exam-overlay               { display: none; flex-direction: column; overflow: hidden; }
+  .exam-overlay.open          { display: flex; }
+  .exam-body                  { flex-direction: column; overflow: hidden; }
 
-  /* Header tighter */
-  .exam-header { padding: 0 12px; height: 48px; gap: 8px; }
-  .exam-header-title { font-size: 0.78rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0; }
-  .exam-timer { font-size: 0.88rem; padding: 4px 10px; min-width: 64px; }
+  /* Exam header */
+  .exam-header                { padding: 0 10px; height: 48px; gap: 6px; }
+  .exam-header-title          { font-size: 0.75rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0; }
+  .exam-timer                 { font-size: 0.85rem; padding: 4px 8px; min-width: 58px; }
 
-  /* Body: stack vertically, question on top scrolls */
-  .exam-body { flex-direction: column; overflow: hidden; }
+  /* Question panel scrolls */
+  .exam-question-panel        { padding: 12px 12px 6px; flex: 1; overflow-y: auto; min-height: 0; -webkit-overflow-scrolling: touch; }
+  .exam-qnum                  { font-size: 0.7rem; margin-bottom: 4px; }
+  .exam-qtext                 { font-size: 0.94rem; margin-bottom: 12px; line-height: 1.5; }
+  .exam-options               { gap: 7px; margin-bottom: 10px; }
+  .exam-option                { padding: 10px 11px; gap: 9px; }
+  .opt-label                  { font-size: 0.86rem; }
+  .exam-nav-buttons           { margin-top: 6px; padding-top: 8px; padding-bottom: 2px; gap: 6px; flex-shrink: 0; }
+  .exam-nav-btn               { padding: 10px 4px; font-size: 0.78rem; }
 
-  /* Question panel: takes remaining space, scrollable */
-  .exam-question-panel { padding: 14px 14px 8px; flex: 1; overflow-y: auto; min-height: 0; }
-  .exam-qtext { font-size: 0.97rem; margin-bottom: 14px; }
-  .exam-options { gap: 8px; margin-bottom: 12px; }
-  .exam-option { padding: 11px 12px; gap: 10px; }
-  .opt-label { font-size: 0.88rem; }
-
-  /* Nav buttons always visible at bottom of question panel */
-  .exam-nav-buttons { margin-top: 8px; padding-top: 10px; padding-bottom: 4px; gap: 8px; flex-shrink: 0; }
-  .exam-nav-btn { padding: 10px 6px; font-size: 0.8rem; }
-
-  /* Palette panel: fixed height strip at bottom of exam */
+  /* Palette strip at bottom — always visible */
   .exam-palette-panel {
     display: flex !important;
     flex-direction: column;
     width: 100%;
     border-left: none;
     border-top: 1.5px solid var(--border);
-    padding: 10px 14px 10px;
+    padding: 8px 12px 8px;
     background: var(--card-bg);
     flex-shrink: 0;
-    max-height: 180px;
+    max-height: 170px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
-  .palette-title { margin-bottom: 6px; font-size: 0.68rem; }
-  .palette-legend { gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
-  .legend-item { font-size: 0.62rem; }
-
-  /* Palette grid: more columns on mobile */
-  .palette-grid { grid-template-columns: repeat(10, 1fr); gap: 4px; margin-bottom: 8px; }
-  .palette-btn { aspect-ratio: 1; font-size: 0.7rem; border-radius: 5px; min-height: 28px; }
-
-  /* Submit confirm inside palette — always visible on mobile */
-  .submit-panel { padding: 6px 0 0; text-align: left; }
-  .submit-panel p { font-size: 0.78rem; margin-bottom: 8px; }
+  .palette-title              { margin-bottom: 5px; font-size: 0.65rem; }
+  .palette-legend             { gap: 6px; margin-bottom: 6px; flex-wrap: wrap; }
+  .legend-item                { font-size: 0.6rem; }
+  .palette-grid               { grid-template-columns: repeat(10, 1fr); gap: 4px; margin-bottom: 6px; }
+  .palette-btn                { aspect-ratio: 1; font-size: 0.68rem; border-radius: 5px; min-height: 26px; }
 }
 
-@media (max-width: 400px) {
-  .palette-grid { grid-template-columns: repeat(10, 1fr); gap: 3px; }
-  .palette-btn { min-height: 24px; font-size: 0.62rem; }
-  .exam-qtext { font-size: 0.92rem; }
-  .exam-option { padding: 9px 10px; }
-  .opt-label { font-size: 0.84rem; }
-  .exam-nav-btn { font-size: 0.76rem; padding: 9px 4px; }
-  .exam-header-title { font-size: 0.7rem; }
+/* ============================================================
+   680px — Tabs stack vertically
+   ============================================================ */
+@media (max-width: 680px) {
+  .tab-bar      { flex-direction: column; gap: 8px; padding: 12px 14px 0; }
+  .tab-btn      { border-radius: 10px !important; border: 1.5px solid var(--border) !important;
+                  font-size: 0.82rem; padding: 11px 14px; white-space: normal; text-align: center; }
+  .tab-btn.active { border-color: var(--card-back) !important; }
 }
 
-/* ── Result card on small screens ── */
-@media (max-width: 480px) {
-  .result-card { padding: 20px 16px; border-radius: 16px; }
-  .result-title { font-size: 1.1rem; }
-  .result-score-big { font-size: 2rem; }
-  .result-stats { gap: 8px; }
-  .result-stat-box { padding: 10px 8px; }
-  .result-stat-num { font-size: 1.25rem; }
-  .result-stat-label { font-size: 0.6rem; }
-  .result-close-btn { font-size: 0.82rem; padding: 10px; }
-}
-
-/* ── Solution overlay mobile ── */
+/* ============================================================
+   540px — Small phones: flashcard grid, mentor stacks, mock grid
+   ============================================================ */
 @media (max-width: 540px) {
-  .sol-body { padding: 12px; }
-  .sol-q-card { padding: 12px 12px; }
-  .sol-q-text { font-size: 0.9rem; }
-  .sol-header { padding: 0 12px; height: 48px; }
-  .sol-header-title { font-size: 0.8rem; }
+  /* Mentor full width stacked */
+  .mentor-card          { flex-direction: column; }
+  .mentor-img-wrap      { width: 100%; height: 140px; padding-top: 12px; justify-content: center; align-items: flex-end; }
+  .mentor-img-wrap img  { width: 115px; height: 125px; border-radius: 10px 10px 0 0; }
+  .mentor-stats         { display: flex; }
+
+  /* Flashcard section */
+  .cards-grid     { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 9px; padding: 4px 12px 40px; }
+  .alpha-nav      { padding: 0 12px 12px; }
+  .controls       { padding: 0 12px 12px; }
+  .section-label  { padding: 14px 12px 8px; }
+
+  /* Mock test section */
+  .mock-grid      { grid-template-columns: 1fr; }
+  .mock-section   { padding: 0 12px 40px; }
+
+  /* Solution overlay */
+  .sol-body           { padding: 12px; }
+  .sol-q-card         { padding: 12px; }
+  .sol-q-text         { font-size: 0.88rem; }
+  .sol-header         { padding: 0 12px; height: 48px; }
+  .sol-header-title   { font-size: 0.78rem; }
+  .sol-opt            { padding: 7px 10px; gap: 7px; }
+  .sol-explanation    { font-size: 0.8rem; padding: 9px 11px; }
 }
 
-/* ── WA button ── */
+/* ============================================================
+   480px — Extra small: header, result card, WA button
+   ============================================================ */
 @media (max-width: 480px) {
-  .wa-btn { font-size: 0 !important; padding: 0 !important; gap: 0 !important; border-radius: 50% !important; width: 46px; height: 46px; justify-content: center; bottom: 66px; }
-  .wa-btn svg { width: 24px; height: 24px; }
+  /* Header */
+  header              { padding: 10px 14px; }
+  header h1           { font-size: clamp(0.88rem, 4.5vw, 1.15rem); }
+  header p.subtitle   { font-size: 0.68rem; letter-spacing: 0.04em; }
+
+  /* Result card */
+  .result-card        { padding: 18px 14px; border-radius: 14px; }
+  .result-title       { font-size: 1.05rem; }
+  .result-score-big   { font-size: 1.9rem; }
+  .result-percent     { font-size: 0.95rem; }
+  .result-stats       { gap: 7px; }
+  .result-stat-box    { padding: 9px 7px; }
+  .result-stat-num    { font-size: 1.2rem; }
+  .result-stat-label  { font-size: 0.58rem; }
+  .result-close-btn   { font-size: 0.8rem; padding: 10px; }
+
+  /* WA button: icon-only circle */
+  .wa-btn {
+    font-size: 0 !important; padding: 0 !important; gap: 0 !important;
+    border-radius: 50% !important; width: 44px; height: 44px;
+    justify-content: center; bottom: 64px; right: 14px;
+  }
+  .wa-btn svg { width: 22px; height: 22px; }
+
+  /* Mock cards */
+  .mock-card-title  { font-size: 0.82rem; }
+  .mock-badge       { width: 36px; height: 36px; font-size: 0.9rem; }
+  .mock-card-meta   { font-size: 0.7rem; }
+
+  /* Scroll top */
+  .scroll-top { bottom: 14px; right: 14px; width: 36px; height: 36px; font-size: 0.95rem; }
+
+  /* Flashcard */
+  .flashcard-wrapper  { height: 100px; }
+  .card-front .word   { font-size: clamp(0.78rem, 3.5vw, 0.95rem); }
 }
 
-/* ── Mock test cards on mobile ── */
-@media (max-width: 480px) {
-  .mock-card-title { font-size: 0.84rem; }
-  .mock-badge { width: 38px; height: 38px; font-size: 0.95rem; }
+/* ============================================================
+   400px — Very small phones
+   ============================================================ */
+@media (max-width: 400px) {
+  .palette-grid   { grid-template-columns: repeat(10, 1fr); gap: 3px; }
+  .palette-btn    { min-height: 22px; font-size: 0.6rem; }
+  .exam-qtext     { font-size: 0.88rem; }
+  .exam-option    { padding: 8px 9px; }
+  .opt-label      { font-size: 0.82rem; }
+  .exam-nav-btn   { font-size: 0.72rem; padding: 8px 3px; }
+  .exam-header-title { font-size: 0.68rem; }
+  .tab-btn        { font-size: 0.76rem; padding: 10px 12px; }
 }
 
 </style>
@@ -807,7 +808,7 @@ header p.subtitle { margin-top: 5px; font-size: 0.82rem; color: #a0aec0; font-we
   <div class="exam-header">
     <div class="exam-header-title" id="examTitle">Vocabulary Test</div>
     <div class="exam-timer" id="examTimer">15:00</div>
-    <button onclick="confirmSubmit()" style="background:#16a34a;color:#fff;border:none;border-radius:8px;padding:6px 14px;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;flex-shrink:0;">Submit</button>
+    <button onclick="confirmSubmit()" style="background:#16a34a;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;flex-shrink:0;min-height:36px;touch-action:manipulation;">Submit</button>
   </div>
 
   <div class="exam-body">
@@ -2106,6 +2107,138 @@ const DETAILED_SOLUTIONS = {
   {explanation:"OPPOSITE of <strong>Cynic</strong> (a person who doubts the sincerity of others). <ul><li>Doubter = One who questions or mistrusts</li><li>Skeptic = One who questions accepted beliefs</li><li>Believer = One who accepts something as true ✓ (opposite)</li><li>Pessimist = One who expects the worst</li></ul>"},
   {explanation:"OPPOSITE of <strong>Venerable</strong> (deserving respect due to age or wisdom). <ul><li>Respected = Admired by others</li><li>Honored = Given recognition</li><li>Disreputable = Lacking a good reputation ✓ (opposite)</li><li>Esteemed = Highly respected</li></ul>"},
   {explanation:"OPPOSITE of <strong>Venal</strong> (open to bribery or corruption). <ul><li>Corrupt = Dishonest or immoral</li><li>Bribable = Able to be influenced by money</li><li>Honest = Truthful and fair ✓ (opposite)</li><li>Dishonest = Not truthful</li></ul>"}
+],
+9: [ // Test 10
+  {explanation:"<strong>Wave</strong> means to move back and forth or fluctuate. <ul><li>Fluctuate = To change or vary irregularly ✓</li><li>Stabilize = To make steady and unchanged</li><li>Fix = To make firm and unchanging</li><li>Solidify = To become hard or solid</li></ul>"},
+  {explanation:"<strong>Waive</strong> means to give up a right or claim voluntarily. <ul><li>Claim = To assert a right to something</li><li>Forgo = To go without or give up something ✓</li><li>Demand = To ask for something forcefully</li><li>Assert = To state with confidence</li></ul>"},
+  {explanation:"<strong>Bale</strong> means a large bundle of material tightly bound together. <ul><li>Single = One individual unit</li><li>Bundle = A collection of things tied or wrapped together ✓</li><li>Piece = A single portion of something</li><li>Fragment = A small broken-off part</li></ul>"},
+  {explanation:"<strong>Bail</strong> means temporary release on condition of security or guarantee. <ul><li>Conviction = The act of being found guilty</li><li>Security = A guarantee or surety given for release ✓</li><li>Imprisonment = Being confined in prison</li><li>Sentence = The punishment given by a court</li></ul>"},
+  {explanation:"<strong>Vale</strong> means a valley or low-lying land between hills. <ul><li>Mountain = A high elevated landform</li><li>Valley = A low area between hills or mountains ✓</li><li>Peak = The top point of a mountain</li><li>Hill = A raised area of land, smaller than a mountain</li></ul>"},
+  {explanation:"<strong>Vain</strong> means having excessive pride in one's appearance or achievements; conceited. <ul><li>Humble = Not proud or arrogant</li><li>Modest = Not showy or self-important</li><li>Proud = Feeling deep satisfaction or conceit ✓</li><li>Selfless = Concerned more with others than oneself</li></ul>"},
+  {explanation:"<strong>Veil</strong> means to cover or conceal something. <ul><li>Uncover = To remove a covering</li><li>Reveal = To make something known or visible</li><li>Cover = To place something over to hide or protect ✓</li><li>Expose = To leave uncovered or unprotected</li></ul>"},
+  {explanation:"<strong>Vein</strong> means a blood vessel that carries blood toward the heart; also a streak in rock or wood. <ul><li>Blood vessel = A tube through which blood flows ✓</li><li>Bone = A rigid connective tissue forming the skeleton</li><li>Muscle = Tissue that produces movement</li><li>Skin = The outer layer of the body</li></ul>"},
+  {explanation:"<strong>Vane</strong> means a weathercock or device that shows wind direction. <ul><li>Engine = A machine that produces power</li><li>Weathercock = A device indicating wind direction ✓</li><li>Anchor = A heavy device used to moor a vessel</li><li>Wheel = A circular rotating mechanical device</li></ul>"},
+  {explanation:"<strong>Verbose</strong> means using or containing more words than needed; excessively wordy. <ul><li>Concise = Giving much information clearly in few words</li><li>Wordy = Using more words than are needed ✓</li><li>Brief = Of short duration or length</li><li>Silent = Making no sound</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Embezzle</strong> (to steal money entrusted to one's care). <ul><li>Steal = To take something without permission</li><li>Rob = To take property from someone by force</li><li>Reimburse = To repay money spent or lost ✓ (opposite)</li><li>Pilfer = To steal small amounts repeatedly</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Peevish</strong> (easily irritated or annoyed; childishly sulky). <ul><li>Irritable = Easily annoyed or made angry</li><li>Cranky = Bad-tempered and irritable</li><li>Amiable = Having a friendly and pleasant manner ✓ (opposite)</li><li>Grumpy = Bad-tempered and sulky</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Venial</strong> (a sin or offense that is minor and easily forgiven). <ul><li>Forgivable = Able to be forgiven</li><li>Minor = Small and not very important</li><li>Unforgivable = Too severe or serious to be forgiven ✓ (opposite)</li><li>Slight = Small in degree</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Juxtapose</strong> (to place two things side by side for comparison or contrast). <ul><li>Compare = To examine similarities and differences</li><li>Connect = To join or link together</li><li>Separate = To move apart or divide ✓ (opposite)</li><li>Align = To place in a straight line</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Genial</strong> (friendly and cheerful in manner). <ul><li>Friendly = Kind and pleasant to be with</li><li>Cheerful = Noticeably happy and optimistic</li><li>Unfriendly = Not friendly or pleasant ✓ (opposite)</li><li>Warm = Showing enthusiasm, affection, or kindness</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Parochial</strong> (narrow-minded; concerned only with local interests). <ul><li>Narrow-minded = Unwilling to consider new ideas</li><li>Limited = Restricted in scope or extent</li><li>Broad-minded = Open and tolerant to different views ✓ (opposite)</li><li>Local = Relating to a specific small area</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Taciturn</strong> (habitually silent or reserved in speech). <ul><li>Quiet = Making little or no noise</li><li>Silent = Not speaking or making any sound</li><li>Talkative = Fond of talking; chatty ✓ (opposite)</li><li>Reserved = Slow to reveal emotions or opinions</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Hysterical</strong> (deriving from uncontrolled extreme emotion; frantic). <ul><li>Frantic = Wild and uncontrolled due to anxiety</li><li>Wild = Out of control; not calm</li><li>Calm = Not showing or feeling nervousness or agitation ✓ (opposite)</li><li>Emotional = Having or showing strong feelings</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Brash</strong> (self-assertive in a rude, noisy or overbearing way). <ul><li>Bold = Showing a willingness to take risks</li><li>Rude = Offensively impolite or ill-mannered</li><li>Cautious = Being careful to avoid potential problems ✓ (opposite)</li><li>Aggressive = Ready or likely to attack</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Incontinence</strong> (lack of self-restraint; inability to control bodily functions). <ul><li>Restraint = The action of limiting or controlling something ✓ (opposite)</li><li>Weakness = The state of lacking strength</li><li>Loss = The fact of no longer having something</li><li>Failure = Lack of success or omission of expected action</li></ul>"}
+],
+10: [ // Test 11
+  {explanation:"<strong>Innate</strong> means inborn; existing from birth; natural. <ul><li>Inborn = Present from birth; natural ✓</li><li>Acquired = Gained through learning or experience</li><li>Learned = Gained through study or teaching</li><li>Artificial = Made rather than occurring naturally</li></ul>"},
+  {explanation:"<strong>Extraneous</strong> means not relevant or directly related to the subject; irrelevant. <ul><li>Essential = Absolutely necessary and important</li><li>Crucial = Decisive; critically important</li><li>Irrelevant = Not connected with or relevant to something ✓</li><li>Important = Of great significance or value</li></ul>"},
+  {explanation:"<strong>Pedagogy</strong> means the method and practice of teaching. <ul><li>Childcare = The care and supervision of children</li><li>Teaching method = The approach used in teaching ✓</li><li>Medicine = The science of diagnosing and treating illness</li><li>Engineering = Application of scientific principles in design</li></ul>"},
+  {explanation:"<strong>Frail</strong> means weak and delicate; easily damaged or broken. <ul><li>Robust = Strong and healthy; vigorous</li><li>Strong = Having the power to move heavy weights</li><li>Tough = Strong enough to withstand difficult conditions</li><li>Delicate = Very fine in texture or structure; fragile ✓</li></ul>"},
+  {explanation:"<strong>Subversive</strong> means seeking to undermine or overthrow an established system; rebellious. <ul><li>Rebellious = Showing a desire to resist authority or control ✓</li><li>Obedient = Complying with commands or rules</li><li>Loyal = Giving constant support to a person or institution</li><li>Compliant = Inclined to agree with others' wishes</li></ul>"},
+  {explanation:"<strong>Dissimilar</strong> means not the same; unlike; different. <ul><li>Identical = Exactly the same</li><li>Alike = Similar to each other</li><li>Different = Not the same as another; distinct ✓</li><li>Twin = One of two identical or very similar things</li></ul>"},
+  {explanation:"<strong>Dyslexia</strong> is a learning disorder that involves difficulty reading due to problems identifying speech sounds. <ul><li>Perfect vision = The ability to see clearly without correction</li><li>Reading disorder = A condition that causes difficulty in reading ✓</li><li>Hearing loss = Partial or total inability to hear</li><li>Muscle weakness = Reduced strength in muscles</li></ul>"},
+  {explanation:"<strong>Obviate</strong> means to remove a problem or difficulty before it arises; to prevent. <ul><li>Include = To contain or comprise as part of a whole</li><li>Invite = To make a request for someone to come</li><li>Welcome = To greet someone in a warm or friendly manner</li><li>Prevent = To keep something from happening ✓</li></ul>"},
+  {explanation:"<strong>Despondent</strong> means in low spirits from loss of hope or courage; hopeless. <ul><li>Hopeless = Feeling or causing despair ✓</li><li>Cheerful = Noticeably happy and optimistic</li><li>Joyful = Feeling great pleasure and happiness</li><li>Optimistic = Hopeful and confident about the future</li></ul>"},
+  {explanation:"<strong>Sedation</strong> means the administering of a drug to produce a calm or sleep-like state; calming. <ul><li>Agitation = A state of anxiety or nervous excitement</li><li>Calming = The act of making tranquil and quiet ✓</li><li>Excitement = A feeling of great enthusiasm and eagerness</li><li>Panic = Sudden uncontrollable fear or anxiety</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Impudent</strong> (not showing due respect; impertinent and rude). <ul><li>Rude = Offensively impolite or ill-mannered</li><li>Disrespectful = Showing a lack of respect</li><li>Respectful = Feeling or showing deference and regard ✓ (opposite)</li><li>Bold = Showing a willingness to take risks</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Reign</strong> (to hold royal office; rule or authority over a kingdom). <ul><li>Submission = The action of accepting authority or control ✓ (opposite)</li><li>Rule = Authority and control over others</li><li>Authority = The power to give orders and make decisions</li><li>Command = An authoritative order</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Bellicose</strong> (demonstrating aggression and willingness to fight). <ul><li>Aggressive = Ready or likely to attack or confront</li><li>Hostile = Showing or feeling opposition or dislike</li><li>Combative = Ready or eager to fight; pugnacious</li><li>Peaceful = Free from disturbance; not involving war ✓ (opposite)</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Benign</strong> (gentle and kindly; not harmful in effect). <ul><li>Kind = Having a friendly and generous nature</li><li>Malignant = Very virulent or infectious; tending to be severe ✓ (opposite)</li><li>Gentle = Moderate in action, effect, or degree</li><li>Safe = Protected from or not exposed to danger</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Unkempt</strong> (untidy in appearance; not combed or cared for). <ul><li>Neat = Arranged in an orderly and tidy manner ✓ (opposite)</li><li>Messy = Untidy or dirty</li><li>Untidy = Not arranged neatly and in order</li><li>Disordered = Lacking proper arrangement or organization</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Tidy</strong> (arranged neatly and in order; clean). <ul><li>Clean = Free from dirt, marks, or unwanted matter</li><li>Organized = Arranged in a systematic way</li><li>Messy = Untidy or dirty ✓ (opposite)</li><li>Pure = Free from contamination</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Soliloquy</strong> (an act of speaking one's thoughts aloud when alone or regardless of any hearers). <ul><li>Monologue = A long speech by one person</li><li>Solo = A thing done by one person alone</li><li>Speech = A formal address delivered to an audience</li><li>Dialogue = A conversation between two or more people ✓ (opposite)</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Coax</strong> (to persuade someone gradually or gently to do something). <ul><li>Persuade = To cause someone to do something through reasoning</li><li>Bully = To use superior strength or influence to intimidate ✓ (opposite)</li><li>Convince = To cause someone to believe something</li><li>Entice = To attract or tempt by offering pleasure</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Prodigious</strong> (remarkably great in extent, size, or degree). <ul><li>Tiny = Very small ✓ (opposite)</li><li>Massive = Large and heavy or solid</li><li>Huge = Extremely large in size</li><li>Enormous = Very large in size, quantity, or extent</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Religious</strong> (relating to or believing in a religion; devout). <ul><li>Devout = Having or showing deep religious feeling</li><li>Pious = Devoutly religious</li><li>Secular = Not connected with religion ✓ (opposite)</li><li>Faithful = Remaining loyal to a religion or belief</li></ul>"}
+],
+11: [ // Test 12
+  {explanation:"<strong>Spoilt</strong> means damaged or ruined in quality. <ul><li>Improved = Made better in quality or value</li><li>Ruined = Completely destroyed or damaged ✓</li><li>Enhanced = Improved or intensified</li><li>Fixed = Repaired or corrected</li></ul>"},
+  {explanation:"<strong>Remarkable</strong> means worth noticing due to being unusual or impressive. <ul><li>Extraordinary = Very unusual or impressively great ✓</li><li>Ordinary = Common and not special</li><li>Average = Typical or usual</li><li>Mundane = Dull, repetitive, and routine</li></ul>"},
+  {explanation:"<strong>Capricious</strong> means changing suddenly and without reason; whimsical. <ul><li>Stable = Not changing; firm and constant</li><li>Steady = Firmly fixed and not changing</li><li>Constant = Remaining the same over time</li><li>Unpredictable = Not able to be foreseen or anticipated ✓</li></ul>"},
+  {explanation:"<strong>Industrious</strong> means diligent and hard-working. <ul><li>Lazy = Unwilling to work or use energy</li><li>Idle = Not active or working</li><li>Hardworking = Putting effort into work ✓</li><li>Sluggish = Slow and lacking energy</li></ul>"},
+  {explanation:"<strong>Denounce</strong> means to publicly declare as wrong or evil; condemn. <ul><li>Praise = Express warm approval or admiration</li><li>Criticize = Point out the faults of something ✓</li><li>Applaud = Show approval by clapping or praising</li><li>Commend = Praise someone formally</li></ul>"},
+  {explanation:"<strong>Nuanced</strong> means characterized by subtle shades of meaning or expression. <ul><li>Subtle = So delicate or precise as to be difficult to analyze ✓</li><li>Obvious = Easily perceived or understood</li><li>Blatant = Open and unashamed; obvious</li><li>Clear = Easy to perceive, understand, or interpret</li></ul>"},
+  {explanation:"<strong>Faze</strong> means to disturb, disconcert, or unsettle someone. <ul><li>Calm = Make tranquil and quiet</li><li>Soothe = Gently calm or comfort</li><li>Relax = Make or become less tense or anxious</li><li>Disturb = Interfere with the normal arrangement or calm ✓</li></ul>"},
+  {explanation:"<strong>Peculiar</strong> means strange or unusual; different from what is normal. <ul><li>Normal = Conforming to a standard; usual</li><li>Standard = Used as a normal or average example</li><li>Strange = Unusual or surprising; difficult to understand ✓</li><li>Typical = Having the distinctive qualities of a type</li></ul>"},
+  {explanation:"<strong>Clemency</strong> means mercy or leniency shown especially towards an offender. <ul><li>Mercy = Compassion or forgiveness shown toward an offender ✓</li><li>Cruelty = Callous indifference to or pleasure in causing suffering</li><li>Harshness = Being severe, strict, or unpleasant</li><li>Punishment = The infliction of a penalty as retribution</li></ul>"},
+  {explanation:"<strong>Idiosyncrasy</strong> means a mode of behavior peculiar to an individual. <ul><li>Normality = The condition of being normal</li><li>Peculiarity = An unusual or distinctive feature or habit ✓</li><li>Conformity = Compliance with standards, rules, or laws</li><li>Regularity = The state of being regular; consistency</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Laurels</strong> (honors and recognition for past achievements). <ul><li>Honors = Awards or recognition given for achievement</li><li>Awards = Prizes given for achievement</li><li>Disgrace = Loss of reputation or respect ✓ (opposite)</li><li>Trophies = Objects awarded as prizes</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Colloquial</strong> (informal, used in everyday conversation). <ul><li>Formal = Following established rules; not informal ✓ (opposite)</li><li>Casual = Relaxed and informal in manner</li><li>Conversational = Like everyday spoken language</li><li>Informal = Not formal or stiffly ceremonious</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Prophecy</strong> (a prediction of what will happen in the future). <ul><li>Prediction = A statement about future events</li><li>Forecast = An estimate of future events</li><li>Vision = The ability to imagine future possibilities</li><li>Hindsight = Understanding a situation only after it has happened ✓ (opposite)</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Disparity</strong> (a great difference; inequality). <ul><li>Difference = The way in which things are not the same</li><li>Equality = The state of being equal in status or opportunities ✓ (opposite)</li><li>Gap = A break or difference</li><li>Contrast = The state of being noticeably different</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Distinction</strong> (excellence that sets someone apart; honor). <ul><li>Mediocrity = The quality of being only moderately good ✓ (opposite)</li><li>Excellence = The quality of being outstanding</li><li>Honor = High respect and great esteem</li><li>Greatness = The quality of being great or important</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Maladroit</strong> (ineffective or bungling; clumsy). <ul><li>Clumsy = Awkward in movement or handling things</li><li>Awkward = Not smooth or graceful</li><li>Skillful = Having or showing skill ✓ (opposite)</li><li>Inept = Having or showing no skill</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Rejuvenate</strong> (to make something look or feel younger, fresher, or more lively). <ul><li>Refresh = Give new strength or energy to</li><li>Renew = Resume or restore something</li><li>Revive = Bring back to life or consciousness</li><li>Tire = Make someone feel in need of rest or sleep ✓ (opposite)</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Nuisance</strong> (a person or thing causing annoyance or inconvenience). <ul><li>Annoyance = The feeling or state of being annoyed</li><li>Delight = Great pleasure ✓ (opposite)</li><li>Bother = Cause distress or trouble to</li><li>Pest = A person or thing that is annoying</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Devour</strong> (to eat food hungrily and quickly). <ul><li>Nibble = Take small bites out of something ✓ (opposite)</li><li>Consume = Eat or drink up</li><li>Ingest = Take food or drink into the body</li><li>Swallow = Cause food to pass from the mouth to the stomach</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Ebrious</strong> (intoxicated; drunk from alcoholic drink). <ul><li>Intoxicated = Affected by alcohol or a drug</li><li>Drunk = Affected by alcohol to the point of losing control</li><li>Sober = Not affected by alcohol; not drunk ✓ (opposite)</li><li>Inebriated = Drunk; intoxicated</li></ul>"}
+],
+12: [ // Test 13
+  {explanation:"<strong>Counselled</strong> means gave advice or guidance to someone. <ul><li>Ignored = Paid no attention to</li><li>Neglected = Failed to give proper care or attention</li><li>Abandoned = Left entirely and finally</li><li>Advised = Offered suggestions or recommendations ✓</li></ul>"},
+  {explanation:"<strong>Consoled</strong> means comforted someone who is unhappy or disappointed. <ul><li>Comforted = Made someone feel less unhappy ✓</li><li>Upset = Made unhappy, anxious, or disturbed</li><li>Agitated = Made troubled or nervous</li><li>Distressed = Caused extreme anxiety or suffering to</li></ul>"},
+  {explanation:"<strong>Canceled</strong> means decided that something planned will not happen; called off. <ul><li>Scheduled = Arranged to take place at a particular time</li><li>Annulled = Declared invalid officially ✓</li><li>Planned = Decided on and arranged in advance</li><li>Arranged = Organized or made preparations for</li></ul>"},
+  {explanation:"<strong>Elegy</strong> means a poem of serious reflection, typically lamenting the dead. <ul><li>Comedy = A humorous play or story</li><li>Joke = A thing said to cause amusement</li><li>Mournful poem = A poem expressing grief ✓</li><li>Celebration = A festive event to mark an occasion</li></ul>"},
+  {explanation:"<strong>Epistle</strong> means a formal or literary letter. <ul><li>Letter = A written, typed, or printed communication ✓</li><li>Novel = A fictitious prose narrative of considerable length</li><li>Biography = A written account of someone's life</li><li>Dictionary = A book listing words with their definitions</li></ul>"},
+  {explanation:"<strong>Novellet</strong> means a short novel or long story. <ul><li>Epic = A long poem about heroic deeds</li><li>Long textbook = A detailed educational reference book</li><li>Encyclopedia = A comprehensive reference book of knowledge</li><li>Short novel = A brief work of prose fiction ✓</li></ul>"},
+  {explanation:"<strong>Prudent</strong> means acting with care and good judgment; wise and thoughtful. <ul><li>Reckless = Acting without thinking of the consequences</li><li>Wise = Having experience, knowledge, and good judgment ✓</li><li>Careless = Not giving sufficient attention or thought</li><li>Foolish = Lacking good sense or judgment</li></ul>"},
+  {explanation:"<strong>Veracious</strong> means telling the truth; truthful and honest. <ul><li>Deceitful = Guilty of or involving deceit; dishonest</li><li>Lying = Not telling the truth</li><li>Truthful = Telling or expressing the truth ✓</li><li>Dishonest = Behaving in a way intended to deceive</li></ul>"},
+  {explanation:"<strong>Laconic</strong> means using very few words to express much; brief and concise. <ul><li>Brief = Of short duration; not long ✓</li><li>Wordy = Using or expressed in too many words</li><li>Talkative = Fond of or given to talking</li><li>Chatty = Fond of talking in a friendly informal way</li></ul>"},
+  {explanation:"<strong>Gloomy</strong> means dark or poorly lit; causing a depressed or fearful feeling. <ul><li>Bright = Giving out or reflecting much light</li><li>Cheerful = Noticeably happy and optimistic</li><li>Sunny = Bright with sunlight</li><li>Dark = Lacking or having very little light ✓</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Indolent</strong> (wanting to avoid activity or exertion; lazy). <ul><li>Lazy = Unwilling to work or use energy</li><li>Energetic = Showing or involving great activity or vitality ✓ (opposite)</li><li>Sluggish = Slow-moving or inactive</li><li>Idle = Avoiding work; not active or in use</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Prevaricate</strong> (to speak evasively; avoid telling the truth). <ul><li>Tell truth = To state facts honestly ✓ (opposite)</li><li>Lie = To make an untrue statement</li><li>Deceive = To deliberately mislead someone</li><li>Mislead = To cause someone to form a wrong impression</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Somnolent</strong> (sleepy and drowsy). <ul><li>Sleepy = Needing or ready for sleep</li><li>Drowsy = Feeling sleepy and lethargic</li><li>Alert = Vigilant and attentive; fully awake ✓ (opposite)</li><li>Tired = Feeling the need for sleep or rest</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Impeccable</strong> (faultless; in accordance with the highest standards). <ul><li>Perfect = Having all required elements; faultless</li><li>Flawless = Without any imperfections or defects</li><li>Spotless = Completely clean; free from wrongdoing</li><li>Flawed = Having a fault, weakness, or imperfection ✓ (opposite)</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Charade</strong> (an absurd pretense intended to create a false impression). <ul><li>Pretense = An attempt to make something not true appear true</li><li>Reality = The world or state of things as they actually exist ✓ (opposite)</li><li>Act = A thing done; a performance</li><li>Trick = A cunning act intended to deceive</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Foible</strong> (a minor weakness or failing in someone's character). <ul><li>Strength = A good or beneficial quality ✓ (opposite)</li><li>Weakness = The state or condition of lacking strength</li><li>Flaw = A mark, fault, or other imperfection</li><li>Defect = A shortcoming, imperfection, or lack</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Deft</strong> (neatly skillful and quick in one's movements). <ul><li>Skillful = Having or showing skill</li><li>Quick = Moving fast; prompt to understand</li><li>Clumsy = Awkward in movement or handling things ✓ (opposite)</li><li>Nimble = Quick and light in movement or action</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Prevalent</strong> (widespread; commonly occurring). <ul><li>Common = Occurring, found, or done often</li><li>Widespread = Found or distributed over a large area</li><li>Frequent = Occurring often or repeatedly</li><li>Rare = Not occurring very often ✓ (opposite)</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Sluggish</strong> (slow-moving or inactive; lacking energy). <ul><li>Brisk = Active, fast, and energetic ✓ (opposite)</li><li>Slow = Moving or operating at a lower speed</li><li>Lazy = Unwilling to work or use energy</li><li>Inactive = Not engaging in activity</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Implement</strong> (to put a decision or plan into effect). <ul><li>Apply = Put to practical use</li><li>Cancel = Decide that something planned will not happen ✓ (opposite)</li><li>Execute = Carry out or put into effect</li><li>Enforce = Compel observance of or compliance with a rule</li></ul>"}
+],
+13: [ // Test 14
+  {explanation:"<strong>Interrupt</strong> means to stop the continuous progress of something temporarily. <ul><li>Continue = To persist or carry on without stopping</li><li>Proceed = To move forward or continue an action</li><li>Stop = To put an end to; to halt ✓</li><li>Advance = To move forward or make progress</li></ul>"},
+  {explanation:"<strong>Depressed</strong> means feeling very low in spirits; unhappy and dejected. <ul><li>Sad = Feeling unhappy or sorrowful ✓</li><li>Elated = Extremely happy and exhilarated</li><li>Joyful = Feeling great happiness</li><li>Happy = Feeling or showing pleasure or contentment</li></ul>"},
+  {explanation:"<strong>Leisurely</strong> means acting without hurry; relaxed and unhurried. <ul><li>Rushed = Done with haste; hurried</li><li>Relaxed = Free from stress or anxiety ✓</li><li>Hurried = Done quickly due to time pressure</li><li>Hasty = Done with excessive speed or urgency</li></ul>"},
+  {explanation:"<strong>Ecstatic</strong> means feeling or expressing overwhelming happiness or joyful excitement. <ul><li>Miserable = Wretchedly unhappy or uncomfortable</li><li>Depressed = In a state of unhappiness or low spirits</li><li>Sorrowful = Feeling or showing grief</li><li>Joyful = Feeling, expressing, or causing great pleasure ✓</li></ul>"},
+  {explanation:"<strong>Fluent</strong> means speaking or writing in a smooth, natural, easy way. <ul><li>Smoothly spoken = Speaking with ease and natural flow ✓</li><li>Stuttering = Speaking with involuntary pauses or repetitions</li><li>Hesitant = Tentative; showing uncertainty in speech</li><li>Halting = Stopping and starting repeatedly; faltering</li></ul>"},
+  {explanation:"<strong>Optimal</strong> means best or most favorable under given conditions. <ul><li>Worst = Of the poorest quality; least desirable</li><li>Poorest = Of the lowest quality</li><li>Best = Of the most excellent quality ✓</li><li>Weakest = Having the least strength or effectiveness</li></ul>"},
+  {explanation:"<strong>Alter</strong> means to change or cause to change in character or appearance. <ul><li>Keep = Have or retain possession of</li><li>Change = Make or become different ✓</li><li>Maintain = Keep in the same condition; preserve</li><li>Preserve = Maintain in its original or existing state</li></ul>"},
+  {explanation:"<strong>Altar</strong> means the table used in a church for the Eucharist; a sacred structure for offerings. <ul><li>Sacred table = A holy structure for religious offerings ✓</li><li>Chair = A separate seat for one person</li><li>Window = An opening in a wall or roof to admit light</li><li>Door = A movable barrier used to open and close an entrance</li></ul>"},
+  {explanation:"<strong>Anchor</strong> means a heavy object attached to a rope used to moor a vessel; anything providing stability. <ul><li>Kite = A toy consisting of a light frame flown in the wind</li><li>Balloon = A brightly coloured rubber sac inflated with air</li><li>Cloud = A visible mass of condensed water vapour in the sky</li><li>Heavy weight = Something used to hold firmly in place ✓</li></ul>"},
+  {explanation:"<strong>Invective</strong> means insulting, abusive, or highly critical language. <ul><li>Compliment = An expression of praise or admiration</li><li>Abusive language = Harsh or insulting words used against someone ✓</li><li>Praise = Express warm approval or admiration</li><li>Flattery = Excessive and insincere praise</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Credible</strong> (able to be believed; convincing and trustworthy). <ul><li>Trustworthy = Able to be relied on as honest</li><li>Reliable = Consistently good; able to be trusted</li><li>Unbelievable = Not able to be believed; incredible ✓ (opposite)</li><li>Dependable = Trustworthy and reliable</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Plausible</strong> (seeming reasonable or probable). <ul><li>Unlikely = Not probable; not to be expected ✓ (opposite)</li><li>Reasonable = Having sound judgment; fair and sensible</li><li>Probable = Likely to happen or be true</li><li>Possible = Able to be done or to occur</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Cryptography</strong> (the art of writing or solving codes; encryption). <ul><li>Codes = Systems of symbols used to represent information secretly</li><li>Ciphers = Secret or disguised ways of writing</li><li>Encryption = The process of converting information into code</li><li>Plaintext = Unencrypted, readable text ✓ (opposite)</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Orography</strong> (the branch of physical geography dealing with mountains). <ul><li>Mountains = Large natural elevations of the earth's surface</li><li>Oceanography = The branch of science dealing with the sea ✓ (opposite)</li><li>Hills = Smaller natural elevations of land</li><li>Peaks = The pointed tops of mountains</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Ornography</strong> (the study or description of decorative ornaments). <ul><li>Simplicity = The quality of being easy to understand or uncomplicated ✓ (opposite)</li><li>Decoration = The process or art of decorating something</li><li>Embellishment = A decorative detail added to make something more attractive</li><li>Ornaments = Objects used to make something look more attractive</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Oceanography</strong> (the branch of science dealing with the physical properties of the sea). <ul><li>Sea study = The study of oceans and their contents</li><li>Marine biology = The scientific study of organisms in the sea</li><li>Orography = The study of mountains and their formation ✓ (opposite)</li><li>Deep water = The part of the sea far from land</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Disparage</strong> (to regard or represent as being of little worth; belittle). <ul><li>Belittle = Make someone or something seem unimportant</li><li>Criticize = Indicate the faults of in a disapproving way</li><li>Mock = Tease or laugh at in a scornful way</li><li>Praise = Express warm approval or admiration ✓ (opposite)</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Scrupulous</strong> (very careful and thorough; extremely honest). <ul><li>Honest = Free of deceit; truthful and sincere</li><li>Careless = Not giving sufficient attention or thought ✓ (opposite)</li><li>Careful = Making sure of avoiding potential danger</li><li>Moral = Concerned with principles of right and wrong</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Languish</strong> (to lose or lack vitality; grow weak or fail to make progress). <ul><li>Thrive = Grow or develop well; prosper ✓ (opposite)</li><li>Fade = Gradually grow faint and disappear</li><li>Wither = Become dry and shriveled</li><li>Decline = Become smaller or weaker</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Ostentate</strong> (to display or show off in a showy manner). <ul><li>Display = Make a prominent exhibition of something</li><li>Show off = Flaunt one's abilities or possessions boastfully</li><li>Hide = Put or keep out of sight ✓ (opposite)</li><li>Flaunt = Display ostentatiously; show off proudly</li></ul>"}
+],
+14: [ // Test 15
+  {explanation:"<strong>Bard</strong> means a poet, traditionally one who composed and recited epic or heroic poems. <ul><li>Scientist = A person who studies or has expert knowledge of science</li><li>Poet = A person who writes poems ✓</li><li>Mathematician = A person expert in mathematics</li><li>Athlete = A person who is proficient in sports</li></ul>"},
+  {explanation:"<strong>Barred</strong> means prevented or blocked from doing something; excluded. <ul><li>Opened = Made accessible or available</li><li>Allowed = Let someone do something; permitted</li><li>Permitted = Officially allowed to do something</li><li>Blocked = Made it impossible to move or flow through ✓</li></ul>"},
+  {explanation:"<strong>Theist</strong> means a person who believes in the existence of a god or gods. <ul><li>Believer in God = Someone who has faith in a deity ✓</li><li>Atheist = A person who disbelieves in the existence of God</li><li>Skeptic = A person inclined to question or doubt accepted opinions</li><li>Doubter = A person who doubts accepted beliefs</li></ul>"},
+  {explanation:"<strong>Ostentation</strong> means the pretentious or showy display of wealth and knowledge to impress others. <ul><li>Modesty = The quality of not being too proud about oneself</li><li>Humility = A modest or low view of one's own importance</li><li>Showiness = The quality of being flashy and attention-seeking ✓</li><li>Shyness = Being reserved; a disinclination to be with people</li></ul>"},
+  {explanation:"<strong>Auger</strong> means a tool with a helical bit for boring holes in wood or the ground. <ul><li>Boring tool = An instrument designed for drilling holes ✓</li><li>Hammer = A tool for driving nails or breaking things apart</li><li>Wrench = A tool for gripping and turning nuts or bolts</li><li>Screwdriver = A tool for turning screws into surfaces</li></ul>"},
+  {explanation:"<strong>Augur</strong> means to be a sign of (a good or bad outcome); to predict or foresee. <ul><li>Ignore = Refuse to take notice of or acknowledge</li><li>Predict = Say or estimate that a specified thing will happen ✓</li><li>Forget = Fail to remember something</li><li>Neglect = Fail to care for properly</li></ul>"},
+  {explanation:"<strong>Intrepid</strong> means fearless and adventurous; bold and courageous. <ul><li>Fearful = Full of fear or anxiety</li><li>Scared = Feeling frightened or alarmed</li><li>Terrified = Extremely frightened</li><li>Fearless = Lacking fear; brave and bold ✓</li></ul>"},
+  {explanation:"<strong>Patricide</strong> means the killing of one's own father. <ul><li>Saving a life = The act of rescuing or protecting a person from death</li><li>Healing = The process of becoming sound or healthy again</li><li>Killing of father = The act of murdering one's own father ✓</li><li>Rescuing = Saving someone from a dangerous or difficult situation</li></ul>"},
+  {explanation:"<strong>Marital</strong> means relating to marriage or the relations between married people. <ul><li>Relating to marriage = Connected with the married state ✓</li><li>Single life = The state of being unmarried</li><li>Divorce = The legal dissolution of a marriage</li><li>Solitude = The state of being alone; seclusion</li></ul>"},
+  {explanation:"<strong>Paternal</strong> means relating to or appropriate to a father; fatherly. <ul><li>Motherly = Relating to or characteristic of a mother</li><li>Fatherly = Of or resembling a father; showing care like a father ✓</li><li>Brotherly = Of or resembling a brother</li><li>Sisterly = Of or resembling a sister</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Fraternal</strong> (relating to brothers; showing brotherly affection). <ul><li>Brotherly = Like a brother; relating to brothers</li><li>Friendly = Characteristic of or befitting a friend</li><li>Close = Having a strong bond or connection</li><li>Unbrotherly = Not showing brotherly feelings or loyalty ✓ (opposite)</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Oppressive</strong> (inflicting harsh and authoritarian treatment; unjustly controlling). <ul><li>Gentle = Having or showing a mild, kind, or tender nature ✓ (opposite)</li><li>Harsh = Severe; cruel and unkind</li><li>Cruel = Willfully causing pain or suffering</li><li>Tyrannical = Exercising power in a cruel and unreasonable way</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Precocious</strong> (having developed certain abilities at an earlier age than usual). <ul><li>Advanced = Far on or ahead in development or progress</li><li>Early = Happening or done before the expected time</li><li>Delayed = Made late or slow; postponed ✓ (opposite)</li><li>Gifted = Having exceptional talent or natural ability</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Valour</strong> (great courage in the face of danger, especially in battle). <ul><li>Bravery = Courageous behavior or character</li><li>Cowardice = Excessive timidity; lack of courage ✓ (opposite)</li><li>Courage = The ability to face fear or danger</li><li>Heroism = Great bravery in the face of danger</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Adroit</strong> (clever or skillful in using the hands or mind). <ul><li>Inept = Having or showing no skill; unskillful ✓ (opposite)</li><li>Skillful = Having or showing skill and proficiency</li><li>Clever = Quick to understand, learn, and devise</li><li>Deft = Neatly skillful and quick in one's movements</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Zenith</strong> (the time at which something is most powerful; the highest point). <ul><li>Peak = The point of highest activity or achievement</li><li>Top = The highest or uppermost point or part</li><li>Summit = The highest point of a hill, mountain, or ambition</li><li>Nadir = The lowest point in the fortunes of a person ✓ (opposite)</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Contemptuous</strong> (showing contempt; scornful and disrespectful). <ul><li>Scornful = Feeling or expressing contempt or disdain</li><li>Respectful = Feeling or showing deference and respect ✓ (opposite)</li><li>Disdainful = Showing contempt or lack of respect</li><li>Mocking = Making fun of someone in a cruel way</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Disillusioned</strong> (disappointed in someone or something once respected; having lost one's ideals). <ul><li>Disappointed = Sad or displeased because expectations were not met</li><li>Let down = Failed to support or satisfy someone</li><li>Enchanted = Filled with great delight; charmed ✓ (opposite)</li><li>Cynical = Believing that people are motivated only by self-interest</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Ephemeral</strong> (lasting for a very short time; transitory). <ul><li>Permanent = Lasting or intended to last indefinitely ✓ (opposite)</li><li>Short-lived = Living or lasting only for a short time</li><li>Brief = Of short duration; not lasting long</li><li>Passing = Going past; not permanent or enduring</li></ul>"},
+  {explanation:"OPPOSITE of <strong>Somber</strong> (dark or dull; serious and depressing in character). <ul><li>Dark = Lacking or having very little light</li><li>Gloomy = Dark or poorly lit; causing low spirits</li><li>Dull = Lacking brightness, vividness, or sheen</li><li>Cheerful = Noticeably happy and optimistic ✓ (opposite)</li></ul>"}
 ]
 };
 
